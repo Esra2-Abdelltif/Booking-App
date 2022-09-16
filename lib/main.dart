@@ -1,4 +1,6 @@
-import 'package:booking_app/presentation/screens/onboarding/on_boarding_screen.dart';
+import 'package:booking_app/layout/theme/themes/light_theme.dart';
+import 'package:booking_app/presentation/screens/onboarding/onBoarding_screen.dart';
+import 'package:booking_app/utilites/app_strings.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,12 +14,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: AppString.appTitle,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Onbording(),
+      theme:lightthemes,
+      home: OnBoardinScreen(),
     );
   }
 }

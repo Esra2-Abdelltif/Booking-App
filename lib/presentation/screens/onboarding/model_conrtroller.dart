@@ -1,28 +1,29 @@
+import 'package:booking_app/utilites/app_strings.dart';
 import 'package:booking_app/utilites/assets_manager.dart';
 
-class UnbordingContent {
+class BoardingModel {
   String image;
   String title;
   String discription;
 
-  UnbordingContent({required this.image, required this.title, required this.discription});
+  BoardingModel({required this.image, required this.title, required this.discription});
 }
 
-List<UnbordingContent> contents = [
-  UnbordingContent(
-      title: 'Plan Your Trips',
+List<BoardingModel> contents = [
+  BoardingModel(
+      title: AppString.onBoardingTitle1,
       image: ImageAssets.onBoarding1,
-      discription: "Book one of your unique hotels to escape the ordinary "
+      discription:  AppString.onBoardingdiscription1
   ),
-  UnbordingContent(
-      title: 'Find Best Deals',
+  BoardingModel(
+      title:  AppString.onBoardingTitle2,
       image: ImageAssets.onBoarding2,
-      discription: "Find deals for any season from cosy country home to city flats  "
+      discription: AppString.onBoardingdiscription2
 
   ),
-  UnbordingContent(
-      title: 'Best Traveling All Time',
+  BoardingModel(
+      title:  AppString.onBoardingTitle3,
       image: ImageAssets.onBoarding3,
-      discription: "Find deals for any season from cosy country home to city flats "
+      discription: AppString.onBoardingdiscription3,
   ),
 ];
