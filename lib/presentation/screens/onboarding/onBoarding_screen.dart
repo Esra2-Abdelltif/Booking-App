@@ -117,6 +117,7 @@ class _OnBoardinScreenState extends State<OnBoardinScreen> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
+
                                   TextButton(
                                     onPressed: () {
                                       boardController.jumpToPage(2);
