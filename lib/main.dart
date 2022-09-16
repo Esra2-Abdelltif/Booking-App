@@ -1,5 +1,4 @@
 import 'package:booking_app/layout/theme/themes/light_theme.dart';
-import 'package:booking_app/presentation/screens/onboarding/onBoarding_screen.dart';
 import 'package:booking_app/presentation/screens/splash/splash.dart';
 import 'package:booking_app/utilites/app_strings.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: AppString.appTitle,
       debugShowCheckedModeBanner: false,
       theme:lightthemes,
-      home: SplashSCreen(),
+      home: SplashScreen(),
     );
   }
 }

@@ -104,7 +104,7 @@ class _OnBoardinScreenState extends State<OnBoardinScreen> {
                                       ? EdgeInsets.symmetric(
                                           horizontal: 80, vertical: 20)
                                       : EdgeInsets.symmetric(
-                                          horizontal: width! * 0.2,
+                                          horizontal: width * 0.2,
                                           vertical: 25),
                                   textStyle: TextStyle(
                                       fontSize: (width <= 550) ? 13 : 17),

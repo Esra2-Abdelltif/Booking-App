@@ -6,24 +6,26 @@ import 'package:booking_app/utilites/app_strings.dart';
 import 'package:booking_app/utilites/assets_manager.dart';
 import 'package:flutter/material.dart';
 
-class SplashSCreen extends StatelessWidget {
-
+class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
-    return  AnimatedSplashScreen(
-      duration: 400,
-      splash: Column(children: [
-        Image.asset(ImageAssets.appLogo,width: 150,height: 140),
-        SizedBox(height: 15,),
-        Text(AppString.appTitle,style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold,color: Colors.black54),)
+    return AnimatedSplashScreen(
+      duration: 1500,
+      splash: Column(
+          children: [
+        Expanded(child: Image.asset(ImageAssets.appLogo, width: 150, height: 140)),
+        SizedBox(
+          height: 35,
+        ),
+        Text(
+          AppString.appTitle,
+          style: TextStyle(
+              fontSize: 40, fontWeight: FontWeight.bold, color: Colors.black54),
+        )
       ]),
-      nextScreen:OnBoardinScreen(),
+      nextScreen: OnBoardinScreen(),
       splashIconSize: 250,
       splashTransition: SplashTransition.slideTransition,
-
-
     );
-
   }
 }
