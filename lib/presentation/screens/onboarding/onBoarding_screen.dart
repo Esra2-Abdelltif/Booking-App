@@ -1,3 +1,5 @@
+import 'package:booking_app/presentation/screens/account/signin_screen.dart';
+import 'package:booking_app/presentation/screens/account/signup_screen.dart';
 import 'package:booking_app/presentation/screens/onboarding/model_conrtroller.dart';
 import 'package:booking_app/presentation/widgets/CustomRowText.dart';
 import 'package:booking_app/presentation/widgets/customButton.dart';
@@ -108,6 +110,11 @@ class _OnBoardinScreenState extends State<OnBoardinScreen> {
                     borderColor: AppColors.blueColor,
                     onTap: () {
                       // NavigateTo(context: context,router: ());
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignInScreen()),
+                      );
+
                     },
                   ),
                 ),
@@ -116,7 +123,11 @@ class _OnBoardinScreenState extends State<OnBoardinScreen> {
                     Text1: 'Don\'t have an account ?',
                     Text2: 'Sign Up',
                     onPressed: () {
-                      //NavigateTo(router: SignUpScreen(), context: context);
+                     // NavigateTo(router: SignUpScreen(), context: context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignUpScreen()),
+                      );
                     }),
               ]),
             ),
