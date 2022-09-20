@@ -33,6 +33,12 @@ class HomeScreen extends StatelessWidget {
               },
               child: const Text('Get Hotels'),
             ),
+            MaterialButton(
+              onPressed: () {
+                //AppBloc.get(context).getHotels();
+              },
+              child: const Text('test'),
+            ),
           ],
         ),
 
