@@ -46,6 +46,7 @@ dependencies:
   shared_preferences: ^2.0.15
   conditional_builder_null_safety: ^0.0.6
   fluttertoast: ^8.0.9
+  google_maps_flutter: ^2.2.0
 
 dev_dependencies:
   flutter_test:
