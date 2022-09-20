@@ -132,8 +132,8 @@ extension on DioHelper {
           error: title is String ? title : r.data['status']['title']['en'],
         );
       }
-
       return r.data;
+
     } on DioError catch (e) {
       debugPrint("Error_Message => ${e.message}");
       debugPrint("Error_Error => ${e.error.toString()}");

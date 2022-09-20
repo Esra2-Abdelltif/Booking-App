@@ -5,6 +5,12 @@ String? firstNameField(String? fieldContent) { //<-- add String? as a return typ
   }
   return null;
 }
+String? userNameField(String? fieldContent) { //<-- add String? as a return type
+  if(fieldContent!.isEmpty) {
+    return 'Invalid User Name';
+  }
+  return null;
+}
 
 String? lastNameField(String? fieldContent) { //<-- add String? as a return type
   if(fieldContent!.isEmpty) {

@@ -16,7 +16,7 @@ ThemeData lightthemes = ThemeData(
 //fontStyle: FontStyle.italic
     ),
     systemOverlayStyle: SystemUiOverlayStyle(
-      statusBarColor: Colors.white,
+      statusBarColor: Colors.transparent,
       statusBarIconBrightness:Brightness.dark,
 // statusBarBrightness: Brightness.dark,
 

@@ -8,6 +8,8 @@ import 'package:booking_app/Booking_App/features/data/models/profile_model.dart'
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
+import '../models/register_model.dart';
+
 
 
 
@@ -15,6 +17,13 @@ abstract class Repository {
   Future<Either<PrimaryServerException, LoginModel>> login({
     required String email,
     required String password,
+  });
+
+  Future<Either<PrimaryServerException,RegisterModel>> register({
+    required String name,
+    required String email,
+    required String password,
+    required String confirmPassword,
   });
 
   Future<Either<PrimaryServerException, ProfileModel>> getProfile({
@@ -32,6 +41,32 @@ class RepositoryImplementation extends Repository {
   RepositoryImplementation({
     required this.dioHelper,
   });
+
+  @override
+  Future<Either<PrimaryServerException, RegisterModel>> register({
+    required String name,
+    required String email,
+    required String password,
+    required String confirmPassword,
+  })async{
+    return await basicErrorHandling<RegisterModel>(
+        onSuccess: ()async {
+          final response = await dioHelper.post(
+            endPoint: registerEndPoint,
+            data: {
+              'name': name,
+              'email': email,
+              'password': password,
+              'password_confirmation': confirmPassword,
+            },
+          );
+          return RegisterModel.fromJson(response);
+        },
+        onPrimaryServerException: (e)async{
+          return e;
+        }
+    );
+  }
 
   @override
   Future<Either<PrimaryServerException, HotelsModel>> getHotels({
@@ -108,7 +143,6 @@ extension on Repository {
       final r = await onSuccess();
       return Right(r);
     } on PrimaryServerException catch (e, s) {
-      debugPrint(s.toString());
       return Left(e);
     }
   }

@@ -4,6 +4,7 @@ import 'package:booking_app/Booking_App/features/presentation/blocs/cubit.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../features/presentation/screens/account/login/cubit/cubit.dart';
+import '../../features/presentation/screens/account/register/cubit/cubit.dart';
 
 final sl = GetIt.instance;
 
@@ -12,6 +13,9 @@ Future<void> init() async {
     repository: sl(),
   ));
   sl.registerFactory(() => LoginCubit(
+    repository: sl(),
+  ));
+  sl.registerFactory(() => RegisterCubit(
     repository: sl(),
   ));
 

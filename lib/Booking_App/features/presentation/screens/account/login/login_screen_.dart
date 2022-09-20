@@ -17,6 +17,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../register/register_screen.dart';
+
 class LoginScreen extends StatelessWidget {
   var formkey = GlobalKey<FormState>();
   bool _isPass = true;
@@ -163,7 +165,7 @@ class LoginScreen extends StatelessWidget {
                                       text: AppString.signUp,
                                       onPressed: () {
                                         AppConstance.navigateTo(
-                                            router: const HomeScreen(), context: context);
+                                            router: const RegisterScreen(), context: context);
                                       },
                                     ),
                                   ],

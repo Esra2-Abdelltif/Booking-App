@@ -27,3 +27,4 @@ class ErrorState extends LogInStates {
 }
 
 class ChangePasswordVisibilityState extends LogInStates {}
+

@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../data/models/register_model.dart';
+
 class LoginCubit extends Cubit<LogInStates> {
   final Repository repository;
 
@@ -13,8 +15,6 @@ class LoginCubit extends Cubit<LogInStates> {
   }) : super(InitialLogInStates());
 
   static LoginCubit get(context) => BlocProvider.of(context);
-
-
 
   LoginModel? loginModel;
 
@@ -46,4 +46,5 @@ class LoginCubit extends Cubit<LogInStates> {
     suffix = isPass ? Icons.visibility : Icons.visibility_off;
     emit(ChangePasswordVisibilityState());
   }
+
 }
