@@ -18,10 +18,10 @@ class UserLoginSuccessState extends LogInStates {
   UserLoginSuccessState({required this.loginModel});
 }
 
-class ErrorState extends LogInStates {
+class LoginErrorState extends LogInStates {
   final PrimaryServerException exception;
 
-  ErrorState({
+  LoginErrorState({
     required this.exception,
   });
 }

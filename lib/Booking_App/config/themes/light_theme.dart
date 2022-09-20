@@ -1,3 +1,4 @@
+import 'package:booking_app/Booking_App/Core/utilites/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -29,6 +30,13 @@ ThemeData lightthemes = ThemeData(
     headline1:TextStyle(fontSize: 30, color: Colors.black54, fontWeight: FontWeight.w600,),
     headline2: TextStyle(fontWeight: FontWeight.w300,color: Color(0xFF8D8E98)),
 
+  ),
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    type: BottomNavigationBarType.fixed,
+    selectedItemColor: AppColors.defultColor,
+    unselectedItemColor: Color(0xFF8D8E98),
+    backgroundColor:AppColors.white,
+    elevation: 20,
   ),
 
 

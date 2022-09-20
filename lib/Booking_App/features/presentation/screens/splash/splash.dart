@@ -4,7 +4,7 @@ import 'package:booking_app/Booking_App/Core/utilites/app_constance.dart';
 import 'package:booking_app/Booking_App/Core/utilites/app_strings.dart';
 import 'package:booking_app/Booking_App/Core/utilites/assets_manager.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/account/login/login_screen_.dart';
-import 'package:booking_app/Booking_App/features/presentation/screens/homepage/home.dart';
+import 'package:booking_app/Booking_App/features/presentation/screens/homepage/app_layout.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/onboarding/onBoarding_screen.dart';
 
 import 'package:flutter/material.dart';
@@ -20,7 +20,7 @@ class SplashScreen extends StatelessWidget {
     if(onBoarding !=null)
     {
       if(appToken!=null){
-        RightScreen= HomeScreen();
+        RightScreen= AppLayout();
       }
       else{
         RightScreen =LoginScreen();}

@@ -1,5 +1,5 @@
 import 'package:booking_app/Booking_App/Core/di/injection.dart';
-import 'package:booking_app/Booking_App/congif/themes/light_theme.dart';
+import 'package:booking_app/Booking_App/config/themes/light_theme.dart';
 import 'package:booking_app/Booking_App/features/data/datasources/local/cacheHelper.dart';
 import 'package:booking_app/Booking_App/features/presentation/blocs/cubit.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/splash/splash.dart';
@@ -8,28 +8,25 @@ import 'package:booking_app/observer_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   init();
   await CacheHelper.init();
   Widget? RightScreen;
-  dynamic onBoarding =CacheHelper.getDate(key: 'onBoarding');
-  dynamic appToken =CacheHelper.getDate(key:'token');
+  dynamic onBoarding = CacheHelper.getDate(key: 'onBoarding');
+  dynamic appToken = CacheHelper.getDate(key: 'token');
 
   print(onBoarding);
 
-
-
-
-  BlocOverrides.runZoned( () {
-    runApp( MyApp(StartScreen: RightScreen,));
-
-  },
+  BlocOverrides.runZoned(
+    () {
+      runApp(MyApp(
+        StartScreen: RightScreen,
+      ));
+    },
     blocObserver: MyBlocObserver(),
   );
 }
-
-
 
 class MyApp extends StatelessWidget {
   final Widget? StartScreen;
@@ -39,7 +36,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return   MultiBlocProvider(
+    return MultiBlocProvider(
       providers: [
         BlocProvider<AppBloc>(
           create: (context) => sl<AppBloc>(),
@@ -47,11 +44,10 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
-        theme:lightthemes,
+        theme: lightthemes,
         debugShowCheckedModeBanner: false,
-        home:SplashScreen(),
+        home: SplashScreen(),
       ),
     );
   }
 }
-

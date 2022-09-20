@@ -7,7 +7,7 @@ import 'package:booking_app/Booking_App/Core/utilites/validator.dart';
 import 'package:booking_app/Booking_App/features/data/datasources/local/cacheHelper.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/account/login/cubit/cubit.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/account/login/cubit/state.dart';
-import 'package:booking_app/Booking_App/features/presentation/screens/homepage/home.dart';
+import 'package:booking_app/Booking_App/features/presentation/screens/homepage/app_layout.dart';
 import 'package:booking_app/Booking_App/features/presentation/widgets/CustomTextButton.dart';
 import 'package:booking_app/Booking_App/features/presentation/widgets/customButton.dart';
 import 'package:booking_app/Booking_App/features/presentation/widgets/custromTextForm.dart';
@@ -33,25 +33,24 @@ class LoginScreen extends StatelessWidget {
             listener: (BuildContext context,  state) {
               if(state is UserLoginSuccessState)
               {
-                if(state.loginModel.status.type == "1" )
-                {
+
+
                   showToastMsg(massage: state.loginModel.status.messageEn ,
                       state: ToastState.SUCCESS,
                       gravity: ToastGravity.BOTTOM,
                       toastLength: Toast.LENGTH_LONG);
                   CacheHelper.saveDate(key: 'token', value: state.loginModel.data!.token).then((value)  {
                    // token =  state.loginModel.data!.token;
-                    navigateAndFinsh(context: context,router: HomeScreen());
+                    navigateAndFinsh(context: context,router: AppLayout());
                   });
-                }
-                else{
-                  print("****************************************${state.loginModel.status.messageEn}");
 
-                  showToastMsg(massage: state.loginModel.status.messageEn ,
-                      state: ToastState.ERROR,
-                      gravity: ToastGravity.BOTTOM,
-                      toastLength: Toast.LENGTH_LONG);
-                }
+
+              }
+              if(state is LoginErrorState){
+                showToastMsg(massage: state.exception.error,
+                    state: ToastState.ERROR,
+                    gravity: ToastGravity.BOTTOM,
+                    toastLength: Toast.LENGTH_LONG);
               }
 
 
