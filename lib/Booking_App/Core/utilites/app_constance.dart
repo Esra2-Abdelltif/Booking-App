@@ -12,6 +12,8 @@ class AppConstance{
 
 
 
+
+
 }
 UserModel? userModel;
 dynamic onBoarding =CacheHelper.getDate(key: 'onBoarding');
@@ -21,6 +23,14 @@ dynamic appToken =CacheHelper.getDate(key:'token');
 Future  navigateAndFinsh ({context,router})=> Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => router), (Route<dynamic> route) => false);
 
 
+void LogOut({context,router}){
 
+  CacheHelper.sharedPreferences!.remove('token').then((value) {
+    if(value ){
+      navigateAndFinsh(context: context,router: router);
+    }
+
+  });
+}
 
 

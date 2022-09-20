@@ -6,6 +6,8 @@ import 'package:booking_app/Booking_App/Core/error/exceptions.dart';
 abstract class AppStates {}
 
 class AppInitialState extends AppStates {}
+class AppChangeBottomNavBarState extends AppStates {}
+
 
 
 class UserProfileLoadingState extends AppStates {}

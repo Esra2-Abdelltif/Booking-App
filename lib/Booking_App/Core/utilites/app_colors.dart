@@ -6,5 +6,6 @@ class AppColors {
   static const Color white = Colors.white;
   static const Color defultColor = Colors.blue;
   static Color blueColor = HexColor('#3A82F8');
+  static Color grey=HexColor("#878787");
   static Color fontColorGrey = HexColor("#575757");
 }
