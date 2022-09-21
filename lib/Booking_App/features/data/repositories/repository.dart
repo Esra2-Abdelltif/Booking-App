@@ -29,7 +29,11 @@ abstract class Repository {
   Future<Either<PrimaryServerException, ProfileModel>> getProfile({
     required String token,
   });
-
+  Future<Either<PrimaryServerException, ProfileModel>> updatePofile({
+    required String token,
+    required String name,
+    required String email,
+  });
   Future<Either<PrimaryServerException, HotelsModel>> getHotels({
     required int page,
   });
@@ -108,6 +112,33 @@ class RepositoryImplementation extends Repository {
       },
     );
   }
+
+
+  @override
+  Future<Either<PrimaryServerException, ProfileModel>> updatePofile({
+    required String token,
+    required String name,
+    required String email,
+  }) async {
+    return basicErrorHandling<ProfileModel>(
+      onSuccess: () async {
+        final response = await dioHelper.post(
+          endPoint: profileUpdateEndPoint,
+          token: token,
+          data: {
+            'email': email,
+            'name': name,
+          },
+        );
+
+        return ProfileModel.fromJson(response);
+      },
+      onPrimaryServerException: (e) async {
+        return e;
+      },
+    );
+  }
+
 
   @override
   Future<Either<PrimaryServerException, LoginModel>> login({

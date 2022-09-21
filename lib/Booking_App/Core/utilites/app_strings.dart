@@ -10,6 +10,7 @@ class AppString{
   static const String loginNow ='Login Now';
   static const String loginNowDiscription ='login now and explore windonful hotels';
   static const String emailAdress ='Email Address';
+  static const String email ='Email ';
   static const String fullName ='User Name';
   static const String enterEmailAdress ='Enter Email Address';
   static const String enterName ='Enter User Name';
@@ -24,6 +25,20 @@ class AppString{
   static const String getStarted ='Get Started';
   static const String skip ='Skip';
   static const String privacy ='By Signing up, you agreed with our terms of services and privacy policy';
+  static const String update ='Update';
+  static const String updateProfile ='Update profile';
+  static const String completed ='Completed';
+  static const String booking ='Booking';
+  static const String cancelled ='Cancelled';
+  static const String home ='home';
+  static const String hotel ='hotel';
+  static const String profile ='profile';
+  static const String settings ='settings';
+  static const String editProfile ='Edit Profile';
+
+
+
+
 
 
 

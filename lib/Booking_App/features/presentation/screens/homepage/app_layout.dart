@@ -14,7 +14,7 @@ class AppLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  BlocProvider(
-        create: (BuildContext context) =>sl<AppBloc>(),
+        create: (BuildContext context) =>sl<AppBloc>()..userProfile(),
         child: BlocConsumer<AppBloc,AppStates>(
             listener: (BuildContext context,AppStates state)
             {

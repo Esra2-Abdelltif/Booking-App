@@ -1,6 +1,8 @@
 import 'package:booking_app/Booking_App/Core/utilites/app_colors.dart';
 import 'package:booking_app/Booking_App/Core/utilites/app_constance.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/account/login/login_screen_.dart';
+import 'package:booking_app/Booking_App/features/presentation/screens/homepage/hotel_details/hotel_details_screen.dart';
+import 'package:booking_app/Booking_App/features/presentation/screens/homepage/search_screen/search_screen.dart';
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -65,6 +67,14 @@ class SettingsScreen extends StatelessWidget {
                   ],)
               ),
             ),
+            SizedBox(height: 20,),
+            InkWell(onTap:(){
+              AppConstance.navigateTo(context: context,router: HotelDetails());
+            } ,child: Text("Details")),
+            SizedBox(height: 20,),
+            InkWell(onTap:(){
+              AppConstance.navigateTo(context: context,router: SearchScreen());
+            } ,child: Text("search"))
           ],
         ),
       ),
