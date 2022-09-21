@@ -140,13 +140,6 @@ class _HotelDetailsState extends State<HotelDetails>
                     ),
                   ),
                 ),
-                Padding(
-                  padding:
-                      EdgeInsets.only(left: 24, right: 24, bottom: 8, top: 16),
-                  child: RatingView(
-                    hotelListData: widget.hotelListData,
-                  ),
-                ),
                 getPhotoReviewUi(
                     'Photos', 'View All', Icons.arrow_forward, () {}),
                 HotelRoomList(),

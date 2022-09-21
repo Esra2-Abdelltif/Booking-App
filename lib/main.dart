@@ -4,7 +4,6 @@ import 'package:booking_app/Booking_App/features/data/datasources/local/cacheHel
 import 'package:booking_app/Booking_App/features/data/models/hotel_list.dart';
 import 'package:booking_app/Booking_App/features/presentation/blocs/cubit.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/hotel_details/hotel_details_screen.dart';
-import 'package:booking_app/Booking_App/features/presentation/screens/hotel_details/reviews_list_screen.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/splash/splash.dart';
 
 import 'package:booking_app/observer_bloc.dart';
@@ -49,11 +48,10 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: lightthemes,
         debugShowCheckedModeBanner: false,
-        //home: SplashScreen(),
-        initialRoute: HotelDetails.routeName,
+        home: SplashScreen(),
+        //initialRoute: HotelDetails.routeName,
         routes: {
           HotelDetails.routeName:(_)=>HotelDetails(),
-          ReviewsListScreen.routeName :(_)=>ReviewsListScreen(),
         },
       ),
     );
