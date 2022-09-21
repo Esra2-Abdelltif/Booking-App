@@ -16,8 +16,9 @@ class AppConstance{
 
 }
 UserModel? userModel;
-dynamic onBoarding =CacheHelper.getDate(key: 'onBoarding');
+dynamic onBoarding =CacheHelper.getDate(key: 'onBoarding');//
 dynamic appToken =CacheHelper.getDate(key:'token');
+String token="ANtoxNSy0CVOdpBG8bkJx65GIMzmzLST0YXkP1cLSe4mpPGLK08MjcOncDwv";
 
 
 Future  navigateAndFinsh ({context,router})=> Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => router), (Route<dynamic> route) => false);

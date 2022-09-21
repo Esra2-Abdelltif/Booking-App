@@ -1,3 +1,4 @@
+import 'package:booking_app/Booking_App/features/presentation/blocs/cubit.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -17,13 +18,13 @@ class HomeScreen extends StatelessWidget {
             ),
             MaterialButton(
               onPressed: () {
-                // AppBloc.get(context).userProfile();
+                 AppBloc.get(context).userProfile();
               },
               child: const Text('Get Profile'),
             ),
             MaterialButton(
               onPressed: () {
-                //AppBloc.get(context).getHotels();
+                AppBloc.get(context).getHotels();
               },
               child: const Text('Get Hotels'),
             ),

@@ -1,14 +1,13 @@
 import 'dart:ui';
 
+import 'package:booking_app/Booking_App/Core/utilites/helper.dart';
 import 'package:booking_app/Booking_App/Core/utilites/localfiles.dart';
-import 'package:booking_app/Booking_App/features/presentation/screens/hotel_details/hotel_room_list.dart';
+import 'package:booking_app/Booking_App/features/data/models/hotel_list.dart';
+import 'package:booking_app/Booking_App/features/presentation/screens/homepage/hotel_details/hotel_room_list.dart';
 import 'package:booking_app/Booking_App/features/presentation/widgets/common_card.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../Core/utilites/helper.dart';
-import '../../../data/models/hotel_list.dart';
-import '../../widgets/customButton.dart';
 
 class HotelDetails extends StatefulWidget {
   HotelListData hotelListData = HotelListData();

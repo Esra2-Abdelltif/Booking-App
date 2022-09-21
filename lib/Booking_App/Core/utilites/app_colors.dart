@@ -8,4 +8,6 @@ class AppColors {
   static Color blueColor = HexColor('#3A82F8');
   static Color grey=HexColor("#878787");
   static Color fontColorGrey = HexColor("#575757");
+  static  Color yellow=  HexColor('#F3B046');
+
 }
