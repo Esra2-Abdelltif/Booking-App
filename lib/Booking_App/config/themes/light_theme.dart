@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 ThemeData lightthemes = ThemeData(
-
+  primaryColor: Colors.teal,
   scaffoldBackgroundColor: Colors.white,
   appBarTheme: AppBarTheme(
     titleSpacing: 15,
@@ -29,7 +29,6 @@ ThemeData lightthemes = ThemeData(
     bodyText2:  TextStyle(fontSize: 16, color: Colors.black),
     headline1:TextStyle(fontSize: 30, color: Colors.black54, fontWeight: FontWeight.w600,),
     headline2: TextStyle(fontWeight: FontWeight.w300,color: Color(0xFF8D8E98)),
-
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     type: BottomNavigationBarType.fixed,
