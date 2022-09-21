@@ -49,6 +49,9 @@ dependencies:
   google_maps_flutter: ^2.2.0
   flutter_rating_bar: ^4.0.1
   smooth_star_rating_null_safety: ^1.0.4+2
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
@@ -71,7 +74,7 @@ flutter_icons:
 
 # The following section is specific to Flutter.
 flutter:
-
+  generate: true
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
