@@ -1,4 +1,5 @@
 import 'package:booking_app/Booking_App/Core/utilites/app_strings.dart';
+import 'package:booking_app/Booking_App/features/data/models/hotel_list.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/splash/splash.dart';
 import 'package:flutter/material.dart';
 

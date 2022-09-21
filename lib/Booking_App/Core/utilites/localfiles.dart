@@ -1,5 +1,5 @@
 class Localfiles {
-  static const String BaseImageUrl = 'assets/images/';
+  static const String BaseImageUrl = 'assests/images/';
 
   static const String appIcon = BaseImageUrl + 'appIcon.png';
   static const String avatar1 = BaseImageUrl + 'avatar1.jpg';
