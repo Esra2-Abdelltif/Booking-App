@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:booking_app/Booking_App/Core/utilites/helper.dart';
@@ -7,6 +8,9 @@ import 'package:booking_app/Booking_App/features/presentation/screens/homepage/h
 import 'package:booking_app/Booking_App/features/presentation/widgets/common_card.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import '../../map/map_screen.dart';
 
 
 class HotelDetails extends StatefulWidget {
@@ -32,6 +36,17 @@ class _HotelDetailsState extends State<HotelDetails>
 
   late AnimationController _animationController;
 
+  Completer<GoogleMapController> _controller = Completer();
+  static final CameraPosition _kGooglePlex = CameraPosition(
+    target: LatLng(37.42796133580664, -122.085749655962),
+    zoom: 14.4746,
+  );
+
+  static final CameraPosition _kLake = CameraPosition(
+      bearing: 192.8334901395799,
+      target: LatLng(37.43296265331129, -122.08832357078792),
+      tilt: 59.440717697143555,
+      zoom: 19.151926040649414);
   @override
   void initState() {
     // TODO: implement initState
@@ -142,29 +157,29 @@ class _HotelDetailsState extends State<HotelDetails>
                     'Photos', 'View All', Icons.arrow_forward, () {}),
                 HotelRoomList(),
                 Stack(
-                  alignment: Alignment.center,
+                  alignment: Alignment.topRight,
                   children: [
-                    AspectRatio(
-                      aspectRatio: 1.5,
-                      child: Image.asset(
-                        Localfiles.mapImage,
-                        fit: BoxFit.cover,
+                    Container(
+                      width: double.infinity,
+                      height: 200,
+                      padding: EdgeInsetsDirectional.only(start: 14 , end: 14),
+                      child: GoogleMap(
+                        mapType: MapType.normal,
+                        initialCameraPosition: _kGooglePlex,
+                        onMapCreated: (GoogleMapController controller) {
+                          _controller.complete(controller);
+                        },
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 34,right: 10),
-                    child: CommonCard(
-                      color: Theme.of(context).primaryColor,
-                      radius: 36,
-                      child: Padding(
-                        padding: EdgeInsets.all(12.0),
-                        child: Icon(
-                          Icons.pin_drop,
-                          color:Colors.white,
-                          size: 28,
-                        ),
+                      padding: const EdgeInsets.only(right: 20, top: 10),
+                      child: FloatingActionButton.extended(
+                        backgroundColor: Colors.grey.withOpacity(0.6),
+                        onPressed: (){
+                          Navigator.pushNamed(context, MapScreen.routeName);
+                        },
+                        label: Text('see more'),
                       ),
-                    ),
                     ),
                   ],
                 ),
@@ -628,4 +643,10 @@ class _HotelDetailsState extends State<HotelDetails>
       ),
     );
   }
+
+  Future<void> _goToTheLake() async {
+    final GoogleMapController controller = await _controller.future;
+    controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
+  }
+
 }
