@@ -2,6 +2,7 @@ import 'package:booking_app/Booking_App/Core/di/injection.dart';
 import 'package:booking_app/Booking_App/config/themes/light_theme.dart';
 import 'package:booking_app/Booking_App/features/data/datasources/local/cacheHelper.dart';
 import 'package:booking_app/Booking_App/features/presentation/blocs/cubit.dart';
+import 'package:booking_app/Booking_App/features/presentation/screens/map/map_screen.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/splash/splash.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:booking_app/observer_bloc.dart';
@@ -47,7 +48,9 @@ class MyApp extends StatelessWidget {
         theme: lightthemes,
         debugShowCheckedModeBanner: false,
        home: SplashScreen(),
-
+       routes: {
+          MapScreen.routeName:(_)=>MapScreen(),
+       },
 
        /* localizationsDelegates: const [
           AppLocalizations.delegate, // Add this line
