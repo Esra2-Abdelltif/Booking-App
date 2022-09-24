@@ -35,6 +35,19 @@ class AppString{
   static const String profile ='profile';
   static const String settings ='settings';
   static const String editProfile ='Edit Profile';
+  static const String search="Search";
+  static const String where_are_you_goning="Where are you goning";
+  static const String find_best_deals="Find best deals";
+  static const String extraordinary_five_star="Extraordinary five-star";
+  static const String outdoor_activities="outdoor activities";
+  static const String view_Hotel="View Hotel";
+  static const String best_Deals="Best Deals";
+
+
+
+
+
+
 
 
 

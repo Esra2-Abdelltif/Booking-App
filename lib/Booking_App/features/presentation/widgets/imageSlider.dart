@@ -1,4 +1,8 @@
 import 'package:booking_app/Booking_App/Core/utilites/app_colors.dart';
+import 'package:booking_app/Booking_App/Core/utilites/app_constance.dart';
+import 'package:booking_app/Booking_App/Core/utilites/app_strings.dart';
+import 'package:booking_app/Booking_App/features/presentation/screens/homepage/explore/explore.dart';
+import 'package:booking_app/Booking_App/features/presentation/screens/homepage/search_screen/search_screen.dart';
 import 'package:booking_app/Booking_App/features/presentation/widgets/customButton.dart';
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -50,10 +54,16 @@ class ImageSlider implements SliverPersistentHeaderDelegate{
            ),
            child: Padding(
              padding: const EdgeInsets.all(8.0),
-             child: Row(children: [
-               Icon(Icons.search,color: AppColors.defultColor,),
-               Text('Where are you going?',style: TextStyle(color: Colors.black38),)
-             ],),
+             child: InkWell(
+               onTap: (){
+
+                 AppConstance.navigateTo(router: SearchScreen(),context: context);
+               },
+               child: Row(children: [
+                 Icon(Icons.search,color: AppColors.defultColor,),
+                 Text(AppString.where_are_you_goning,style: TextStyle(color: Colors.black38),)
+               ],),
+             ),
            ),
          ),
        ),
@@ -63,12 +73,15 @@ class ImageSlider implements SliverPersistentHeaderDelegate{
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Find best deals',style: TextStyle(color: Colors.white,fontSize: 24,fontWeight: FontWeight.bold),),
+          Text(AppString.find_best_deals,style: TextStyle(color: Colors.white,fontSize: 24,fontWeight: FontWeight.bold),),
           SizedBox(height: 5,),
-          Text('Extraordinary five-star',style: TextStyle(color: Colors.white,fontSize: 20),),
-          Text('outdoor activities',style: TextStyle(color: Colors.white,fontSize: 20),),
+          Text(AppString.extraordinary_five_star,style: TextStyle(color: Colors.white,fontSize: 20),),
+          Text(AppString.outdoor_activities,style: TextStyle(color: Colors.white,fontSize: 20),),
           SizedBox(height: 15,),
-          CustomButton(borderColor: AppColors.defultColor,height:45 , text: 'View Hotel', onTap: (){},width: 120,)
+          CustomButton(borderColor: AppColors.defultColor,height:45 , text: AppString.view_Hotel, onTap: (){
+            AppConstance.navigateTo(router: Explore(),context: context);
+
+          },width: 120,)
         ],),
     ):
     AnimatedOpacity(
@@ -79,12 +92,12 @@ class ImageSlider implements SliverPersistentHeaderDelegate{
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Find best deals',style: TextStyle(color: Colors.white,fontSize: 24,fontWeight: FontWeight.bold),),
+          Text(AppString.find_best_deals,style: TextStyle(color: Colors.white,fontSize: 24,fontWeight: FontWeight.bold),),
           SizedBox(height: 5,),
-          Text('Extraordinary five-star',style: TextStyle(color: Colors.white,fontSize: 20),),
-          Text('outdoor activities',style: TextStyle(color: Colors.white,fontSize: 20),),
+          Text(AppString.extraordinary_five_star,style: TextStyle(color: Colors.white,fontSize: 20),),
+          Text(AppString.outdoor_activities,style: TextStyle(color: Colors.white,fontSize: 20),),
           SizedBox(height: 15,),
-          CustomButton(borderColor: AppColors.defultColor,height:45 , text: 'View Hotel', onTap: (){},width: 120,)
+          CustomButton(borderColor: AppColors.defultColor,height:45 , text:AppString.view_Hotel, onTap: (){},width: 120,)
         ],),
     )),
 

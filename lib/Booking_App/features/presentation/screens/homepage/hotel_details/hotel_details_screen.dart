@@ -14,11 +14,17 @@ import '../../map/map_screen.dart';
 
 
 class HotelDetails extends StatefulWidget {
+  int hotelid;
+  String hotelName ="";
+
+
   HotelListData hotelListData = HotelListData();
   static const String routeName = 'home-details';
 
   @override
   State<HotelDetails> createState() => _HotelDetailsState();
+
+  HotelDetails({required this.hotelid,  required this.hotelName});
 }
 
 class _HotelDetailsState extends State<HotelDetails>
@@ -85,6 +91,7 @@ class _HotelDetailsState extends State<HotelDetails>
 
   @override
   Widget build(BuildContext context) {
+
     imageHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Stack(
@@ -460,7 +467,7 @@ class _HotelDetailsState extends State<HotelDetails>
     );
   }
 
-  getHotelsDetails({bool isInList = false}) {
+  getHotelsDetails({bool isInList = false,}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -471,7 +478,7 @@ class _HotelDetailsState extends State<HotelDetails>
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Grand Royal ',
+                "name",
                 textAlign: TextAlign.left,
                 style: TextStyle(
                     fontFamily: 'Poppins',

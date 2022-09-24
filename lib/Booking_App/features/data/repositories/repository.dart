@@ -37,6 +37,10 @@ abstract class Repository {
   Future<Either<PrimaryServerException, HotelsModel>> getHotels({
     required int page,
   });
+  Future<Either<PrimaryServerException, HotelsModel>> searchHotels({
+    required int page,
+    required String hotelName,
+  });
 }
 
 class RepositoryImplementation extends Repository {
@@ -93,6 +97,28 @@ class RepositoryImplementation extends Repository {
       },
     );
   }
+  @override
+  Future<Either<PrimaryServerException, HotelsModel>> searchHotels({
+    required int page,
+    required String hotelName,
+
+  }) async {
+    return basicErrorHandling<HotelsModel>(
+      onSuccess: () async {
+        final response = await dioHelper.get(endPoint: searchEndPoint, query: {
+          'page': page,
+          'count': 10,
+          'name':hotelName,
+        });
+
+        return HotelsModel.fromJson(response);
+      },
+      onPrimaryServerException: (e) async {
+        return e;
+      },
+    );
+  }
+
 
   @override
   Future<Either<PrimaryServerException, ProfileModel>> getProfile({

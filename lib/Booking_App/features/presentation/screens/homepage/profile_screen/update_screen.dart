@@ -71,8 +71,7 @@ class UpDateScreen extends StatelessWidget {
                   },
                   titleText: AppString.updateProfile,
                   onTap: () {
-                    AppConstance.navigateTo(
-                        context: context, router: UpDateScreen());
+                    AppBloc.get(context).userProfile();
                   },
                 ),
                 Expanded(
@@ -171,7 +170,7 @@ class UpDateScreen extends StatelessWidget {
                                     onTap: () {
                                       if (formkey.currentState!.validate()) {
                                         AppBloc.get(context).updateUserData(name: nameController.text, email: emailController.text);
-                                       // AppBloc.get(context).userProfile();
+                                        AppBloc.get(context).userProfile();
 
                                       }
                                     }),

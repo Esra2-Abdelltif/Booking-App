@@ -48,9 +48,10 @@ class MyApp extends StatelessWidget {
         theme: lightthemes,
         debugShowCheckedModeBanner: false,
        home: SplashScreen(),
-       routes: {
+        routes: {
           MapScreen.routeName:(_)=>MapScreen(),
-       },
+        },
+
 
        /* localizationsDelegates: const [
           AppLocalizations.delegate, // Add this line

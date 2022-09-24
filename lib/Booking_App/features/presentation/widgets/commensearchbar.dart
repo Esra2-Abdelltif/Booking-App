@@ -1,4 +1,3 @@
-import 'package:booking_app/Booking_App/Core/utilites/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CommonSearchBar extends StatelessWidget {
@@ -7,8 +6,6 @@ class CommonSearchBar extends StatelessWidget {
   final bool enabled, ishsow;
   final double height;
   final IconData? iconData;
-  final bool IsSearch;
-  final Widget TextFormFieldWidget;
 
   const CommonSearchBar(
       {Key? key,
@@ -17,14 +14,12 @@ class CommonSearchBar extends StatelessWidget {
         this.height = 48,
         this.iconData,
         this.ishsow = true,
-         this.IsSearch=false,
-        this.textEditingController,
-        required this.TextFormFieldWidget})
+        this.textEditingController})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 24.0, right: 24.0),
+      padding: const EdgeInsets.only(left: 16.0, right: 16.0),
       child: Container(
         height: height,
         child: Center(
@@ -35,7 +30,7 @@ class CommonSearchBar extends StatelessWidget {
                 iconData,
                 // FontAwesomeIcons.search,
                 size: 18,
-                color:AppColors.defultColor,
+                color: Theme.of(context).primaryColor,
               )
                   : SizedBox(),
               ishsow == true
@@ -44,8 +39,7 @@ class CommonSearchBar extends StatelessWidget {
               )
                   : SizedBox(),
               Expanded(
-                child:IsSearch == false
-                ?TextField(
+                child: TextField(
                   controller: textEditingController,
                   maxLines: 1,
                   enabled: enabled,
@@ -56,11 +50,9 @@ class CommonSearchBar extends StatelessWidget {
                       errorText: null,
                       border: InputBorder.none,
                       hintText: text,
-                      hintStyle: TextStyle(fontSize: 24)
-                          .copyWith(
-                          color:Colors.grey,
-                          fontSize: 18)),
-                ) :TextFormFieldWidget ,
+
+                ),
+                ),
               ),
             ],
           ),

@@ -1,5 +1,6 @@
 import 'package:booking_app/Booking_App/Core/utilites/app_colors.dart';
 import 'package:booking_app/Booking_App/Core/utilites/app_constance.dart';
+import 'package:booking_app/Booking_App/features/presentation/blocs/cubit.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/account/login/login_screen_.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/homepage/hotel_details/hotel_details_screen.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/homepage/search_screen/search_screen.dart';
@@ -69,12 +70,41 @@ class SettingsScreen extends StatelessWidget {
             ),
             SizedBox(height: 20,),
             InkWell(onTap:(){
-              AppConstance.navigateTo(context: context,router: HotelDetails());
             } ,child: Text("Details")),
             SizedBox(height: 20,),
             InkWell(onTap:(){
               AppConstance.navigateTo(context: context,router: SearchScreen());
-            } ,child: Text("search"))
+            } ,child: Text("search")),
+            MaterialButton(
+              onPressed: () {
+                // AppBloc.get(context).userLogin();
+              },
+              child: const Text('Login'),
+            ),
+            MaterialButton(
+              onPressed: () {
+                AppBloc.get(context).userProfile();
+              },
+              child: const Text('Get Profile'),
+            ),
+            MaterialButton(
+              onPressed: () {
+                AppBloc.get(context).getHotels();
+              },
+              child: const Text('Get Hotels'),
+            ),
+            MaterialButton(
+              onPressed: () {
+                //AppBloc.get(context).getHotels();
+              },
+              child: const Text('Get Hotels'),
+            ),
+            MaterialButton(
+              onPressed: () {
+                //AppBloc.get(context).getHotels();
+              },
+              child: const Text('test'),
+            ),
           ],
         ),
       ),
