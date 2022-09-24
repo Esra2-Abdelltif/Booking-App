@@ -1,3 +1,4 @@
+import 'package:booking_app/Booking_App/features/presentation/widgets/trips_widget.dart';
 import 'package:flutter/material.dart';
 
 class CancelledScreen extends StatelessWidget {
@@ -6,9 +7,13 @@ class CancelledScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(children: [
-        Text("CancelledScreen")
-      ]),
-    );
+        body: TripsWidget(
+      buttonWidget: MaterialButton(
+        color: Colors.blue,
+        onPressed: () {},
+        child: Text('Cancelled'),
+      ),
+      favoiriteColor: Colors.blue,
+    ));
   }
 }
