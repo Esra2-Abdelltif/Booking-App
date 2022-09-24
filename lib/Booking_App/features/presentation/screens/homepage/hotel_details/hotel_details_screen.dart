@@ -14,6 +14,8 @@ import '../../map/map_screen.dart';
 
 
 class HotelDetails extends StatefulWidget {
+  int hotelid;
+  String hotelName ="";
 
 
   HotelListData hotelListData = HotelListData();
@@ -22,6 +24,7 @@ class HotelDetails extends StatefulWidget {
   @override
   State<HotelDetails> createState() => _HotelDetailsState();
 
+  HotelDetails({required this.hotelid,  required this.hotelName});
 }
 
 class _HotelDetailsState extends State<HotelDetails>

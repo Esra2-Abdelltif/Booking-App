@@ -104,7 +104,7 @@ class SearchScreen extends StatelessWidget {
                               builder: (context) => ListView.separated(
                                   itemBuilder: (context, index) => InkWell(
                                     onTap: (){
-                                      AppConstance.navigateTo(context: context,router: HotelDetails());
+                                      AppConstance.navigateTo(context: context,router: HotelDetails(hotelid:   SearchCubit.get(context).hotels[index].id, hotelName:  SearchCubit.get(context).hotels[index].name));
 
                                     },
                                     child: Padding(
