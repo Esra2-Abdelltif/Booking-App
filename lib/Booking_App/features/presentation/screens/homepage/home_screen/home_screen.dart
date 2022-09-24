@@ -45,7 +45,7 @@ class HomeScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 8.0,right: 8.0,left: 8.0,bottom: 8),
                         child: InkWell(
                           onTap: (){
-                            AppConstance.navigateTo(context: context,router: HotelDetails(hotelid:  cubit.hotels[index].id, hotelName: cubit.hotels[index].name));
+                            AppConstance.navigateTo(context: context,router: HotelDetails());
 
 
                             print(cubit.hotels[index].id);

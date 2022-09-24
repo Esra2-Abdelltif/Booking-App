@@ -28,16 +28,7 @@ class ExploreListView extends StatelessWidget{
        children: [
         Padding(
         padding: EdgeInsets.only(left: 24,right: 24,top: 8,bottom: 15),
-       // child: Row(
-       //     mainAxisAlignment : MainAxisAlignment.center,
-       //     children: [
-       //       Text(','),
-       //   Padding(
-       //       padding: EdgeInsets.only(top: 2),
-       //   child: Text(','),
-       // ),
-       //     ]),),
-       //    SizedBox(),
+
           child : Card(
     //   shadowColor: Theme.of(context).dividerColor,
     color: AppColors.white,
@@ -99,7 +90,7 @@ class ExploreListView extends StatelessWidget{
       ,)
     ),
     ),
-        )
+        ),
         ],
      ),
 
