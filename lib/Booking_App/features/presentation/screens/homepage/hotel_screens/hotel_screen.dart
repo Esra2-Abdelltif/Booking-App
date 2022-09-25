@@ -66,15 +66,10 @@ class HotleScreen extends StatelessWidget {
                         CancelledScreen(),
                         CompletedScreen(),
 
-
-
                       ],
                     ),
                   ),
-
-
-
-
+                  
                 ],
               ),
             ),
