@@ -27,9 +27,9 @@ class HotleScreen extends StatelessWidget {
             child: Scaffold(
               key: ScaffoldKey,
               appBar: AppBar(
-                title:Text("My Trip",
+                title:Text("Trips",
                     style:
-                    TextStyle(fontWeight: FontWeight.w500, fontSize: 24)),
+                    TextStyle(fontWeight: FontWeight.w500, fontSize: 22,fontFamily: 'Poppins')),
                
                 bottom: TabBar(
                   tabs: cubit.tabs,
@@ -42,9 +42,7 @@ class HotleScreen extends StatelessWidget {
               ),
               body:   Column(
                 children: [
-
                   Padding(
-
                     padding: const EdgeInsets.only(left: 24,right: 24,bottom: 28),
                     child: Container(
                       decoration: BoxDecoration(

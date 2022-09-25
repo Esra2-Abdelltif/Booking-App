@@ -22,10 +22,10 @@ class CustomButton extends StatelessWidget {
       this.IsSocialMediaLoginButton = false,
       this.width = double.infinity,
       this.height = 55,
-      this.borderRadius = 25,
+      this.borderRadius = 30,
       this.Fontcolor = Colors.white,
       required this.text,
-      this.fontsize = 16,
+      this.fontsize = 14,
       this.color = AppColors.defultColor,
       required this.onTap})
       : super(key: key);
@@ -62,6 +62,7 @@ class CustomButton extends StatelessWidget {
                     style: TextStyle(
                       fontSize: fontsize,
                       color: Fontcolor,
+                      fontFamily: 'Poppins'
                     ),
                   ),
                 ],
@@ -71,6 +72,7 @@ class CustomButton extends StatelessWidget {
                 style: TextStyle(
                   fontSize: fontsize,
                   color: Fontcolor,
+                    fontFamily: 'Poppins'
                 ),
               ),
       ),

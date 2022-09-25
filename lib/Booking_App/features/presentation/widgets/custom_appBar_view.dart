@@ -18,7 +18,7 @@ class CommonAppbarView extends StatelessWidget {
     this.onBackClick,
     this.titleText = '',
     this.backWidget,
-    this.iconData,this.onTap
+    this.iconData,this.onTap,
   }) : super(key: key);
 
   @override
@@ -62,8 +62,9 @@ class CommonAppbarView extends StatelessWidget {
             child: InkWell(
               onTap: onTap ,
               child: Text(titleText, style: TextStyle(
-                fontSize: 24,
-
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Poppins'
               )),
             ),
           ),

@@ -20,7 +20,7 @@ void main() async {
   Widget? RightScreen;
   dynamic onBoarding = CacheHelper.getDate(key: 'onBoarding');
   dynamic appToken = CacheHelper.getDate(key: 'token');
-  bool IsDark =CacheHelper.getDate(key: 'IsDark');
+  dynamic IsDark =CacheHelper.getDate(key: 'IsDark');
 
 
   print(onBoarding);

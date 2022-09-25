@@ -19,7 +19,7 @@ class Helper {
                 Icons.star,
                 color: AppColors.yellow,
               ),
-          itemCount: 5,
+          //itemCount: cubit.hotels.length,
           unratedColor: Colors.grey,
           itemSize: 18.0,
           direction: Axis.horizontal,

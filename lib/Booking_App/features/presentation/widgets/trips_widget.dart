@@ -27,6 +27,10 @@ class TripsWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Card(
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(color: AppColors.grey.withOpacity(0.2),),
+                  borderRadius: BorderRadius.circular(6),
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -117,11 +121,8 @@ class TripsWidget extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 5,),
-                    Container(height: 0.5,width: double.infinity,
-                      decoration: BoxDecoration(
-                          color: AppColors.grey
-                      ),
-                    ),
+
+
                    /* Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: Container(
