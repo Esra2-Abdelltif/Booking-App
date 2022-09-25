@@ -1,6 +1,7 @@
 import 'package:booking_app/Booking_App/Core/utilites/app_colors.dart';
 import 'package:booking_app/Booking_App/Core/utilites/app_constance.dart';
 import 'package:booking_app/Booking_App/Core/utilites/app_strings.dart';
+import 'package:booking_app/Booking_App/config/themes/cubit/cubit.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/homepage/explore/explore.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/homepage/search_screen/search_screen.dart';
 import 'package:booking_app/Booking_App/features/presentation/widgets/customButton.dart';
@@ -50,7 +51,8 @@ class ImageSlider implements SliverPersistentHeaderDelegate{
            height: 45,
            decoration: BoxDecoration(
              borderRadius: BorderRadius.circular(25),
-             color: Colors.white,
+             color:   ThemeAppCubit.get(context).IsDark ? AppColors.darkcontiner: AppColors.white,
+
            ),
            child: Padding(
              padding: const EdgeInsets.all(8.0),
@@ -61,7 +63,10 @@ class ImageSlider implements SliverPersistentHeaderDelegate{
                },
                child: Row(children: [
                  Icon(Icons.search,color: AppColors.defultColor,),
-                 Text(AppString.where_are_you_goning,style: TextStyle(color: Colors.black38),)
+                 Text(AppString.where_are_you_goning,style :TextStyle(fontSize: 24).copyWith(
+                     color: Colors.grey,
+                     fontSize: 18,
+                     fontWeight: FontWeight.w400))
                ],),
              ),
            ),

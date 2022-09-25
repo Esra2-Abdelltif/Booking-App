@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 ThemeData lightthemes = ThemeData(
   primaryColor: Colors.teal,
   scaffoldBackgroundColor: Colors.white,
+  iconTheme: IconThemeData(color: AppColors.white),
   appBarTheme: AppBarTheme(
     titleSpacing: 15,
     iconTheme: IconThemeData(color: Colors.black),
@@ -23,7 +24,6 @@ ThemeData lightthemes = ThemeData(
 
     ),
   ),
-  drawerTheme: DrawerThemeData(backgroundColor: Colors.white, ),
   textTheme: TextTheme(
     bodyText1: TextStyle(fontSize: 18, fontWeight: FontWeight.w700,color: Colors.black),
     bodyText2:  TextStyle(fontSize: 16, color: Colors.black),

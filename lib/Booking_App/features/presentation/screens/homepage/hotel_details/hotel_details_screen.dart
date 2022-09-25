@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:booking_app/Booking_App/Core/utilites/app_colors.dart';
 import 'package:booking_app/Booking_App/Core/utilites/helper.dart';
 import 'package:booking_app/Booking_App/Core/utilites/localfiles.dart';
 import 'package:booking_app/Booking_App/features/data/models/hotel_list.dart';
@@ -15,8 +16,15 @@ import '../../map/map_screen.dart';
 
 class HotelDetails extends StatefulWidget {
   int hotelid;
-  String hotelName ="";
+  final String hotelName;
+  final String description;
+  final String adresse;
+  final dynamic price;
+  final String rate;
 
+
+  HotelDetails({required this.hotelid,required this.hotelName, required this.description, required this.adresse,
+    required this.price,required this.rate});
 
   HotelListData hotelListData = HotelListData();
   static const String routeName = 'home-details';
@@ -24,7 +32,6 @@ class HotelDetails extends StatefulWidget {
   @override
   State<HotelDetails> createState() => _HotelDetailsState();
 
-  HotelDetails({required this.hotelid,  required this.hotelName});
 }
 
 class _HotelDetailsState extends State<HotelDetails>
@@ -478,7 +485,7 @@ class _HotelDetailsState extends State<HotelDetails>
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "name",
+                widget.hotelName,
                 textAlign: TextAlign.left,
                 style: TextStyle(
                     fontFamily: 'Poppins',
@@ -492,7 +499,7 @@ class _HotelDetailsState extends State<HotelDetails>
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      'Wembley,London',
+                      widget.adresse,
                       style: TextStyle(
                           fontFamily: 'Poppins',
                           color: isInList
@@ -502,7 +509,7 @@ class _HotelDetailsState extends State<HotelDetails>
                     ),
                     Icon(
                       Icons.location_on_sharp,
-                      color: Colors.teal,
+                      color: AppColors.blueColor,
                       size: 13,
                     ),
                     Text(
@@ -536,9 +543,10 @@ class _HotelDetailsState extends State<HotelDetails>
                       padding: EdgeInsets.only(top: 4),
                       child: Row(
                         children: [
+                          ///
                           Helper.ratingStar(),
                           Text(
-                            '${widget.hotelListData.reviews}',
+                            '(${ double.parse('${widget.rate}')/2})',
                             style: TextStyle(
                               fontSize: 12,
                               color: isInList
@@ -548,18 +556,7 @@ class _HotelDetailsState extends State<HotelDetails>
                                   : Colors.white,
                             ),
                           ),
-                          Text(
-                            'Reviews',
-                            style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 12,
-                              color: isInList
-                                  ? Theme.of(context)
-                                      .disabledColor
-                                      .withOpacity(0.5)
-                                  : Colors.white,
-                            ),
-                          ),
+
                         ],
                       ),
                     ),
@@ -571,7 +568,7 @@ class _HotelDetailsState extends State<HotelDetails>
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text(
-              '\$${widget.hotelListData.perNight}',
+              '\$${widget.price}',
               textAlign: TextAlign.left,
               style: TextStyle(
                 fontFamily: 'Poppins',

@@ -52,7 +52,7 @@ class UpDateScreen extends StatelessWidget {
         },
         builder: (context, state) {
           AppBloc cubit = AppBloc.get(context);
-          nameController.text = cubit.profileModel!.data!.name;
+          nameController.text = cubit.profileModel!.data!.name ;
           emailController.text = cubit.profileModel!.data!.email;
 
           return Scaffold(
@@ -171,7 +171,6 @@ class UpDateScreen extends StatelessWidget {
                                       if (formkey.currentState!.validate()) {
                                         AppBloc.get(context).updateUserData(name: nameController.text, email: emailController.text);
                                         AppBloc.get(context).userProfile();
-
                                       }
                                     }),
                               ),

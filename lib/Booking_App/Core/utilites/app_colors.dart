@@ -2,6 +2,8 @@ import 'package:booking_app/Booking_App/Core/utilites/hex_color.dart';
 import 'package:flutter/material.dart';
 
 class AppColors {
+  static Color scafolldDark = Colors.grey.shade900;
+  static Color darkcontiner = HexColor('#2a2a2a');
   static Color black = Colors.black;
   static const Color white = Colors.white;
   static const Color defultColor = Colors.blue;

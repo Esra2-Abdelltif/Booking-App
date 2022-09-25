@@ -8,6 +8,7 @@ class AppConstance{
   static void navigateTo({context,router})=>  Navigator.push(context,MaterialPageRoute(builder: (context) => router));
   static void  navigatePop({context})=>Navigator.pop(context);
   static void navigateByName({context,router})=>  Navigator.pushNamed(context,router);
+  static const IconData translate = IconData(0xe67b, fontFamily: 'MaterialIcons');
 
 
 
@@ -17,6 +18,7 @@ class AppConstance{
 }
 UserModel? userModel;
 dynamic onBoarding =CacheHelper.getDate(key: 'onBoarding');//
+bool IsDark =CacheHelper.getDate(key: 'IsDark');
 dynamic appToken =CacheHelper.getDate(key:'token');
 String token="ANtoxNSy0CVOdpBG8bkJx65GIMzmzLST0YXkP1cLSe4mpPGLK08MjcOncDwv";
 

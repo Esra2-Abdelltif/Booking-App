@@ -35,7 +35,7 @@ class AppBloc extends Cubit<AppStates> {
      BottomNavigationBarItem(
         icon: const Icon(Icons.person, size: 24), label: AppString.profile),
      BottomNavigationBarItem(
-        icon: Icon(Icons.settings, size: 24), label: AppString.settings),
+        icon: Icon(Icons.miscellaneous_services_sharp, size: 24), label: AppString.settings),
   ];
 
   List<Widget> screens = [

@@ -1,3 +1,6 @@
+import 'package:booking_app/Booking_App/Core/utilites/app_colors.dart';
+import 'package:booking_app/Booking_App/Core/utilites/hex_color.dart';
+import 'package:booking_app/Booking_App/config/themes/cubit/cubit.dart';
 import 'package:flutter/material.dart';
 
 
@@ -46,7 +49,7 @@ class CommonAppbarView extends StatelessWidget {
                       child: backWidget ??
                           Icon(
                             iconData,
-                           // color: AppTheme.primaryTextColor,
+                            color: ThemeAppCubit.get(context).IsDark ? AppColors.white: AppColors.black,
                           ),
                     ),
                   ),

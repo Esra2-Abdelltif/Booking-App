@@ -104,8 +104,8 @@ class _MapScreenState extends State<MapScreen> {
   void updateUserMarker() {
     var userMarker = Marker(
         markerId: MarkerId('user_location'),
-        position: LatLng(locationData?.latitude ?? defLat,
-            locationData?.longitude ?? defLong));
+        position: LatLng(30.0504042,
+            31.3590117));
     markers.add(userMarker);
     setState(() {});
   }

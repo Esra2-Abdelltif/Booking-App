@@ -27,14 +27,9 @@ class HotleScreen extends StatelessWidget {
             child: Scaffold(
               key: ScaffoldKey,
               appBar: AppBar(
-                centerTitle: true,
-                leading:  InkWell(
-                    onTap: () => AppConstance.navigatePop(context: context),
-                    child:Icon(Icons.arrow_back_ios)
-                ),
-                title:Text("Hotel",
+                title:Text("My Trip",
                     style:
-                    TextStyle(fontWeight: FontWeight.w500, fontSize: 20)),
+                    TextStyle(fontWeight: FontWeight.w500, fontSize: 24)),
                
                 bottom: TabBar(
                   tabs: cubit.tabs,

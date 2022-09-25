@@ -1,4 +1,8 @@
 import 'package:booking_app/Booking_App/Core/di/injection.dart';
+import 'package:booking_app/Booking_App/Core/utilites/app_strings.dart';
+import 'package:booking_app/Booking_App/config/themes/cubit/cubit.dart';
+import 'package:booking_app/Booking_App/config/themes/cubit/states.dart';
+import 'package:booking_app/Booking_App/config/themes/dark_themes.dart';
 import 'package:booking_app/Booking_App/config/themes/light_theme.dart';
 import 'package:booking_app/Booking_App/features/data/datasources/local/cacheHelper.dart';
 import 'package:booking_app/Booking_App/features/presentation/blocs/cubit.dart';
@@ -16,12 +20,15 @@ void main() async {
   Widget? RightScreen;
   dynamic onBoarding = CacheHelper.getDate(key: 'onBoarding');
   dynamic appToken = CacheHelper.getDate(key: 'token');
+  bool IsDark =CacheHelper.getDate(key: 'IsDark');
+
 
   print(onBoarding);
 
   BlocOverrides.runZoned(
     () {
       runApp(MyApp(
+        IsDark: (IsDark != null) ? IsDark : false ,
         StartScreen: RightScreen,
       ));
     },
@@ -31,8 +38,9 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   final Widget? StartScreen;
-
-  const MyApp({Key? key, this.StartScreen}) : super(key: key);
+  final bool IsDark;
+  // bool onBoarding;
+  const MyApp({Key? key, this.StartScreen,required this.IsDark}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -42,18 +50,26 @@ class MyApp extends StatelessWidget {
         BlocProvider<AppBloc>(
           create: (context) => sl<AppBloc>(),
         ),
+        BlocProvider(create: (BuildContext context )=>ThemeAppCubit()..ChangeAppMode(fromShared: IsDark)),
+
       ],
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: lightthemes,
-        debugShowCheckedModeBanner: false,
-       home: SplashScreen(),
-        routes: {
-          MapScreen.routeName:(_)=>MapScreen(),
-        },
+      child:BlocConsumer<ThemeAppCubit,ThemeAppStates>(
+        listener: (themecontext,state){},
+        builder: (themecontext ,state){
+          return
+            MaterialApp(
+              title: AppString.appTitle,
+              theme: lightthemes..bottomNavigationBarTheme,
+              darkTheme: darkthemes..bottomNavigationBarTheme,
+              themeMode: ThemeAppCubit.get(themecontext).IsDark ? ThemeMode.dark:ThemeMode.light ,
+              debugShowCheckedModeBanner: false,
+              home: SplashScreen(),
+              routes: {
+                MapScreen.routeName:(_)=>MapScreen(),
+              },
 
 
-       /* localizationsDelegates: const [
+              /* localizationsDelegates: const [
           AppLocalizations.delegate, // Add this line
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
@@ -64,6 +80,8 @@ class MyApp extends StatelessWidget {
           Locale('ar'), // Spanish, no country code
         ],
         locale: Locale('en'),*/
+            );
+        },
       ),
     );
   }

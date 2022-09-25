@@ -16,7 +16,7 @@ class _CommonCardState extends State<CommonCard> {
   Widget build(BuildContext context) {
     return Card(
       //   shadowColor: Theme.of(context).dividerColor,
-      elevation: 2,
+      elevation: 4,
       color: widget.color,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(widget.radius),

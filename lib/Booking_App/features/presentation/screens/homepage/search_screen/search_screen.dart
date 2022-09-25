@@ -3,6 +3,8 @@ import 'package:booking_app/Booking_App/Core/utilites/app_colors.dart';
 import 'package:booking_app/Booking_App/Core/utilites/app_constance.dart';
 import 'package:booking_app/Booking_App/Core/utilites/app_strings.dart';
 import 'package:booking_app/Booking_App/Core/utilites/assets_manager.dart';
+import 'package:booking_app/Booking_App/Core/utilites/hex_color.dart';
+import 'package:booking_app/Booking_App/config/themes/cubit/cubit.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/homepage/hotel_details/hotel_details_screen.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/homepage/search_screen/cubit/cubit.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/homepage/search_screen/cubit/state.dart';
@@ -50,7 +52,9 @@ class SearchScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(
                             right: 24, left: 24, top: 16, bottom: 16),
                         child: CommonCard(
-                          color: AppColors.white,
+                          color: ThemeAppCubit.get(context).IsDark
+                              ? AppColors.darkcontiner
+                              : AppColors.white,
                           radius: 36,
                           child: CommonSearchBar(
                             IsSearch: true,
@@ -59,16 +63,13 @@ class SearchScreen extends StatelessWidget {
                             TextFormFieldWidget: TextFormField(
                               style: Theme.of(context).textTheme.bodyText1,
                               onFieldSubmitted: (String text) {
-                                SearchCubit.get(context)
-                                    .searchHotels(hotelName: text);
+                                SearchCubit.get(context).searchHotels(hotelName: text);
                               },
                               onSaved: (String? text) {
-                                searchController =
-                                    text as TextEditingController;
+                                searchController = text as TextEditingController;
                               },
                               onChanged: (String text) {
-                                SearchCubit.get(context)
-                                    .searchHotels(hotelName: text);
+                                SearchCubit.get(context).searchHotels(hotelName: text);
                               },
                               controller: searchController,
                               keyboardType: TextInputType.text,
@@ -103,11 +104,20 @@ class SearchScreen extends StatelessWidget {
                                   SearchCubit.get(context).hotels != null,
                               builder: (context) => ListView.separated(
                                   itemBuilder: (context, index) => InkWell(
-                                    onTap: (){
-                                      AppConstance.navigateTo(context: context,router: HotelDetails(hotelid:   SearchCubit.get(context).hotels[index].id, hotelName:  SearchCubit.get(context).hotels[index].name));
-
-                                    },
-                                    child: Padding(
+                                        onTap: () {
+                                          AppConstance.navigateTo(
+                                              context: context,
+                                              router: HotelDetails(
+                                                  hotelid: SearchCubit.get(context).hotels[index].id,
+                                                  hotelName: SearchCubit.get(context).hotels[index].name,
+                                                adresse:SearchCubit.get(context).hotels[index].adresse ,
+                                                description: SearchCubit.get(context).hotels[index].description,
+                                                price: SearchCubit.get(context).hotels[index].price ,
+                                                rate: SearchCubit.get(context).hotels[index].rate ,
+                                              ),
+                                          );
+                                        },
+                                        child: Padding(
                                           padding: EdgeInsets.only(
                                               left: 24,
                                               right: 24,
@@ -115,7 +125,10 @@ class SearchScreen extends StatelessWidget {
                                               bottom: 15),
                                           child: Card(
                                             //   shadowColor: Theme.of(context).dividerColor,
-                                            color: AppColors.white,
+                                            color: ThemeAppCubit.get(context)
+                                                    .IsDark
+                                                ? AppColors.darkcontiner
+                                                : AppColors.white,
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(16),
@@ -134,9 +147,11 @@ class SearchScreen extends StatelessWidget {
                                                   ),
                                                   Row(
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment.center,
+                                                        MainAxisAlignment
+                                                            .center,
                                                     crossAxisAlignment:
-                                                        CrossAxisAlignment.start,
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: [
                                                       Expanded(
                                                           child: Container(
@@ -147,61 +162,124 @@ class SearchScreen extends StatelessWidget {
                                                                   left: 16,
                                                                   right: 8),
                                                           child: Column(
-                                                              mainAxisAlignment: MainAxisAlignment.center,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
                                                               crossAxisAlignment:
                                                                   CrossAxisAlignment
                                                                       .start,
                                                               children: [
                                                                 Row(
-                                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .spaceBetween,
                                                                   children: [
                                                                     Text(
-                                                                      SearchCubit.get(context).hotels[index].name,style: TextStyle(fontWeight: FontWeight.bold),
+                                                                      SearchCubit.get(
+                                                                              context)
+                                                                          .hotels[
+                                                                              index]
+                                                                          .name,
+                                                                      style: TextStyle(
+                                                                          fontWeight:
+                                                                              FontWeight.bold),
                                                                     ),
                                                                     Text(
-                                                                     "\$${ SearchCubit.get(context).hotels[index].price}",style: TextStyle(fontWeight: FontWeight.bold),
+                                                                      "\$${SearchCubit.get(context).hotels[index].price}",
+                                                                      style: TextStyle(
+                                                                          fontWeight:
+                                                                              FontWeight.bold),
                                                                     ),
                                                                   ],
                                                                 ),
-                                                                SizedBox(height: 10,),
+                                                                SizedBox(
+                                                                  height: 10,
+                                                                ),
                                                                 Row(
-                                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
                                                                   children: [
-                                                                    Text(SearchCubit.get(context).hotels[index].adresse,style: TextStyle(color: Colors.black38),),
+                                                                    Text(
+                                                                      SearchCubit.get(
+                                                                              context)
+                                                                          .hotels[
+                                                                              index]
+                                                                          .adresse,
+                                                                      style: TextStyle(
+                                                                          color:
+                                                                              Colors.black38),
+                                                                    ),
                                                                     SizedBox(
                                                                       width: 4,
                                                                     ),
                                                                     Icon(
-                                                                      Icons.location_pin
-                                                                          ,
+                                                                      Icons
+                                                                          .location_pin,
                                                                       size: 16,
-                                                                      color: AppColors.defultColor,
+                                                                      color: AppColors
+                                                                          .defultColor,
                                                                     ),
-
                                                                     Expanded(
-                                                                        child: Text(
-                                                                            '20 Km to city',style: TextStyle(color: Colors.black38),)),
+                                                                        child:
+                                                                            Text(
+                                                                      '20 Km to city',
+                                                                      style: TextStyle(
+                                                                          color:
+                                                                              Colors.black38),
+                                                                    )),
                                                                     Text(
-                                                                      '/per night',style: TextStyle(color: Colors.black38),)
+                                                                      '/per night',
+                                                                      style: TextStyle(
+                                                                          color:
+                                                                              Colors.black38),
+                                                                    )
                                                                   ],
                                                                 ),
-                                                                SizedBox(height: 10,),
-                                                                Row(children: [
-                                                                  RatingBarIndicator(
-                                                                    rating:  double.parse('${SearchCubit.get(context).hotels[index].rate}'),
-                                                                    itemBuilder: (context, index) => Icon(
-                                                                      Icons.star,
-                                                                      color: Colors.amber,
+                                                                SizedBox(
+                                                                  height: 10,
+                                                                ),
+                                                                Row(
+                                                                  children: [
+                                                                    RatingBarIndicator(
+                                                                      rating:
+                                                                          double.parse('${SearchCubit.get(context).hotels[index].rate}') /
+                                                                              2,
+                                                                      itemBuilder:
+                                                                          (context, index) =>
+                                                                              Icon(
+                                                                        Icons
+                                                                            .star,
+                                                                        color: Colors
+                                                                            .amber,
+                                                                      ),
+                                                                      itemCount:
+                                                                          5,
+                                                                      unratedColor: AppColors
+                                                                          .grey
+                                                                          .withOpacity(
+                                                                              .7),
+                                                                      itemSize:
+                                                                          20.0,
+                                                                      direction:
+                                                                          Axis.horizontal,
                                                                     ),
-                                                                    itemCount: 10,
-                                                                    itemSize: 20.0,
-                                                                    direction: Axis.horizontal,
-                                                                  ),
-                                                                  Text('(${SearchCubit.get(context).hotels[index].rate})',style: TextStyle(color: Colors.black38,fontSize: 12),),
-                                                                ],)
-                                                                ,
-                                                                SizedBox(height: 20,),
+                                                                    Text(
+                                                                      '(${(SearchCubit.get(context).hotels[index].rate)})',
+                                                                      style: TextStyle(
+                                                                          color: Colors
+                                                                              .black38,
+                                                                          fontSize:
+                                                                              12),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                SizedBox(
+                                                                  height: 20,
+                                                                ),
                                                               ]),
                                                         ),
                                                       )),
@@ -212,7 +290,7 @@ class SearchScreen extends StatelessWidget {
                                             )),
                                           ),
                                         ),
-                                  ),
+                                      ),
                                   separatorBuilder: (context, index) =>
                                       SizedBox(
                                         height: 5,

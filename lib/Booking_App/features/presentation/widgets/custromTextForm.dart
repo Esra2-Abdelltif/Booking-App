@@ -1,5 +1,6 @@
 import 'dart:core';
 
+import 'package:booking_app/Booking_App/Core/utilites/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -51,6 +52,10 @@ class CustomTextFormFiled extends StatelessWidget {
       decoration: InputDecoration(
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: color),
+        ),
+
+        enabledBorder:  OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.grey.withOpacity(.7),),
         ),
         border: OutlineInputBorder(),
         labelText: labeltext,

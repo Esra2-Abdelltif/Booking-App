@@ -1,8 +1,10 @@
 
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:booking_app/Booking_App/Core/utilites/app_colors.dart';
 import 'package:booking_app/Booking_App/Core/utilites/app_constance.dart';
 import 'package:booking_app/Booking_App/Core/utilites/app_strings.dart';
 import 'package:booking_app/Booking_App/Core/utilites/assets_manager.dart';
+import 'package:booking_app/Booking_App/config/themes/cubit/cubit.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/account/login/login_screen_.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/homepage/app_layout.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/onboarding/onBoarding_screen.dart';
@@ -29,15 +31,16 @@ class SplashScreen extends StatelessWidget {
       RightScreen = OnBoardinScreen();
     }
     return  AnimatedSplashScreen(
-      duration: 400,
+      duration: 600,
+      backgroundColor:  ThemeAppCubit.get(context).IsDark ? AppColors.scafolldDark: AppColors.white,
       splash: Column(children: [
         Image.asset(ImageAssets.appLogo,width: 150,height: 140),
         SizedBox(height: 15,),
-        Text(AppString.appTitle,style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold,color: Colors.black54),)
+        Text(AppString.appTitle,style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold,color:AppColors.grey.withOpacity(.7)),)
       ]),
       nextScreen:RightScreen,
       splashIconSize: 250,
-      splashTransition: SplashTransition.slideTransition,
+      splashTransition: SplashTransition.scaleTransition,
 
 
     );
