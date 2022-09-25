@@ -1,3 +1,4 @@
+import 'package:booking_app/Booking_App/Core/utilites/app_colors.dart';
 import 'package:booking_app/Booking_App/features/presentation/blocs/cubit.dart';
 import 'package:booking_app/Booking_App/features/presentation/blocs/states.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class Helper {
           itemBuilder: (context, index) =>
               Icon(
                 Icons.star,
-                color: Colors.teal,
+                color: AppColors.yellow,
               ),
           itemCount: 5,
           unratedColor: Colors.grey,

@@ -9,12 +9,22 @@ class CompletedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: TripsWidget(
-      buttonWidget: MaterialButton(
-        onPressed: () {},
-        color: Colors.red,
-        child: Text('finished'),
+      buttonWidget: Container(
+        decoration: BoxDecoration(
+          color: Colors.red,
+          borderRadius: BorderRadius.all(
+            Radius.circular(25),
+          ),
+        ),
+        child: MaterialButton(
+          onPressed: () {},
+          child: Text(
+            'Finished',
+            style: TextStyle(
+                color: Colors.white, fontFamily: 'Poppins', fontSize: 12),
+          ),
+        ),
       ),
-      favoiriteColor: Colors.red,
     ));
   }
 }

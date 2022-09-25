@@ -8,118 +8,141 @@ import '../../../Core/utilites/app_colors.dart';
 import '../../data/models/hotel_list.dart';
 
 class TripsWidget extends StatelessWidget {
-  final Widget buttonWidget;
-  final Color favoiriteColor;
+  final Container buttonWidget;
   HotelListData hotelListData = HotelListData();
 
   TripsWidget(
-      {Key? key, required this.buttonWidget, required this.favoiriteColor})
+      {Key? key, required this.buttonWidget})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var cubit=AppBloc.get(context);
+    var cubit = AppBloc.get(context);
     return BlocConsumer<AppBloc, AppStates>(
       listener: (context, state) {},
       builder: (context, state) {
         return Padding(
-          padding: const EdgeInsets.only(left: 18, right: 20),
+          padding: const EdgeInsetsDirectional.only(start: 10, end: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Stack(
-                alignment: Alignment.topLeft,
-                children: [
-                  Container(
-                    width: double.infinity,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
+              Card(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      height: MediaQuery.of(context).size.height * 0.19,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      child: Image(
+                        image: AssetImage('assests/images/city_5.jpg'),
+                        fit: BoxFit.cover,
+                        width: 310,
+                        height: 168,
+                      ),
                     ),
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    child: Image(
-                      image: AssetImage('assests/images/city_5.jpg'),
-                      fit: BoxFit.cover,
-                      width: 310,
-                      height: 168,
+                    SizedBox(
+                      height: 10,
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Container(
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            '${cubit.hotels[6].name}',
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: AppColors.black,
+                                fontFamily: 'Poppins',
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "\$",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.black,
+                                ),
+                              ),
+                              Text(
+                                "${cubit.hotels[6].price}",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.black,
+                                ),
+                              )
+                            ],
+                          )
+
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "${cubit.hotels[6].description}",
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: AppColors.grey,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 8,
+                            ),
+                            Expanded(child: Helper.ratingStar()),
+                            buttonWidget
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 5,),
+                    Container(height: 0.5,width: double.infinity,
+                      decoration: BoxDecoration(
+                          color: AppColors.grey
+                      ),
+                    ),
+                   /* Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Container(
                         width: 32,
                         height: 32,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(4),
                           color: AppColors.white.withOpacity(0.7),
                         ),
-                        child: Icon(
-                          Icons.favorite_border_rounded,
-                          color: favoiriteColor,
-                          // size: 20,
-                        )),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 18,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    '${cubit.hotels[6].name}',
-                    style: TextStyle(
-                        fontSize: 12,
-                        color: AppColors.black,
-                        fontWeight: FontWeight.w400),
-                  ),
-                  Text(
-                    "${cubit.hotels[6].price}",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.blueColor,
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 12,
-              ),
-              Text(
-                "${cubit.hotels[6].description}",
-                style: TextStyle(
-                    fontSize: 10,
-                    color: AppColors.fontColorGrey,
-                    fontWeight: FontWeight.w400),
-              ),
-              SizedBox(
-                height: 17,
-              ),
-              Container(
-                child: Row(
-                  children: [
-                    Container(
-                      width: 24,
-                      height: 24,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: AssetImage(hotelListData.imagePath),
-                            fit: BoxFit.cover,
-                          )),
-                    ),
-                    SizedBox(
-                      width: 8,
-                    ),
-                    Expanded(
-                      child:Helper.ratingStar()
-                    ),
-                    buttonWidget
+                        *//* child: Icon(
+                        Icons.favorite_border_rounded,
+                        color: favoiriteColor,
+                        // size: 20,
+                      ),*//*
+                      ),
+                    ),*/
                   ],
                 ),
+
               ),
+
             ],
           ),
         );

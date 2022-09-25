@@ -8,12 +8,22 @@ class CancelledScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: TripsWidget(
-      buttonWidget: MaterialButton(
-        color: Colors.blue,
-        onPressed: () {},
-        child: Text('Cancelled'),
+      buttonWidget: Container(
+        decoration: BoxDecoration(
+          color: Colors.blue,
+          borderRadius: BorderRadius.all(
+            Radius.circular(25),
+          ),
+        ),
+        child: MaterialButton(
+          onPressed: () {},
+          child: Text(
+            'Cancelled',
+            style: TextStyle(
+                color: Colors.white, fontFamily: 'Poppins', fontSize: 12),
+          ),
+        ),
       ),
-      favoiriteColor: Colors.blue,
     ));
   }
 }
