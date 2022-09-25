@@ -7,6 +7,8 @@ class ImageAssets{
   static String onBoarding2 = '$imgPath/onBoarding2.png';
   static String onBoarding3 = '$imgPath/onBoarding3.png';
   static String profile = '$imgPath/profile.png';
+  static String appLogo_2 = '$imgPath/booking.png';
+
 
 
 

@@ -3,16 +3,15 @@ import 'dart:ui';
 
 import 'package:booking_app/Booking_App/Core/utilites/app_colors.dart';
 import 'package:booking_app/Booking_App/Core/utilites/helper.dart';
-import 'package:booking_app/Booking_App/Core/utilites/localfiles.dart';
 import 'package:booking_app/Booking_App/features/data/models/hotel_list.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/homepage/hotel_details/hotel_room_list.dart';
-import 'package:booking_app/Booking_App/features/presentation/widgets/common_card.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../../../../config/themes/cubit/cubit.dart';
 import '../../map/map_screen.dart';
-
 
 class HotelDetails extends StatefulWidget {
   int hotelid;
@@ -22,16 +21,19 @@ class HotelDetails extends StatefulWidget {
   final dynamic price;
   final String rate;
 
-
-  HotelDetails({required this.hotelid,required this.hotelName, required this.description, required this.adresse,
-    required this.price,required this.rate});
+  HotelDetails(
+      {required this.hotelid,
+      required this.hotelName,
+      required this.description,
+      required this.adresse,
+      required this.price,
+      required this.rate});
 
   HotelListData hotelListData = HotelListData();
   static const String routeName = 'home-details';
 
   @override
   State<HotelDetails> createState() => _HotelDetailsState();
-
 }
 
 class _HotelDetailsState extends State<HotelDetails>
@@ -60,6 +62,7 @@ class _HotelDetailsState extends State<HotelDetails>
       target: LatLng(37.43296265331129, -122.08832357078792),
       tilt: 59.440717697143555,
       zoom: 19.151926040649414);
+
   @override
   void initState() {
     // TODO: implement initState
@@ -98,7 +101,6 @@ class _HotelDetailsState extends State<HotelDetails>
 
   @override
   Widget build(BuildContext context) {
-
     imageHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Stack(
@@ -117,6 +119,7 @@ class _HotelDetailsState extends State<HotelDetails>
                   padding: EdgeInsets.all(16),
                   child: Divider(
                     height: 1,
+                    color: ThemeAppCubit.get(context).IsDark?Colors.white54:AppColors.grey,
                   ),
                 ),
                 Padding(
@@ -129,6 +132,7 @@ class _HotelDetailsState extends State<HotelDetails>
                           style: TextStyle(
                               fontFamily: 'Poppins',
                               fontSize: 14,
+                              color: ThemeAppCubit.get(context).IsDark? AppColors.white:AppColors.black,
                               letterSpacing: 0.5),
                         ),
                       ),
@@ -147,7 +151,7 @@ class _HotelDetailsState extends State<HotelDetails>
                           style: TextStyle(
                               fontFamily: 'Poppins',
                               fontSize: 12,
-                              color: Colors.grey),
+                              color: ThemeAppCubit.get(context).IsDark?Colors.white54:AppColors.grey),
                           recognizer: TapGestureRecognizer()..onTap = () {},
                         ),
                         TextSpan(
@@ -155,7 +159,7 @@ class _HotelDetailsState extends State<HotelDetails>
                           style: TextStyle(
                               fontFamily: 'Poppins',
                               fontSize: 12,
-                              color: Colors.teal),
+                              color: AppColors.blueColor),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
                               setState(() {
@@ -176,7 +180,7 @@ class _HotelDetailsState extends State<HotelDetails>
                     Container(
                       width: double.infinity,
                       height: 200,
-                      padding: EdgeInsetsDirectional.only(start: 14 , end: 14),
+                      padding: EdgeInsetsDirectional.only(start: 14, end: 14),
                       child: GoogleMap(
                         mapType: MapType.normal,
                         initialCameraPosition: _kGooglePlex,
@@ -189,7 +193,7 @@ class _HotelDetailsState extends State<HotelDetails>
                       padding: const EdgeInsets.only(right: 20, top: 10),
                       child: FloatingActionButton.extended(
                         backgroundColor: Colors.grey.withOpacity(0.6),
-                        onPressed: (){
+                        onPressed: () {
                           Navigator.pushNamed(context, MapScreen.routeName);
                         },
                         label: Text('see more'),
@@ -198,23 +202,27 @@ class _HotelDetailsState extends State<HotelDetails>
                   ],
                 ),
                 Container(
-                  margin: EdgeInsetsDirectional.only(top: 24,bottom: 14),
-                    padding: EdgeInsetsDirectional.only(start: 24,end: 24),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20),),
-                      color: Colors.teal.withOpacity(0.5),
+                  margin: EdgeInsetsDirectional.only(top: 24, bottom: 14),
+                  padding: EdgeInsetsDirectional.only(start: 24, end: 24),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(20),
                     ),
-                    child: MaterialButton(
-                      onPressed: (){
-                        //booking room
-                      },
-                      child: Text('Book Now',style: TextStyle(
+                    color: AppColors.blueColor,
+                  ),
+                  child: MaterialButton(
+                    onPressed: () {
+                      //booking room
+                    },
+                    child: Text(
+                      'Book Now',
+                      style: TextStyle(
                         color: Colors.white,
                         fontFamily: 'Poppins',
                       ),
-                      ),
                     ),
                   ),
+                ),
 
                 /*getPhotoReviewUi(
                     'Reviews', 'View All', Icons.arrow_forward, () {
@@ -225,7 +233,7 @@ class _HotelDetailsState extends State<HotelDetails>
           ),
           //background images , hotel names , their details and more animation view
           //backgroundImageUi(widget.hotelListData ?? HotelListData()),
-          backgroundImageUi('assests/images/hotel_1.jpg'),
+          backgroundImageUi('assests/images/hotel_5.png'),
           Padding(
             padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
             child: Container(
@@ -245,14 +253,14 @@ class _HotelDetailsState extends State<HotelDetails>
                   Expanded(
                     child: SizedBox(),
                   ),
-                  _getAppBarUi(
+                /*  _getAppBarUi(
                       Colors.white,
                       isFav ? Icons.favorite : Icons.favorite_border,
                       Theme.of(context).primaryColor, () {
                     setState(() {
                       isFav = !isFav;
                     });
-                  })
+                  })*/
                 ],
               ),
             ),
@@ -365,8 +373,7 @@ class _HotelDetailsState extends State<HotelDetails>
                                           width: double.infinity,
                                           margin: EdgeInsets.all(24),
                                           decoration: BoxDecoration(
-                                              color:
-                                                  Colors.teal.withOpacity(0.8),
+                                              color:AppColors.blueColor,
                                               borderRadius:
                                                   BorderRadius.circular(32)),
                                           child: MaterialButton(
@@ -474,7 +481,9 @@ class _HotelDetailsState extends State<HotelDetails>
     );
   }
 
-  getHotelsDetails({bool isInList = false,}) {
+  getHotelsDetails({
+    bool isInList = false,
+  }) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -489,7 +498,7 @@ class _HotelDetailsState extends State<HotelDetails>
                 textAlign: TextAlign.left,
                 style: TextStyle(
                     fontFamily: 'Poppins',
-                    color: isInList ? Colors.black : Colors.white,
+                    color: ThemeAppCubit.get(context).IsDark ? AppColors.white : Colors.black,
                     fontSize: 18),
               ),
               SingleChildScrollView(
@@ -502,10 +511,10 @@ class _HotelDetailsState extends State<HotelDetails>
                       widget.adresse,
                       style: TextStyle(
                           fontFamily: 'Poppins',
-                          color: isInList
-                              ? Theme.of(context).disabledColor.withOpacity(0.5)
-                              : Colors.white,
-                          fontSize: 11),
+                        color: ThemeAppCubit.get(context).IsDark ? AppColors.white : Colors.black,
+                        fontSize: 11,
+
+                      ),
                     ),
                     Icon(
                       Icons.location_on_sharp,
@@ -518,9 +527,7 @@ class _HotelDetailsState extends State<HotelDetails>
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                           fontFamily: 'Poppins',
-                          color: isInList
-                              ? Theme.of(context).disabledColor.withOpacity(0.5)
-                              : Colors.white,
+                          color: ThemeAppCubit.get(context).IsDark ? AppColors.white : Colors.black,
                           fontSize: 11),
                     ),
                     Text(
@@ -529,9 +536,7 @@ class _HotelDetailsState extends State<HotelDetails>
                       style: TextStyle(
                         fontFamily: 'Poppins',
                         fontSize: 11,
-                        color: isInList
-                            ? Theme.of(context).disabledColor.withOpacity(0.5)
-                            : Colors.white,
+                        color: ThemeAppCubit.get(context).IsDark ? AppColors.white : Colors.black,
                       ),
                     ),
                   ],
@@ -544,11 +549,24 @@ class _HotelDetailsState extends State<HotelDetails>
                       child: Row(
                         children: [
                           ///
-                          Helper.ratingStar(),
+                          //Helper.ratingStar(),
+                          RatingBarIndicator(
+                            rating:  double.parse('${widget.rate}')/2,
+                            itemBuilder: (context, index) => Icon(
+                              Icons.star,
+                              color: AppColors.blueColor,
+
+                            ),
+                            itemCount: 5,
+                            itemSize: 20.0,
+                            unratedColor:AppColors.grey.withOpacity(.7),
+                            direction: Axis.horizontal,
+                          ),
                           Text(
-                            '(${ double.parse('${widget.rate}')/2})',
+                            '(${double.parse('${widget.rate}') / 2})',
                             style: TextStyle(
-                              fontSize: 12,
+                              fontSize: 10,
+                              fontFamily: 'Poppins',
                               color: isInList
                                   ? Theme.of(context)
                                       .disabledColor
@@ -556,7 +574,6 @@ class _HotelDetailsState extends State<HotelDetails>
                                   : Colors.white,
                             ),
                           ),
-
                         ],
                       ),
                     ),
@@ -604,7 +621,9 @@ class _HotelDetailsState extends State<HotelDetails>
             child: Text(
               title,
               style: TextStyle(
-                color: Colors.black,
+                color:ThemeAppCubit.get(context).IsDark
+                    ? AppColors.white
+                    : AppColors.black,
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Poppins',
                 fontSize: 12,
@@ -627,7 +646,9 @@ class _HotelDetailsState extends State<HotelDetails>
                       style: TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 12,
-                          color: Theme.of(context).primaryColor),
+                          color: ThemeAppCubit.get(context).IsDark
+                              ? AppColors.blueColor
+                              : AppColors.blueColor,),
                     ),
                     SizedBox(
                       height: 38,
@@ -652,5 +673,4 @@ class _HotelDetailsState extends State<HotelDetails>
     final GoogleMapController controller = await _controller.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
   }
-
 }

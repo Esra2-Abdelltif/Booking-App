@@ -1,3 +1,4 @@
+import 'package:booking_app/Booking_App/config/themes/cubit/cubit.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/account/login/login_screen_.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/account/register/cubit/states.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
@@ -49,6 +50,11 @@ class RegisterScreen extends StatelessWidget {
       },
       builder: (context,state){
         return Scaffold(
+          appBar: AppBar(
+            title: Text(AppString.signUp,style: TextStyle(
+              fontFamily: 'Poppins'
+            ),),
+          ),
             body: Center(
               child: SingleChildScrollView(
                 child: Padding(
@@ -60,24 +66,19 @@ class RegisterScreen extends StatelessWidget {
                       key: formkey,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            AppString.signUp,
-                            style: TextStyle(
-                                fontSize: 30,
-                                color: Colors.black54,
-                                fontWeight: FontWeight.w600),
-                          ),
-                          const SizedBox(
-                            height: 40,
-                          ),
+                          Image.asset('assests/images/add_user.png',fit: BoxFit.fill,color: Colors.blue,),
+                          SizedBox(height: 20,),
                           CustomTextFormFiled(
-                            style: Theme.of(context).textTheme.bodyText2,
+                            style:TextStyle(
+                              fontFamily: 'Poppins',
+                                fontSize: 12,
+                                color: ThemeAppCubit.get(context).IsDark?AppColors.white : AppColors.grey
+                            ),
                             controller: nameController,
                             type: TextInputType.text,
                             labeltext:   AppString.fullName,
-                            hintText: AppString.enterName,
+                            //hintText: AppString.enterName,
                             obscureText: !_isPass,
                             prefix: const Icon(
                               Icons.person,
@@ -90,11 +91,15 @@ class RegisterScreen extends StatelessWidget {
                             height: 20,
                           ),
                           CustomTextFormFiled(
-                            style: Theme.of(context).textTheme.bodyText2,
+                            style:TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 12,
+                                color: ThemeAppCubit.get(context).IsDark?AppColors.white : AppColors.grey
+                            ),
                             controller: emailController,
                             type: TextInputType.emailAddress,
                             labeltext:   AppString.emailAdress,
-                            hintText: AppString.enterEmailAdress,
+                            //hintText: AppString.enterEmailAdress,
                             obscureText: !_isPass,
                             prefix: const Icon(
                               Icons.email,
@@ -107,11 +112,15 @@ class RegisterScreen extends StatelessWidget {
                             height: 20,
                           ),
                           CustomTextFormFiled(
-                            style: Theme.of(context).textTheme.bodyText2,
+                            style:TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 12,
+                                color: ThemeAppCubit.get(context).IsDark?AppColors.white : AppColors.grey
+                            ),
                             controller: passController,
                             type: TextInputType.visiblePassword,
                             labeltext: AppString.password,
-                            hintText: AppString.enterPassword,
+                            //hintText: AppString.enterPassword,
                             obscureText: RegisterCubit.get(context).isPass,
                             prefix: const Icon(
                               Icons.lock,
@@ -128,11 +137,15 @@ class RegisterScreen extends StatelessWidget {
                             height: 20,
                           ),
                           CustomTextFormFiled(
-                            style: Theme.of(context).textTheme.bodyText2,
+                            style:TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 12,
+                                color: ThemeAppCubit.get(context).IsDark?AppColors.white : AppColors.grey
+                            ),
                             controller: confirmPassController,
                             type: TextInputType.visiblePassword,
                             labeltext: AppString.confirmPassword,
-                            hintText: AppString.enterConfirmPassword,
+                            //hintText: AppString.enterConfirmPassword,
                             obscureText: RegisterCubit.get(context).isPass,
                             onSubmited: (value) {
                               if (formkey.currentState!.validate()) {
@@ -184,10 +197,12 @@ class RegisterScreen extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Text(AppString.haveAnAccount,
+                               Text(AppString.haveAnAccount,
                                   style:  TextStyle(
                                     fontWeight: FontWeight.w300,
-                                    color: Color(0xFF8D8E98),
+                                    fontFamily: 'Poppins',
+                                    fontSize: 14,
+                                    color: ThemeAppCubit.get(context).IsDark?AppColors.white : AppColors.grey,
                                   )),
                               CustomTextButton(
                                 textcolor: AppColors.defultColor,

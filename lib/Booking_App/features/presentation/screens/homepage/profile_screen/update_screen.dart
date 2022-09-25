@@ -5,6 +5,7 @@ import 'package:booking_app/Booking_App/Core/utilites/app_constance.dart';
 import 'package:booking_app/Booking_App/Core/utilites/app_strings.dart';
 import 'package:booking_app/Booking_App/Core/utilites/assets_manager.dart';
 import 'package:booking_app/Booking_App/Core/utilites/validator.dart';
+import 'package:booking_app/Booking_App/config/themes/cubit/cubit.dart';
 import 'package:booking_app/Booking_App/features/presentation/blocs/cubit.dart';
 import 'package:booking_app/Booking_App/features/presentation/blocs/states.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/homepage/profile_screen/update_screen.dart';
@@ -67,7 +68,6 @@ class UpDateScreen extends StatelessWidget {
                   onBackClick: () {
                     AppConstance.navigatePop(context: context,);
                     AppBloc.get(context).userProfile();
-
                   },
                   titleText: AppString.updateProfile,
                   onTap: () {
@@ -128,11 +128,15 @@ class UpDateScreen extends StatelessWidget {
                           child: Column(
                             children: [
                               CustomTextFormFiled(
-                                style: Theme.of(context).textTheme.bodyText2,
+                          style: TextStyle(
+                          fontFamily: 'Poppins',
+                              fontSize: 12,
+                              color: ThemeAppCubit.get(context).IsDark?AppColors.white : AppColors.grey
+                          ),
                                 controller: nameController,
                                 type: TextInputType.text,
                                 labeltext: AppString.fullName,
-                                hintText: AppString.enterName,
+                                //hintText: AppString.enterName,
                                 obscureText: !_isPass,
                                 prefix: const Icon(
                                   Icons.person,
@@ -145,11 +149,15 @@ class UpDateScreen extends StatelessWidget {
                                 height: 15,
                               ),
                               CustomTextFormFiled(
-                                style: Theme.of(context).textTheme.bodyText2,
+                                style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 12,
+                                    color: ThemeAppCubit.get(context).IsDark?AppColors.white : AppColors.grey
+                                ),
                                 controller: emailController,
                                 type: TextInputType.emailAddress,
                                 labeltext: AppString.emailAdress,
-                                hintText: AppString.enterEmailAdress,
+                                //hintText: AppString.enterEmailAdress,
                                 obscureText: !_isPass,
                                 prefix: const Icon(
                                   Icons.email,

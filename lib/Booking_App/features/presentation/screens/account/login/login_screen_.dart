@@ -4,6 +4,7 @@ import 'package:booking_app/Booking_App/Core/utilites/app_colors.dart';
 import 'package:booking_app/Booking_App/Core/utilites/app_constance.dart';
 import 'package:booking_app/Booking_App/Core/utilites/app_strings.dart';
 import 'package:booking_app/Booking_App/Core/utilites/validator.dart';
+import 'package:booking_app/Booking_App/config/themes/cubit/cubit.dart';
 import 'package:booking_app/Booking_App/features/data/datasources/local/cacheHelper.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/account/login/cubit/cubit.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/account/login/cubit/state.dart';
@@ -33,8 +34,6 @@ class LoginScreen extends StatelessWidget {
             listener: (BuildContext context,  state) {
               if(state is UserLoginSuccessState)
               {
-
-
                   showToastMsg(massage: state.loginModel.status.messageEn ,
                       state: ToastState.SUCCESS,
                       gravity: ToastGravity.BOTTOM,
@@ -44,7 +43,6 @@ class LoginScreen extends StatelessWidget {
                     navigateAndFinsh(context: context,router: AppLayout());
                   });
 
-
               }
               if(state is LoginErrorState){
                 showToastMsg(massage: state.exception.error,
@@ -53,15 +51,22 @@ class LoginScreen extends StatelessWidget {
                     toastLength: Toast.LENGTH_LONG);
               }
 
-
             },
             builder: (BuildContext context,   state) {
               return Scaffold(
-                  body: Center(
-                    child: SingleChildScrollView(
+                appBar: AppBar(
+                  title:Text(
+                    AppString.loginNow,
+                    style: TextStyle(
+                        fontFamily: 'Poppins',
+                        color: ThemeAppCubit.get(context).IsDark?AppColors.white : AppColors.black,
+                        fontWeight: FontWeight.w600),
+                  ),
+                ),
+                  body: SingleChildScrollView(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
-                          horizontal: 25,
+                          horizontal: 25,vertical: 50
                         ),
                         child: Container(
                           child: Form(
@@ -69,45 +74,53 @@ class LoginScreen extends StatelessWidget {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                const Text(
-                                   AppString.loginNow,
-                                  style: TextStyle(
-                                      fontSize: 30,
-                                      color: Colors.black54,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                                const Text(
+                                //Icon(Icons.person,size: 50,color: Colors.blue,),
+                                Image.asset('assests/images/user.png',fit: BoxFit.cover,color: Colors.blue,),
+                                 SizedBox(height: 10,),
+                                 Text(
                                     AppString.loginNowDiscription,
                                     style:  TextStyle(
                                       fontWeight: FontWeight.w300,
-                                      color:  Color(0xFF8D8E98),
-                                    )),
+                                      color: ThemeAppCubit.get(context).IsDark?Colors.white : AppColors.grey,
+                                      fontFamily: 'Poppins',
+                                      fontSize: 16,
+                                    ),
+                                   textAlign: TextAlign.center,
+                                 ),
                                 const SizedBox(
                                   height: 40,
                                 ),
                                 CustomTextFormFiled(
-                                  style: Theme.of(context).textTheme.bodyText2,
+                                  style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 12,
+                                      color: ThemeAppCubit.get(context).IsDark?AppColors.white : AppColors.grey
+                                  ),
                                   controller: emailController,
                                   type: TextInputType.emailAddress,
                                   labeltext:   AppString.emailAdress,
-                                  hintText: AppString.enterEmailAdress,
+                                  //hintText: AppString.enterEmailAdress,
                                   obscureText: !_isPass,
                                   prefix: const Icon(
                                     Icons.email,
                                     color: AppColors.defultColor,
                                   ),
                                   validation: emailField,
-                                  color: AppColors.defultColor,
+                                  color: AppColors.blueColor,
                                 ),
                                 const SizedBox(
                                   height: 20,
                                 ),
                                 CustomTextFormFiled(
-                                  style: Theme.of(context).textTheme.bodyText2,
+                                  style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 12,
+                                      color: ThemeAppCubit.get(context).IsDark?AppColors.white : AppColors.grey
+                                  ),
                                   controller: passController,
                                   type: TextInputType.text,
                                   labeltext: AppString.password,
-                                  hintText: AppString.enterPassword,
+                                 // hintText: AppString.enterPassword,
                                   obscureText: LoginCubit.get(context).isPass,
                                   onSubmited: (value) {
                                     if (formkey.currentState!.validate()) {
@@ -126,7 +139,7 @@ class LoginScreen extends StatelessWidget {
                                   suffixFun: () {
                                     LoginCubit.get(context).ChangePasswordVisibility();
                                   },
-                                  color: AppColors.defultColor,
+                                  color: AppColors.blueColor,
                                   validation: validatePassword,
                                 ),
                                 const SizedBox(
@@ -154,10 +167,12 @@ class LoginScreen extends StatelessWidget {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    const Text(AppString.dontHaveAnAccount,
+                                     Text(AppString.dontHaveAnAccount,
                                         style:  TextStyle(
                                           fontWeight: FontWeight.w300,
-                                          color: Color(0xFF8D8E98),
+                                          fontSize: 14,
+                                          fontFamily: 'Poppins',
+                                          color: ThemeAppCubit.get(context).IsDark?AppColors.white : Color(0xFF8D8E98),
                                         )),
                                     CustomTextButton(
                                       textcolor: AppColors.defultColor,
@@ -175,7 +190,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                  ));
+                 );
             }
         )
     );

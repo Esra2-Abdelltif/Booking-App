@@ -51,7 +51,7 @@ class ImageSlider implements SliverPersistentHeaderDelegate{
            height: 45,
            decoration: BoxDecoration(
              borderRadius: BorderRadius.circular(25),
-             color:   ThemeAppCubit.get(context).IsDark ? AppColors.darkcontiner: AppColors.white,
+             color: ThemeAppCubit.get(context).IsDark ? AppColors.darkcontiner: AppColors.white,
 
            ),
            child: Padding(
@@ -64,8 +64,9 @@ class ImageSlider implements SliverPersistentHeaderDelegate{
                child: Row(children: [
                  Icon(Icons.search,color: AppColors.defultColor,),
                  Text(AppString.where_are_you_goning,style :TextStyle(fontSize: 24).copyWith(
-                     color: Colors.grey,
-                     fontSize: 18,
+                     color:ThemeAppCubit.get(context).IsDark ? AppColors.white : AppColors.grey,
+                     fontSize: 11,
+                     fontFamily: 'Poppins',
                      fontWeight: FontWeight.w400))
                ],),
              ),
@@ -74,14 +75,14 @@ class ImageSlider implements SliverPersistentHeaderDelegate{
        ),
      shrinkOffset >=0 && shrinkOffset<30?
     Padding(
-      padding: const EdgeInsets.only(top: 300,left: 16),
+      padding: const EdgeInsets.only(top: 270,left: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(AppString.find_best_deals,style: TextStyle(color: Colors.white,fontSize: 24,fontWeight: FontWeight.bold),),
+          Text(AppString.find_best_deals,style: TextStyle(color: Colors.white,fontSize: 22,fontWeight: FontWeight.bold,fontFamily: 'Poppins'),),
           SizedBox(height: 5,),
-          Text(AppString.extraordinary_five_star,style: TextStyle(color: Colors.white,fontSize: 20),),
-          Text(AppString.outdoor_activities,style: TextStyle(color: Colors.white,fontSize: 20),),
+          Text(AppString.extraordinary_five_star,style: TextStyle(color: Colors.white,fontSize: 20,fontFamily: 'Poppins'),),
+          Text(AppString.outdoor_activities,style: TextStyle(color: Colors.white,fontSize: 18,fontFamily: 'Poppins'),),
           SizedBox(height: 15,),
           CustomButton(borderColor: AppColors.defultColor,height:45 , text: AppString.view_Hotel, onTap: (){
             AppConstance.navigateTo(router: Explore(),context: context);
