@@ -34,9 +34,9 @@ class SplashScreen extends StatelessWidget {
       duration: 600,
       backgroundColor:  ThemeAppCubit.get(context).IsDark ? AppColors.scafolldDark: AppColors.white,
       splash: Column(children: [
-        Image.asset(ImageAssets.appLogo_2,width: 150,height: 140),
-        SizedBox(height: 15,),
-        Text(AppString.appTitle,style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color:AppColors.black.withOpacity(.7),fontFamily: 'Poppins'),)
+        Image.asset(ImageAssets.appLogo,width: 150,height: 140),
+        SizedBox(height: 25,),
+        Text(AppString.appTitle,style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold,fontFamily: 'Poppins'),)
       ]),
       nextScreen:RightScreen,
       splashIconSize: 250,

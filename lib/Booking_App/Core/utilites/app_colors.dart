@@ -11,6 +11,7 @@ class AppColors {
   static Color grey=HexColor("#878787");
   static Color fontColorGrey = HexColor("#575757");
   static  Color yellow=  HexColor('#F3B046');
+  static  Color darkTextColor=  Color(0xFF8D8E98);
 
 
 }

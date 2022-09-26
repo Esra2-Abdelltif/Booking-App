@@ -63,11 +63,11 @@ class ImageSlider implements SliverPersistentHeaderDelegate{
                },
                child: Row(children: [
                  Icon(Icons.search,color: AppColors.defultColor,),
-                 Text(AppString.where_are_you_goning,style :TextStyle(fontSize: 24).copyWith(
-                     color:ThemeAppCubit.get(context).IsDark ? AppColors.white : AppColors.grey,
-                     fontSize: 11,
-                     fontFamily: 'Poppins',
-                     fontWeight: FontWeight.w400))
+                 Text(AppString.where_are_you_goning,
+                     style : TextStyle(fontSize: 24).copyWith(
+                         color: Colors.grey,
+                         fontSize: 18,
+                         fontWeight: FontWeight.w400))
                ],),
              ),
            ),

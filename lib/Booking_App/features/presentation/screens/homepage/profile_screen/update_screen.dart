@@ -53,8 +53,8 @@ class UpDateScreen extends StatelessWidget {
         },
         builder: (context, state) {
           AppBloc cubit = AppBloc.get(context);
-          nameController.text = cubit.profileModel!.data!.name ;
-          emailController.text = cubit.profileModel!.data!.email;
+          nameController.text = cubit.profileModel!.data!.name! ;
+          emailController.text = cubit.profileModel!.data!.email!;
 
           return Scaffold(
               body: ConditionalBuilder(
@@ -88,13 +88,13 @@ class UpDateScreen extends StatelessWidget {
                               clipBehavior: Clip.none,
                               children: [
                                 CircleAvatar(
-                                  radius: 65,
-                                  backgroundColor: AppColors.defultColor,
+                                  radius: 80,
+                                  backgroundColor: AppColors.yellow,
                                   child: CircleAvatar(
-                                    radius: 61,
+                                    radius: 77,
                                     backgroundColor: AppColors.white,
                                     backgroundImage:
-                                        AssetImage(ImageAssets.profile),
+                                        AssetImage(ImageAssets.userProfile),
                                   ),
                                 ),
                                 Positioned(
@@ -122,7 +122,7 @@ class UpDateScreen extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(
                             left: 24,
-                            top: 87,
+                            top: 50,
                             right: 24,
                           ),
                           child: Column(

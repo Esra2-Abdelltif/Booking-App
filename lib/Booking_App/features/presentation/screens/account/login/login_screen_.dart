@@ -3,6 +3,7 @@ import 'package:booking_app/Booking_App/Core/di/injection.dart';
 import 'package:booking_app/Booking_App/Core/utilites/app_colors.dart';
 import 'package:booking_app/Booking_App/Core/utilites/app_constance.dart';
 import 'package:booking_app/Booking_App/Core/utilites/app_strings.dart';
+import 'package:booking_app/Booking_App/Core/utilites/assets_manager.dart';
 import 'package:booking_app/Booking_App/Core/utilites/validator.dart';
 import 'package:booking_app/Booking_App/config/themes/cubit/cubit.dart';
 import 'package:booking_app/Booking_App/features/data/datasources/local/cacheHelper.dart';
@@ -75,7 +76,7 @@ class LoginScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 //Icon(Icons.person,size: 50,color: Colors.blue,),
-                                Image.asset('assests/images/user.png',fit: BoxFit.cover,color: Colors.blue,),
+                                Image.asset(ImageAssets.user,fit: BoxFit.cover,color: Colors.blue,),
                                  SizedBox(height: 10,),
                                  Text(
                                     AppString.loginNowDiscription,

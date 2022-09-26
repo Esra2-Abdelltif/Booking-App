@@ -10,6 +10,7 @@ import 'package:booking_app/Booking_App/features/presentation/widgets/custom_app
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -22,158 +23,197 @@ class ProfileScreen extends StatelessWidget {
         var cubit = AppBloc.get(context).profileModel;
         return Scaffold(
             body: ConditionalBuilder(
-          condition: AppBloc.get(context).profileModel != null,
-          builder: (context) => Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CommonAppbarView(
-                //iconData: Icons.arrow_back,
-                onBackClick: () {
-                  // AppBloc.get(context).userProfile();
-                  AppConstance.navigatePop(context: context);
-                },
-                titleText: AppString.editProfile,
-                onTap: () {
-                  AppBloc.get(context).userProfile();
-                  AppConstance.navigateTo(
-                      context: context, router: UpDateScreen());
-                },
-              ),
-              Expanded(
-                  child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 16.0),
-                      child: Center(
-                        child: Stack(
-                          alignment: Alignment.bottomRight,
-                          clipBehavior: Clip.none,
-                          children: [
-                            CircleAvatar(
-                              radius: 65,
-                              backgroundColor: AppColors.defultColor,
-                              child: CircleAvatar(
-                                radius: 61,
-                                backgroundColor: AppColors.white,
-                                backgroundImage:
-                                    AssetImage(ImageAssets.profile),
-                              ),
-                            ),
-                            // Positioned(
-                            //   right: 2,
-                            //   child: Container(
-                            //     height:35,
-                            //     width: 35,
-                            //     decoration: BoxDecoration(
-                            //       shape: BoxShape.circle,
-                            //       color: Colors.green,
-                            //     ),
-                            //     child: IconButton(
-                            //         onPressed: () {}, icon:Icon(Icons.camera_alt,color: AppColors.black,size: 20,) ),
-                            //   ),
-                            // ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        left: 24,
-                        top: 87,
-                        right: 24,
-                      ),
-                      child: Column(
-                        children: [
-                          InkWell(
-                            onTap: () {},
-                            child: Padding(
-                              padding: const EdgeInsets.only(bottom: 23),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+              condition: AppBloc.get(context).profileModel != null,
+              builder: (context) => Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                      child: SingleChildScrollView(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 60.0,horizontal: 24),
+                          child: Column(
+                            children: [
+                              Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(
-                                    AppString.fullName,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 12,
-                                      fontFamily: 'Poppins',
-                                      color: ThemeAppCubit.get(context).IsDark
-                                          ?AppColors.white
-                                          : AppColors.darkcontiner,
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    SizedBox(height: 5,),
+                                    Text(
+                          cubit!.data!.name!,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 16,
+                                        fontFamily: 'Poppins',
+                                        color: ThemeAppCubit.get(context).IsDark
+                                            ?AppColors.white
+                                            : AppColors.darkcontiner,
+                                      ),
                                     ),
+                                    SizedBox(height: 7,),
+                                    Text(
+                                      cubit.data!.email!,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12,
+                                        fontFamily: 'Poppins',
+                                        color: ThemeAppCubit.get(context).IsDark
+                                            ? Colors.white54
+                                            : AppColors.grey,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                  CircleAvatar(
+                                    radius: 35,
+                                    backgroundColor: AppColors.white,
+                                    backgroundImage:
+                                    AssetImage(ImageAssets.userProfile),
                                   ),
-                                  Text(
-                                    cubit!.data!.name,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 12,
-                                      fontFamily: 'Poppins',
-                                      color: ThemeAppCubit.get(context).IsDark
-                                          ? Colors.white54
-                                          : AppColors.grey,
-                                    ),
-                                  ),
-                                ],
+                              ],),
+                              SizedBox(
+                                height: 20,
                               ),
-                            ),
-                          ),
-                          Divider(
-                              height: 1,
-                              color: AppColors.grey.withOpacity(.7),
-                              thickness: 1),
-                          InkWell(
-                            onTap: () {},
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(bottom: 23, top: 23),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    AppString.email,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 12.5,
-                                      fontFamily: 'Poppins',
-                                      color: ThemeAppCubit.get(context).IsDark
-                                          ? AppColors.white
-                                          : AppColors.darkcontiner,
-                                    ),
-                                  ),
-                                  Text(
-                                    cubit.data!.email,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 12,
-                                      fontFamily: 'Poppins',
-                                      color: ThemeAppCubit.get(context).IsDark
-                                          ? Colors.white54
-                                          : AppColors.grey,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
+                              //Edit Profile
+                              InkWell(
+                                onTap: () {
+                                  AppConstance.navigateTo(
+                                      context: context, router: UpDateScreen());
 
-                          //about mono
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 500,
-                    )
-                  ],
-                ),
-              )),
-            ],
-          ),
-          fallback: (context) => Center(child: CircularProgressIndicator()),
-        ));
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 20,top: 20),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(AppString.editProfile,
+                                          style: TextStyle(
+                                            //fontWeight: FontWeight.bold,
+                                            fontSize: 16,)),
+                                      Icon( Icons.edit_rounded,color: AppColors.grey.withOpacity(.7),)
+
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Divider(
+                                  height: 1,
+                                  color: AppColors.grey.withOpacity(.4),
+                                  thickness: 1),
+                              //invite Friends
+                              InkWell(
+                                onTap: () {
+
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 20,top: 20),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text("invite Friends",
+                                          style: TextStyle(
+                                            //fontWeight: FontWeight.bold,
+                                            fontSize: 16,)),
+                                      Icon( Icons.people,color: AppColors.grey.withOpacity(.7),)
+
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Divider(
+                                  height: 1,
+                                  color: AppColors.grey.withOpacity(.4),
+                                  thickness: 1),
+                              //Crdit & Coupons
+                              InkWell(
+                                onTap: () {
+
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 20,top: 20),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text("Crdit & Coupons",
+                                          style: TextStyle(
+                                            //fontWeight: FontWeight.bold,
+                                            fontSize: 16,)),
+                                      Icon( FontAwesomeIcons.gift,color: AppColors.grey.withOpacity(.7),)
+
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Divider(
+                                  height: 1,
+                                  color: AppColors.grey.withOpacity(.4),
+                                  thickness: 1),
+                              //Help Center
+                              InkWell(
+                                onTap: () {
+
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 20,top: 20),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text("Help Center",
+                                          style: TextStyle(
+                                            //fontWeight: FontWeight.bold,
+                                            fontSize: 16,)),
+                                      Icon( Icons.info,color: AppColors.grey.withOpacity(.7),)
+
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Divider(
+                                  height: 1,
+                                  color: AppColors.grey.withOpacity(.4),
+                                  thickness: 1),
+                              //Payment
+                              InkWell(
+                                onTap: () {
+
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 20,top: 20),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text("Payment",
+                                          style: TextStyle(
+                                            //fontWeight: FontWeight.bold,
+                                            fontSize: 16,)),
+                                      Icon(FontAwesomeIcons.wallet,color: AppColors.grey.withOpacity(.7),)
+
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Divider(
+                                  height: 1,
+                                  color: AppColors.grey.withOpacity(.4),
+                                  thickness: 1),
+
+                            ],
+                          ),
+                        ),
+                      )),
+                ],
+              ),
+              fallback: (context) => Center(child: CircularProgressIndicator()),
+            ));
       },
     );
   }

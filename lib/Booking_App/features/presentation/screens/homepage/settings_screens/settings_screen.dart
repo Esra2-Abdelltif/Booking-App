@@ -38,13 +38,13 @@ class SettingsScreen extends StatelessWidget {
               ),
               child: Column(
                 children:  [
-                  SizedBox(height: 45,),
+                  SizedBox(height: 20,),
                   InkWell(
                     onTap: () {
 
                     },
                     child: Padding(
-                      padding: const EdgeInsets.only(bottom: 20,top: 20),
+                      padding: const EdgeInsets.only(bottom: 20,),
                       child: Row(
                         mainAxisAlignment:
                         MainAxisAlignment.spaceBetween,

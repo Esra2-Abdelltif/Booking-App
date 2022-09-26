@@ -9,6 +9,9 @@ abstract class ThemeAppStates
  class InitialThemeAppState extends ThemeAppStates{}
 
 class AppChangeModeState extends ThemeAppStates {}
+ class AppChangeLangtate extends ThemeAppStates {}
+ class ChangeState extends ThemeAppStates {}
+
 
 
 

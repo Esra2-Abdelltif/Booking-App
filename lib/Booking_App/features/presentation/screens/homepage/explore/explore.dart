@@ -1,5 +1,7 @@
 //HotelHomeScreen
+import 'package:booking_app/Booking_App/Core/utilites/app_constance.dart';
 import 'package:booking_app/Booking_App/features/data/models/hotel_list.dart';
+import 'package:booking_app/Booking_App/features/presentation/screens/homepage/filiter_screen/filter_screen.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/map/map_screen.dart';
 import 'package:booking_app/Booking_App/features/presentation/widgets/custom_search.dart';
 import 'package:booking_app/Booking_App/features/presentation/widgets/explorelistview.dart';
@@ -95,6 +97,7 @@ class _Explore extends State<Explore>  with TickerProviderStateMixin{
                    child: InkWell(
                      borderRadius: BorderRadius.all(Radius.circular(4.0)),
                      onTap: (){
+                       AppConstance.navigateTo(router: FilterScreeen(),context: context);
                      },
                      child: Padding(
                    padding: EdgeInsets.only(left: 1),

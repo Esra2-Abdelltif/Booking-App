@@ -43,6 +43,7 @@ dependencies:
   dio: ^4.0.6
   get_it: ^7.2.0
   dartz: ^0.10.1
+  equatable: ^2.0.5
   shared_preferences: ^2.0.15
   conditional_builder_null_safety: ^0.0.6
   fluttertoast: ^8.0.9
@@ -88,7 +89,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assests/images/
-  #   - images/a_dot_ham.jpeg
+    - assests/i18n/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

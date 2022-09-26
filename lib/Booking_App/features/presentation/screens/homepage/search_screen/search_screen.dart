@@ -203,19 +203,6 @@ class SearchScreen extends StatelessWidget {
                                                                       CrossAxisAlignment
                                                                           .start,
                                                                   children: [
-                                                                    Text(
-                                                                      SearchCubit.get(
-                                                                              context)
-                                                                          .hotels[
-                                                                              index]
-                                                                          .adresse,
-                                                                      style: TextStyle(
-                                                                          color:
-                                                                              Colors.black38),
-                                                                    ),
-                                                                    SizedBox(
-                                                                      width: 4,
-                                                                    ),
                                                                     Icon(
                                                                       Icons
                                                                           .location_pin,
@@ -223,19 +210,28 @@ class SearchScreen extends StatelessWidget {
                                                                       color: AppColors
                                                                           .defultColor,
                                                                     ),
-                                                                    Expanded(
-                                                                        child:
-                                                                            Text(
-                                                                      '20 Km to city',
+
+                                                                    SizedBox(
+                                                                      width: 4,
+                                                                    ),
+                                                                    Text(
+                                                                      SearchCubit.get(
+                                                                          context)
+                                                                          .hotels[
+                                                                      index]
+                                                                          .adresse,
                                                                       style: TextStyle(
-                                                                          color:
-                                                                              Colors.black38),
-                                                                    )),
+                                                                        color:
+                                                                        AppColors.darkTextColor,),
+                                                                    ),
+
+                                                                    Spacer(),
+
                                                                     Text(
                                                                       '/per night',
                                                                       style: TextStyle(
                                                                           color:
-                                                                              Colors.black38),
+                                                                          AppColors.darkTextColor,),
                                                                     )
                                                                   ],
                                                                 ),
@@ -268,10 +264,9 @@ class SearchScreen extends StatelessWidget {
                                                                           Axis.horizontal,
                                                                     ),
                                                                     Text(
-                                                                      '(${(SearchCubit.get(context).hotels[index].rate)})',
+                                                                      '(${double.parse('${SearchCubit.get(context).hotels[index].rate}') / 2})',
                                                                       style: TextStyle(
-                                                                          color: Colors
-                                                                              .black38,
+                                                                          color:    AppColors.darkTextColor,
                                                                           fontSize:
                                                                               12),
                                                                     ),

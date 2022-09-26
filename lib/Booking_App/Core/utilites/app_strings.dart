@@ -1,5 +1,5 @@
 class AppString{
-  static const String appTitle ='Booking';
+  static const String appTitle ='Booking App';
   static const String noRouteFound='No Route Found';
   static const String onBoardingTitle1 ='Plan Your Trips';
   static const String onBoardingTitle2 ='Find Best Deals';
@@ -42,6 +42,9 @@ class AppString{
   static const String outdoor_activities="outdoor activities";
   static const String view_Hotel="View Hotel";
   static const String best_Deals="Best Deals";
+  static const String englishCode = 'en';
+  static const String arabicCode = 'ar';
+  static const String locale = 'locale';
 
 
 

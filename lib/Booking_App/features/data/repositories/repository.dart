@@ -31,8 +31,8 @@ abstract class Repository {
   });
   Future<Either<PrimaryServerException, ProfileModel>> updatePofile({
     required String token,
-    required String name,
-    required String email,
+    required String? name,
+    required String? email,
   });
   Future<Either<PrimaryServerException, HotelsModel>> getHotels({
     required int page,
@@ -143,8 +143,8 @@ class RepositoryImplementation extends Repository {
   @override
   Future<Either<PrimaryServerException, ProfileModel>> updatePofile({
     required String token,
-    required String name,
-    required String email,
+    required String? name,
+    required String? email,
   }) async {
     return basicErrorHandling<ProfileModel>(
       onSuccess: () async {
@@ -152,8 +152,8 @@ class RepositoryImplementation extends Repository {
           endPoint: profileUpdateEndPoint,
           token: token,
           data: {
-            'email': email,
-            'name': name,
+            'email': email ,
+            'name': name ,
           },
         );
 

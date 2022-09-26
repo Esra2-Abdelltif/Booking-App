@@ -1,3 +1,4 @@
+import 'package:booking_app/Booking_App/Core/utilites/assets_manager.dart';
 import 'package:booking_app/Booking_App/config/themes/cubit/cubit.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/account/login/login_screen_.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/account/register/cubit/states.dart';
@@ -67,7 +68,7 @@ class RegisterScreen extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image.asset('assests/images/add_user.png',fit: BoxFit.fill,color: Colors.blue,),
+                          Image.asset(ImageAssets.add_user,fit: BoxFit.fill,color: Colors.blue,),
                           SizedBox(height: 20,),
                           CustomTextFormFiled(
                             style:TextStyle(

@@ -1,8 +1,8 @@
 class UserModel {
   final int id;
   final String token;
-  final String name;
-  final String email;
+   String? name;
+   String? email;
 
   UserModel({
     required this.id,
@@ -15,8 +15,8 @@ class UserModel {
     return UserModel(
       id: json['id'],
       token: json['api_token'],
-      name: json['name'],
-      email: json['email'],
+      name: json['name']??"",
+      email: json['email']??"",
     );
   }
 }

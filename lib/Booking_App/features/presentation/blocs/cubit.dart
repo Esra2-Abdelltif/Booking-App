@@ -28,14 +28,15 @@ class AppBloc extends Cubit<AppStates> {
   }
 
   List<BottomNavigationBarItem> bottomNavigation = [
-     BottomNavigationBarItem(
+    BottomNavigationBarItem(
         icon: Icon(Icons.home, size: 24), label: AppString.home),
-     BottomNavigationBarItem(
+    BottomNavigationBarItem(
         icon: const Icon(Icons.hotel, size: 24), label: AppString.hotel),
-     BottomNavigationBarItem(
+    BottomNavigationBarItem(
         icon: const Icon(Icons.person, size: 24), label: AppString.profile),
-     BottomNavigationBarItem(
-        icon: Icon(Icons.miscellaneous_services_sharp, size: 24), label: AppString.settings),
+    BottomNavigationBarItem(
+        icon: Icon(Icons.miscellaneous_services_sharp, size: 24),
+        label: AppString.settings),
   ];
 
   List<Widget> screens = [
@@ -77,10 +78,12 @@ class AppBloc extends Cubit<AppStates> {
     );
   }
 
-  void updateUserData({required String name, required String email}) async {
+  void updateUserData({required String? name, required String? email}) async {
     emit(UserUpdateProfileLoadingStates());
     final response = await repository.updatePofile(
-        email: email, token: CacheHelper.getDate(key: 'token'), name: name);
+        email: email, token: CacheHelper.getDate(key: 'token'),
+        name: name
+    );
     response.fold(
       (l) {
         emit(ErrorState(exception: l));

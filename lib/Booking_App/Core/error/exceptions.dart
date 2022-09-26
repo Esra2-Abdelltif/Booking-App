@@ -9,3 +9,5 @@ class PrimaryServerException implements Exception {
     required this.message,
   });
 }
+
+class CacheException implements Exception {}
