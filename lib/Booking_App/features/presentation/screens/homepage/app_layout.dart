@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppLayout extends StatelessWidget {
   late final String title;
-
   var scaffoldKey = GlobalKey<ScaffoldState>();
 
 

@@ -24,7 +24,7 @@ class _CompletedScreenState extends State<CompletedScreen> {
         listener: (context, state) {},
         builder: (context, state) {
           return Scaffold(
-            body: AppBloc.get(context).completed.length != 0
+            body: state is! ErrorState
                 ? TripsWidget(
                     model: AppBloc.get(context).completed,
                     buttonWidget: Container(

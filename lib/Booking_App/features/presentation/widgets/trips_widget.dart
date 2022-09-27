@@ -11,7 +11,7 @@ import '../../data/models/user_model.dart';
 
 class TripsWidget extends StatelessWidget {
   final Container buttonWidget;
-  final Container popUp;
+  final Widget popUp;
   List<DataModel> model;
   HotelListData hotelListData = HotelListData();
 
@@ -123,7 +123,47 @@ class TripsWidget extends StatelessWidget {
                                 ),
                                 Expanded(child: Helper.ratingStar()),
                                 buttonWidget,
-                                popUp,
+                                model[index].type!='cancelled' && model[index].type!='completed'?
+                                PopupMenuButton(
+                                    icon: const Icon(
+                                      Icons.more_horiz,
+                                      color: Colors.grey,
+                                    ),
+                                    itemBuilder: (context) => [
+                                      PopupMenuItem(
+                                        value: 1,
+                                        child: Row(
+                                          children: const [
+                                            Icon(Icons.task_alt, color: Colors.teal),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text("Completed")
+                                          ],
+                                        ),
+                                        onTap: () {
+                                          AppBloc.get(context).updateBookingCompleted(bookingId:AppBloc.get(context).upcomming[index].id);
+                                        },
+                                      ),
+                                      PopupMenuItem(
+                                        value: 2,
+                                        child: Row(
+                                          children: const [
+                                            Icon(
+                                              Icons.cancel_outlined,
+                                              color: Colors.red,
+                                            ),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text("Cancelled")
+                                          ],
+                                        ),
+                                        onTap: () {
+                                          AppBloc.get(context).updateBookingCancelled(bookingId: AppBloc.get(context).upcomming[index].id);
+                                        },
+                                      ),
+                                    ]):Container(),
                               ],
                             ),
                           ),

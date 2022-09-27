@@ -1,37 +1,38 @@
-import 'package:booking_app/Booking_App/features/data/models/status_model.dart';
+class CreateBookingModel {
+  Status? status;
 
-class CreateBookingModel{
-  final StatusBookingModel status;
-  CreateBookingModel({
-    required this.status,
-});
+  CreateBookingModel({this.status});
 
-  factory CreateBookingModel.fromJson(Map<String,dynamic> json){
-    return CreateBookingModel(
-      status: StatusBookingModel.fromJson(json['status']),
-    );
+  CreateBookingModel.fromJson(Map<String, dynamic> json) {
+    status =
+    json['status'] != null ? new Status.fromJson(json['status']) : null;
   }
 }
 
-class StatusBookingModel{
-  final String type;
-  final String messageAr;
-  final String messageEn;
-  final int bookingId;
+class Status {
+  String? type;
+  Title? title;
+  dynamic bookingId;
 
-  StatusBookingModel({
-    required this.type,
-    required this.messageAr,
-    required this.messageEn,
-    required this.bookingId,
-  });
+  Status({this.type, this.title, this.bookingId});
 
-  factory StatusBookingModel.fromJson(Map<String, dynamic> json) {
-    return StatusBookingModel(
-      type: json['type']??'0',
-      messageAr: json['title'] != null ? json['title']['ar']??'empty' : 'empty',
-      messageEn: json['title'] != null ? json['title']['en']??'empty' : 'empty',
-      bookingId: json['booking_id'],
-    );
+  Status.fromJson(Map<String, dynamic> json) {
+    type = json['type'];
+    title = json['title'] != null ? new Title.fromJson(json['title']) : null;
+    bookingId = json['booking_id'];
   }
+
+}
+
+class Title {
+  String? ar;
+  String? en;
+
+  Title({this.ar, this.en});
+
+  Title.fromJson(Map<String, dynamic> json) {
+    ar = json['ar'];
+    en = json['en'];
+  }
+
 }

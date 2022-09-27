@@ -23,7 +23,7 @@ class _CancelledScreenState extends State<CancelledScreen> {
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
-          body:AppBloc.get(context).cancelled.length != 0
+          body:state is! ErrorState
               ?  TripsWidget(
                   model: AppBloc.get(context).cancelled,
                   buttonWidget: Container(
