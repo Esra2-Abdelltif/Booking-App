@@ -34,7 +34,7 @@ class _BookingScreenState extends State<BookingScreen> {
       builder: (context, state) {
         return
         Scaffold(
-          body: AppBloc.get(context).upcomming.length != 0
+          body: state is! ErrorState
               ?
             TripsWidget(
                   model: AppBloc.get(context).upcomming,
@@ -56,48 +56,7 @@ class _BookingScreenState extends State<BookingScreen> {
                       ),
                     ),
                   ),
-                  popUp: Container(
-                    child: PopupMenuButton(
-                        icon: const Icon(
-                          Icons.more_horiz,
-                          color: Colors.grey,
-                        ),
-                        itemBuilder: (context) => [
-                              PopupMenuItem(
-                                value: 1,
-                                child: Row(
-                                  children: const [
-                                    Icon(Icons.task_alt, color: Colors.teal),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text("Completed")
-                                  ],
-                                ),
-                                onTap: () {
-                                  AppBloc.get(context).updateBookingCompleted(bookingId:AppBloc.get(context).bookingModel!.status.bookingId);
-                                },
-                              ),
-                              PopupMenuItem(
-                                value: 2,
-                                child: Row(
-                                  children: const [
-                                    Icon(
-                                      Icons.cancel_outlined,
-                                      color: Colors.red,
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text("Cancelled")
-                                  ],
-                                ),
-                                onTap: () {
-                                  AppBloc.get(context).updateBookingCancelled(bookingId: AppBloc.get(context).bookingModel!.status.bookingId);
-                                },
-                              ),
-                            ]),
-                  ),
+                  popUp: Container(),
                 )
               : Padding(
                   padding: const EdgeInsets.all(8.0),

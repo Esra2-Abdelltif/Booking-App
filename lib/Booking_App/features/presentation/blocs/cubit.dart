@@ -190,6 +190,7 @@ class AppBloc extends Cubit<AppStates> {
   }
 
   CreateBookingModel? bookingModel;
+
   void createBooking({
   required int hotelId,
   required int userId,
@@ -206,8 +207,8 @@ class AppBloc extends Cubit<AppStates> {
             },
             (r) {
               bookingModel=r;
-              print(r.status.messageEn);
-              print(r.status.bookingId);
+              print(r.status!.title?.en);
+              print(r.status!.bookingId);
               print(token);
               emit(CreateBookingSuccessState());
             });
@@ -215,7 +216,7 @@ class AppBloc extends Cubit<AppStates> {
 
 
   StatusModel? update;
-  void updateBookingCancelled({required int bookingId})async{
+  void updateBookingCancelled({required dynamic bookingId})async{
     emit(updateCancelledLoadingState());
     final response= await repository.updateBooking(
       bookingId:bookingId,
@@ -229,12 +230,12 @@ class AppBloc extends Cubit<AppStates> {
             update = r;
             getBookingsUpComming();
         print(r.messageEn);
-        print(bookingModel!.status.bookingId);
+        //print(bookingModel!.status!.bookingId);
         emit(updateCancelledSuccessState());
       },
     );
   }
-  void updateBookingCompleted({required int bookingId})async{
+  void updateBookingCompleted({required dynamic bookingId})async{
     emit(updateCancelledLoadingState());
     final response= await repository.updateBooking(
       bookingId:bookingId,
@@ -248,7 +249,7 @@ class AppBloc extends Cubit<AppStates> {
         update = r;
         getBookingsUpComming();
         print(r.messageEn);
-        print(bookingModel!.status.bookingId);
+        //print(bookingModel!.status!.bookingId);
         emit(updateCancelledSuccessState());
       },
     );

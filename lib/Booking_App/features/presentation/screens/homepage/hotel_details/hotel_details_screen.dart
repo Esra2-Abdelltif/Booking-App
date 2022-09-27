@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:booking_app/Booking_App/Core/utilites/app_colors.dart';
 import 'package:booking_app/Booking_App/Core/utilites/helper.dart';
 import 'package:booking_app/Booking_App/Core/utilites/localfiles.dart';
+import 'package:booking_app/Booking_App/features/data/datasources/local/cacheHelper.dart';
 import 'package:booking_app/Booking_App/features/data/models/hotel_list.dart';
 import 'package:booking_app/Booking_App/features/presentation/blocs/cubit.dart';
 import 'package:booking_app/Booking_App/features/presentation/blocs/states.dart';
@@ -20,6 +21,7 @@ import '../../../../../Core/utilites/app_constance.dart';
 import '../../../../data/models/login_model.dart';
 import '../../../widgets/show_toast.dart';
 import '../../map/map_screen.dart';
+import '../app_layout.dart';
 import '../hotel_screens/booking_screen.dart';
 import '../hotel_screens/hotel_screen.dart';
 
@@ -114,18 +116,12 @@ class _HotelDetailsState extends State<HotelDetails>
     return BlocConsumer<AppBloc,AppStates>(
       listener: (context,state){
         if(state is CreateBookingSuccessState){
-          showToastMsg(massage: '${AppBloc.get(context).bookingModel!.status.messageEn}' ,
+          showToastMsg(massage: '${AppBloc.get(context).bookingModel!.status!.title?.en}' ,
               state: ToastState.SUCCESS,
               gravity: ToastGravity.BOTTOM,
               toastLength: Toast.LENGTH_LONG);
-          AppConstance.navigateTo(
-              router: HotleScreen(), context: context);
-        }
-        if(state is ErrorState){
-          showToastMsg(massage: state.exception.error,
-              state: ToastState.ERROR,
-              gravity: ToastGravity.BOTTOM,
-              toastLength: Toast.LENGTH_LONG);
+            AppConstance.navigateTo(
+                router: AppLayout(), context: context);
         }
       },
       builder: (context,index){
