@@ -106,7 +106,7 @@ class RegisterScreen extends StatelessWidget {
                               Icons.email,
                               color: AppColors.defultColor,
                             ),
-                            validation: emailField,
+                            //validation: emailField,
                             color: AppColors.defultColor,
                           ),
                           const SizedBox(

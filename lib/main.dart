@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<AppBloc>(
-          create: (context) => sl<AppBloc>(),
+          create: (context) => sl<AppBloc>()..userProfile(),
         ),
         BlocProvider(create: (BuildContext context )=>ThemeAppCubit()..ChangeAppMode(fromShared: IsDark)),
 

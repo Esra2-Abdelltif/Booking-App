@@ -27,6 +27,22 @@ class HotelsLoadingState extends AppStates {}
 
 class HotelsSuccessState extends AppStates {}
 
+class CreateBookingSuccessState extends AppStates {}
+class CreateBookingLoadingState extends AppStates {}
+
+class getBookingSuccessState extends AppStates {}
+class getBookingLoadingState extends AppStates {}
+
+class getCancelledSuccessState extends AppStates {}
+class getCancelledLoadingState extends AppStates {}
+
+class getUpCommingSuccessState extends AppStates {}
+class getUpCommingLoadingState extends AppStates {}
+
+class updateCancelledSuccessState extends AppStates {}
+class updateCancelledLoadingState extends AppStates {}
+
+
 class ErrorState extends AppStates {
   final PrimaryServerException exception;
 
