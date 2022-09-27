@@ -53,8 +53,8 @@ class UpDateScreen extends StatelessWidget {
         },
         builder: (context, state) {
           AppBloc cubit = AppBloc.get(context);
-          nameController.text = cubit.profileModel!.data!.name! ;
-          emailController.text = cubit.profileModel!.data!.email!;
+          nameController.text = '${cubit.profileModel?.data?.name}'  ;
+          emailController.text = '${cubit.profileModel?.data?.email}';
 
           return Scaffold(
               body: ConditionalBuilder(

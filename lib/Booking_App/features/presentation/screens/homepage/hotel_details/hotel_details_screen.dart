@@ -3,14 +3,26 @@ import 'dart:ui';
 
 import 'package:booking_app/Booking_App/Core/utilites/app_colors.dart';
 import 'package:booking_app/Booking_App/Core/utilites/helper.dart';
+import 'package:booking_app/Booking_App/Core/utilites/localfiles.dart';
 import 'package:booking_app/Booking_App/features/data/models/hotel_list.dart';
+import 'package:booking_app/Booking_App/features/presentation/blocs/cubit.dart';
+import 'package:booking_app/Booking_App/features/presentation/blocs/states.dart';
+import 'package:booking_app/Booking_App/features/presentation/screens/account/login/cubit/cubit.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/homepage/hotel_details/hotel_room_list.dart';
+import 'package:booking_app/Booking_App/features/presentation/widgets/common_card.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import '../../../../../config/themes/cubit/cubit.dart';
+
+import '../../../../../Core/utilites/app_constance.dart';
+import '../../../../data/models/login_model.dart';
+import '../../../widgets/show_toast.dart';
 import '../../map/map_screen.dart';
+import '../hotel_screens/booking_screen.dart';
+import '../hotel_screens/hotel_screen.dart';
+
 
 class HotelDetails extends StatefulWidget {
   int hotelid;
@@ -20,19 +32,16 @@ class HotelDetails extends StatefulWidget {
   final dynamic price;
   final String rate;
 
-  HotelDetails(
-      {required this.hotelid,
-      required this.hotelName,
-      required this.description,
-      required this.adresse,
-      required this.price,
-      required this.rate});
+
+  HotelDetails({required this.hotelid,required this.hotelName, required this.description, required this.adresse,
+    required this.price,required this.rate});
 
   HotelListData hotelListData = HotelListData();
   static const String routeName = 'home-details';
 
   @override
   State<HotelDetails> createState() => _HotelDetailsState();
+
 }
 
 class _HotelDetailsState extends State<HotelDetails>
@@ -44,6 +53,7 @@ class _HotelDetailsState extends State<HotelDetails>
       'Featuring a fitness center , Grand royal parking hotel is located in egypt , 4.7 km from giza a fitness center ';
   bool isFav = false;
   bool isReadless = false;
+  LoginModel? loginModel;
 
   late AnimationController animationController;
   var imageHeight = 0.0;
@@ -61,7 +71,6 @@ class _HotelDetailsState extends State<HotelDetails>
       target: LatLng(37.43296265331129, -122.08832357078792),
       tilt: 59.440717697143555,
       zoom: 19.151926040649414);
-
   @override
   void initState() {
     // TODO: implement initState
@@ -100,172 +109,191 @@ class _HotelDetailsState extends State<HotelDetails>
 
   @override
   Widget build(BuildContext context) {
+
     imageHeight = MediaQuery.of(context).size.height;
-    return Scaffold(
-      body: Stack(
-        children: [
-          Card(
-            color: Theme.of(context).scaffoldBackgroundColor,
-            child: ListView(
-              controller: scrollController,
-              padding: EdgeInsets.only(top: 24 + imageHeight),
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(left: 24, right: 24),
-                  child: getHotelsDetails(isInList: true),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(16),
-                  child: Divider(
-                    height: 1,
-                    color: ThemeAppCubit.get(context).IsDark?Colors.white54:AppColors.grey,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 24, right: 24),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          'Summery',
-                          style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 14,
-                              color: ThemeAppCubit.get(context).IsDark? AppColors.white:AppColors.black,
-                              letterSpacing: 0.5),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding:
-                      EdgeInsets.only(left: 24, right: 24, top: 4, bottom: 8),
-                  child: RichText(
-                    textAlign: TextAlign.justify,
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: !isReadless ? hotelText : hotelText2,
-                          style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 12,
-                              color: ThemeAppCubit.get(context).IsDark?Colors.white54:AppColors.grey),
-                          recognizer: TapGestureRecognizer()..onTap = () {},
-                        ),
-                        TextSpan(
-                          text: !isReadless ? 'read more' : '' + 'less',
-                          style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 12,
-                              color: AppColors.blueColor),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              setState(() {
-                                isReadless = !isReadless;
-                              });
-                            },
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                getPhotoReviewUi(
-                    'Photos', 'View All', Icons.arrow_forward, () {}),
-                HotelRoomList(),
-                Stack(
-                  alignment: Alignment.topRight,
+    return BlocConsumer<AppBloc,AppStates>(
+      listener: (context,state){
+        if(state is CreateBookingSuccessState){
+          showToastMsg(massage: '${AppBloc.get(context).bookingModel!.status.messageEn}' ,
+              state: ToastState.SUCCESS,
+              gravity: ToastGravity.BOTTOM,
+              toastLength: Toast.LENGTH_LONG);
+          AppConstance.navigateTo(
+              router: HotleScreen(), context: context);
+        }
+        if(state is ErrorState){
+          showToastMsg(massage: state.exception.error,
+              state: ToastState.ERROR,
+              gravity: ToastGravity.BOTTOM,
+              toastLength: Toast.LENGTH_LONG);
+        }
+      },
+      builder: (context,index){
+        var cubit=AppBloc.get(context);
+        return Scaffold(
+          body: Stack(
+            children: [
+              Card(
+                color: Theme.of(context).scaffoldBackgroundColor,
+                child: ListView(
+                  controller: scrollController,
+                  padding: EdgeInsets.only(top: 24 + imageHeight),
                   children: [
-                    Container(
-                      width: double.infinity,
-                      height: 200,
-                      padding: EdgeInsetsDirectional.only(start: 14, end: 14),
-                      child: GoogleMap(
-                        mapType: MapType.normal,
-                        initialCameraPosition: _kGooglePlex,
-                        onMapCreated: (GoogleMapController controller) {
-                          _controller.complete(controller);
-                        },
+                    Padding(
+                      padding: EdgeInsets.only(left: 24, right: 24),
+                      child: getHotelsDetails(isInList: true),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(16),
+                      child: Divider(
+                        height: 1,
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 20, top: 10),
-                      child: FloatingActionButton.extended(
-                        backgroundColor: Colors.grey.withOpacity(0.6),
-                        onPressed: () {
-                          Navigator.pushNamed(context, MapScreen.routeName);
-                        },
-                        label: Text('see more'),
+                      padding: EdgeInsets.only(left: 24, right: 24),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'Summery',
+                              style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 14,
+                                  letterSpacing: 0.5),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
+                    Padding(
+                      padding:
+                      EdgeInsets.only(left: 24, right: 24, top: 4, bottom: 8),
+                      child: RichText(
+                        textAlign: TextAlign.justify,
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: !isReadless ? hotelText : hotelText2,
+                              style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 12,
+                                  color: Colors.grey),
+                              recognizer: TapGestureRecognizer()..onTap = () {},
+                            ),
+                            TextSpan(
+                              text: !isReadless ? 'read more' : '' + 'less',
+                              style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 12,
+                                  color: Colors.teal),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  setState(() {
+                                    isReadless = !isReadless;
+                                  });
+                                },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    getPhotoReviewUi(
+                        'Photos', 'View All', Icons.arrow_forward, () {}),
+                    HotelRoomList(),
+                    Stack(
+                      alignment: Alignment.topRight,
+                      children: [
+                        Container(
+                          width: double.infinity,
+                          height: 200,
+                          padding: EdgeInsetsDirectional.only(start: 14 , end: 14),
+                          child: GoogleMap(
+                            mapType: MapType.normal,
+                            initialCameraPosition: _kGooglePlex,
+                            onMapCreated: (GoogleMapController controller) {
+                              _controller.complete(controller);
+                            },
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 20, top: 10),
+                          child: FloatingActionButton.extended(
+                            backgroundColor: Colors.grey.withOpacity(0.6),
+                            onPressed: (){
+                              Navigator.pushNamed(context, MapScreen.routeName);
+                            },
+                            label: Text('see more'),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Container(
+                      margin: EdgeInsetsDirectional.only(top: 24,bottom: 14),
+                      padding: EdgeInsetsDirectional.only(start: 24,end: 24),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(20),),
+                        color: Colors.teal.withOpacity(0.5),
+                      ),
+                      child:
+                      MaterialButton(
+                        onPressed: (){
+                          AppBloc.get(context).createBooking(hotelId: widget.hotelid,userId: cubit.profileModel!.data!.id);
+                          print(cubit.profileModel!.data!.id);
+
+                        },
+                        child: Text('Book Now',style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'Poppins',
+                        ),
+                        ),
+                      ),
+                    ),
+
+                    /*getPhotoReviewUi(
+                      'Reviews', 'View All', Icons.arrow_forward, () {
+                        Navigator.pushNamed(context, ReviewsListScreen.routeName);
+                  }),*/
                   ],
                 ),
-                Container(
-                  margin: EdgeInsetsDirectional.only(top: 24, bottom: 14),
-                  padding: EdgeInsetsDirectional.only(start: 24, end: 24),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20),
-                    ),
-                    color: AppColors.blueColor,
-                  ),
-                  child: MaterialButton(
-                    onPressed: () {
-                      //booking room
-                    },
-                    child: Text(
-                      'Book Now',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'Poppins',
+              ),
+              //background images , hotel names , their details and more animation view
+              //backgroundImageUi(widget.hotelListData ?? HotelListData()),
+              backgroundImageUi('assests/images/hotel_1.jpg'),
+              Padding(
+                padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+                child: Container(
+                  height: AppBar().preferredSize.height,
+                  child: Row(
+                    children: [
+                      _getAppBarUi(Theme.of(context).disabledColor.withOpacity(0.4),
+                          Icons.arrow_back, Theme.of(context).backgroundColor, () {
+                            if (scrollController.offset != 0.0) {
+                              scrollController.animateTo(0.0,
+                                  duration: Duration(milliseconds: 488),
+                                  curve: Curves.easeInOutQuad);
+                            } else {
+                              Navigator.pop(context);
+                            }
+                          }),
+                      Expanded(
+                        child: SizedBox(),
                       ),
-                    ),
+                      _getAppBarUi(
+                          Colors.white,
+                          isFav ? Icons.favorite : Icons.favorite_border,
+                          Theme.of(context).primaryColor, () {
+                        setState(() {
+                          isFav = !isFav;
+                        });
+                      })
+                    ],
                   ),
                 ),
-
-                /*getPhotoReviewUi(
-                    'Reviews', 'View All', Icons.arrow_forward, () {
-                      Navigator.pushNamed(context, ReviewsListScreen.routeName);
-                }),*/
-              ],
-            ),
+              )
+            ],
           ),
-          //background images , hotel names , their details and more animation view
-          //backgroundImageUi(widget.hotelListData ?? HotelListData()),
-          backgroundImageUi('assests/images/hotel_5.png'),
-          Padding(
-            padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-            child: Container(
-              height: AppBar().preferredSize.height,
-              child: Row(
-                children: [
-                  _getAppBarUi(Theme.of(context).disabledColor.withOpacity(0.4),
-                      Icons.arrow_back, Theme.of(context).backgroundColor, () {
-                    if (scrollController.offset != 0.0) {
-                      scrollController.animateTo(0.0,
-                          duration: Duration(milliseconds: 488),
-                          curve: Curves.easeInOutQuad);
-                    } else {
-                      Navigator.pop(context);
-                    }
-                  }),
-                  Expanded(
-                    child: SizedBox(),
-                  ),
-                /*  _getAppBarUi(
-                      Colors.white,
-                      isFav ? Icons.favorite : Icons.favorite_border,
-                      Theme.of(context).primaryColor, () {
-                    setState(() {
-                      isFav = !isFav;
-                    });
-                  })*/
-                ],
-              ),
-            ),
-          )
-        ],
-      ),
+        );
+      },
     );
   }
 
@@ -351,7 +379,7 @@ class _HotelDetailsState extends State<HotelDetails>
                             padding: EdgeInsets.only(left: 10, right: 10),
                             child: ClipRRect(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(24)),
+                              BorderRadius.all(Radius.circular(24)),
                               child: BackdropFilter(
                                 filter: ImageFilter.blur(
                                     sigmaX: 10.0, sigmaY: 10.0),
@@ -372,13 +400,13 @@ class _HotelDetailsState extends State<HotelDetails>
                                           width: double.infinity,
                                           margin: EdgeInsets.all(24),
                                           decoration: BoxDecoration(
-                                              color:AppColors.blueColor,
+                                              color:
+                                              Colors.teal.withOpacity(0.8),
                                               borderRadius:
-                                                  BorderRadius.circular(32)),
+                                              BorderRadius.circular(32)),
                                           child: MaterialButton(
                                             onPressed: () {
-                                              //go to room book screen
-                                              //video 22.40 minute
+                                              AppBloc.get(context).createBooking(hotelId: widget.hotelid,userId: AppBloc.get(context).profileModel!.data!.id);
                                             },
                                             child: Text(
                                               'Book Now',
@@ -401,7 +429,7 @@ class _HotelDetailsState extends State<HotelDetails>
                           Center(
                             child: ClipRRect(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(24)),
+                              BorderRadius.all(Radius.circular(24)),
                               child: BackdropFilter(
                                 filter: ImageFilter.blur(
                                     sigmaX: 10.0, sigmaY: 10.0),
@@ -414,19 +442,19 @@ class _HotelDetailsState extends State<HotelDetails>
                                           .primaryColor
                                           .withOpacity(0.5),
                                       borderRadius:
-                                          BorderRadius.all(Radius.circular(38)),
+                                      BorderRadius.all(Radius.circular(38)),
                                       onTap: () {
                                         try {
                                           scrollController.animateTo(
                                               MediaQuery.of(context)
-                                                      .size
-                                                      .height -
+                                                  .size
+                                                  .height -
                                                   MediaQuery.of(context)
-                                                          .size
-                                                          .height /
+                                                      .size
+                                                      .height /
                                                       5,
                                               duration:
-                                                  Duration(milliseconds: 5000),
+                                              Duration(milliseconds: 5000),
                                               curve: Curves.fastOutSlowIn);
                                         } catch (e) {}
                                       },
@@ -440,9 +468,9 @@ class _HotelDetailsState extends State<HotelDetails>
                                         child: Row(
                                           mainAxisSize: MainAxisSize.min,
                                           mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                          MainAxisAlignment.center,
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.center,
+                                          CrossAxisAlignment.center,
                                           children: [
                                             Text(
                                               'More Details',
@@ -480,9 +508,7 @@ class _HotelDetailsState extends State<HotelDetails>
     );
   }
 
-  getHotelsDetails({
-    bool isInList = false,
-  }) {
+  getHotelsDetails({bool isInList = false,}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -497,7 +523,7 @@ class _HotelDetailsState extends State<HotelDetails>
                 textAlign: TextAlign.left,
                 style: TextStyle(
                     fontFamily: 'Poppins',
-                    color: ThemeAppCubit.get(context).IsDark ? AppColors.white : Colors.black,
+                    color: isInList ? Colors.black : Colors.white,
                     fontSize: 18),
               ),
               SingleChildScrollView(
@@ -510,10 +536,10 @@ class _HotelDetailsState extends State<HotelDetails>
                       widget.adresse,
                       style: TextStyle(
                           fontFamily: 'Poppins',
-                        color: ThemeAppCubit.get(context).IsDark ? AppColors.white : Colors.black,
-                        fontSize: 11,
-
-                      ),
+                          color: isInList
+                              ? Theme.of(context).disabledColor.withOpacity(0.5)
+                              : Colors.white,
+                          fontSize: 11),
                     ),
                     Icon(
                       Icons.location_on_sharp,
@@ -526,7 +552,9 @@ class _HotelDetailsState extends State<HotelDetails>
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                           fontFamily: 'Poppins',
-                          color: ThemeAppCubit.get(context).IsDark ? AppColors.white : Colors.black,
+                          color: isInList
+                              ? Theme.of(context).disabledColor.withOpacity(0.5)
+                              : Colors.white,
                           fontSize: 11),
                     ),
                     Text(
@@ -535,7 +563,9 @@ class _HotelDetailsState extends State<HotelDetails>
                       style: TextStyle(
                         fontFamily: 'Poppins',
                         fontSize: 11,
-                        color: ThemeAppCubit.get(context).IsDark ? AppColors.white : Colors.black,
+                        color: isInList
+                            ? Theme.of(context).disabledColor.withOpacity(0.5)
+                            : Colors.white,
                       ),
                     ),
                   ],
@@ -544,38 +574,26 @@ class _HotelDetailsState extends State<HotelDetails>
               isInList
                   ? SizedBox()
                   : Padding(
-                      padding: EdgeInsets.only(top: 4),
-                      child: Row(
-                        children: [
-                          ///
-                          //Helper.ratingStar(),
-                          RatingBarIndicator(
-                            rating:  double.parse('${widget.rate}')/2,
-                            itemBuilder: (context, index) => Icon(
-                              Icons.star,
-                              color: AppColors.blueColor,
-
-                            ),
-                            itemCount: 5,
-                            itemSize: 20.0,
-                            unratedColor:AppColors.grey.withOpacity(.7),
-                            direction: Axis.horizontal,
-                          ),
-                          Text(
-                            '(${double.parse('${widget.rate}') / 2})',
-                            style: TextStyle(
-                              fontSize: 10,
-                              fontFamily: 'Poppins',
-                              color: isInList
-                                  ? Theme.of(context)
-                                      .disabledColor
-                                      .withOpacity(0.5)
-                                  : Colors.white,
-                            ),
-                          ),
-                        ],
+                padding: EdgeInsets.only(top: 4),
+                child: Row(
+                  children: [
+                    ///
+                    Helper.ratingStar(),
+                    Text(
+                      '(${ double.parse('${widget.rate}')/2})',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: isInList
+                            ? Theme.of(context)
+                            .disabledColor
+                            .withOpacity(0.5)
+                            : Colors.white,
                       ),
                     ),
+
+                  ],
+                ),
+              ),
             ],
           ),
         ),
@@ -620,9 +638,7 @@ class _HotelDetailsState extends State<HotelDetails>
             child: Text(
               title,
               style: TextStyle(
-                color:ThemeAppCubit.get(context).IsDark
-                    ? AppColors.white
-                    : AppColors.black,
+                color: Colors.black,
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Poppins',
                 fontSize: 12,
@@ -645,9 +661,7 @@ class _HotelDetailsState extends State<HotelDetails>
                       style: TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 12,
-                          color: ThemeAppCubit.get(context).IsDark
-                              ? AppColors.blueColor
-                              : AppColors.blueColor,),
+                          color: Theme.of(context).primaryColor),
                     ),
                     SizedBox(
                       height: 38,
@@ -672,4 +686,5 @@ class _HotelDetailsState extends State<HotelDetails>
     final GoogleMapController controller = await _controller.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
   }
+
 }
