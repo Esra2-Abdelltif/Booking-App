@@ -106,7 +106,7 @@ class LoginScreen extends StatelessWidget {
                                     Icons.email,
                                     color: AppColors.defultColor,
                                   ),
-                                  validation: emailField,
+                                  //validation: emailField,
                                   color: AppColors.blueColor,
                                 ),
                                 const SizedBox(

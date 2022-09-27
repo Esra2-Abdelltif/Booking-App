@@ -5,14 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../Core/utilites/app_colors.dart';
+import '../../data/models/getBooking_model.dart';
 import '../../data/models/hotel_list.dart';
 
 class TripsWidget extends StatelessWidget {
   final Container buttonWidget;
+  final Container popUp;
+  List<DataModel> model;
   HotelListData hotelListData = HotelListData();
 
   TripsWidget(
-      {Key? key, required this.buttonWidget})
+      {Key? key, required this.buttonWidget,required this.model,required this.popUp})
       : super(key: key);
 
   @override

@@ -125,13 +125,15 @@ extension on DioHelper {
 
       if(r.data['status']['type'] == '0') {
         dynamic title = r.data['status']['title'];
+        dynamic noTitle = r.data['status'];
 
         throw PrimaryServerException(
-          message: title is String ? title : r.data['status']['title']['ar'],
+          message: title is String ? title : 'error',
           code: r.statusCode ?? 500,
-          error: title is String ? title : r.data['status']['title']['en'],
+          error: title is String ? title : 'error',
         );
       }
+
       return r.data;
 
     } on DioError catch (e) {
