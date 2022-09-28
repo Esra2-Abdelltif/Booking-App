@@ -98,29 +98,33 @@ class _Explore extends State<Explore> with TickerProviderStateMixin {
         builder: (BuildContext context, SearchStates state) {
           var cubit = SearchCubit.get(context);
           return Scaffold(
+            appBar: AppBar(
+              title: const Text('Explore'),
+              centerTitle: true,
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, MapScreen.routeName);
+
+                  },
+                  icon: const Icon(
+                    Icons.map_outlined,
+                  ),
+                ),
+
+              ],
+            ),
               body: CustomScrollView(
                 controller: scrollController,
                 slivers: [
-                SliverPersistentHeader(
-                pinned: true,
-                floating: true,
-                delegate: SliverAppBarDelegate(
-                  minHeight: 55.0,
-                  maxHeight: 55.0,
-                  child: Container(
-                    margin: EdgeInsets.only(top: 20),
-                    child: _getAppbar(context),
+                  SliverList(
+                    delegate: SliverChildListDelegate(
+                      [
+                        const SizedBox(height: 16),
+                      ],
+                    ),
                   ),
-                ),
-              ),
-                SliverList(
-                delegate: SliverChildListDelegate(
-                  [
-                    const SizedBox(height: 16),
-                  ],
-                ),
-              ),
-              SliverPersistentHeader(
+                SliverPersistentHeader(
                 pinned: false,
                 delegate: SliverAppBarDelegate(
                   minHeight: 55.0,
@@ -177,20 +181,21 @@ class _Explore extends State<Explore> with TickerProviderStateMixin {
                   ),
                 ),
               ),
-              SliverList(
+                 SliverList(
                 delegate: SliverChildListDelegate(
                   [
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 10),
                   ],
                 ),
               ),
-              SliverPersistentHeader(
+                 SliverPersistentHeader(
                 pinned: true,
                 floating: true,
                 delegate: SliverAppBarDelegate(
                   minHeight: 40.0,
                   maxHeight: 40.0,
                   child: Container(
+                    color: Theme.of(context).scaffoldBackgroundColor,
                     child: Padding(
                       padding: EdgeInsets.only(left: 16, right: 16, bottom: 4),
                       child: Row(children: [
@@ -236,7 +241,7 @@ class _Explore extends State<Explore> with TickerProviderStateMixin {
                   ),
                 ),
               ),
-              SliverList(
+                 SliverList(
           delegate: SliverChildListDelegate(
           [
             if(SearchCubit.get(context).hotels.isNotEmpty)
@@ -319,16 +324,26 @@ class _Explore extends State<Explore> with TickerProviderStateMixin {
                                             Row(
 
                                               children: [
-                                                Text(
-                                                  SearchCubit.get(
-                                                      context)
-                                                      .hotels[index]
-                                                      .name,
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                      FontWeight
-                                                          .bold),
+                                                Row(
+                                                  children: [
+                                                    Container(
+                                                      width:330,
+                                                      child:  Text(
+
+                                                        SearchCubit.get(
+                                                            context)
+                                                            .hotels[index]
+                                                            .name,
+                                                        overflow: TextOverflow.ellipsis,
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .bold),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
+
 
                                               ],
                                             ),
@@ -451,10 +466,6 @@ class _Explore extends State<Explore> with TickerProviderStateMixin {
   }
 }
 
-// //Search
-
-// //filter
-//
 
 
 Widget _getAppbar(BuildContext context) {
