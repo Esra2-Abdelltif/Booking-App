@@ -1,4 +1,5 @@
 
+import 'package:booking_app/Booking_App/Core/utilites/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class SliderView extends StatefulWidget {
@@ -49,7 +50,7 @@ class _SliderViewState extends State<SliderView> {
         },
         min: 0.0,
           max: 100.0,
-          activeColor: Colors.teal,
+          activeColor: AppColors.blueColor,
           inactiveColor: Colors.grey,
           value: disvalue,
         ),

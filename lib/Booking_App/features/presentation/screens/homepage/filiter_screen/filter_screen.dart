@@ -1,4 +1,5 @@
 
+import 'package:booking_app/Booking_App/Core/utilites/app_colors.dart';
 import 'package:booking_app/Booking_App/Core/utilites/app_constance.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/homepage/explore/explore.dart';
 import 'package:booking_app/Booking_App/features/presentation/widgets/custom_appBar_view.dart';
@@ -98,7 +99,7 @@ class _FilterScreeenState extends State<FilterScreeen> {
           padding: EdgeInsets.only(top: 16, right: 16, left: 16, bottom: 8),
           child: Text('Popular filter',
             textAlign: TextAlign.left,
-            style: TextStyle(color: Colors.teal,
+            style: TextStyle(color: AppColors.blueColor,
 
             ),
 
@@ -144,7 +145,7 @@ class _FilterScreeenState extends State<FilterScreeen> {
                             children: [
                               Icon(data.isSelected ? Icons.check_box : Icons
                                   .check_box_outline_blank,
-                                color: data.isSelected ? Colors.teal : Colors
+                                color: data.isSelected ? AppColors.blueColor : Colors
                                     .grey,),
                               SizedBox(width: 4,),
                               FittedBox(
@@ -230,7 +231,7 @@ class _FilterScreeenState extends State<FilterScreeen> {
                    Expanded(child: Text(data.titleTxt)),
                       CupertinoSwitch(
                         value: data.isSelected,
-                        activeColor: data.isSelected ? Colors.teal : Colors.grey,
+                        activeColor: data.isSelected ? AppColors.blueColor : Colors.grey,
                         onChanged: (value){
                           setState(() {
                             checkapppostion(i);

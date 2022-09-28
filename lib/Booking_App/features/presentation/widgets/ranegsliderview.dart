@@ -1,4 +1,5 @@
 
+import 'package:booking_app/Booking_App/Core/utilites/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class RanegsliderView extends StatefulWidget {
@@ -47,7 +48,7 @@ class _RanegsliderViewState extends State<RanegsliderView> {
             child: RangeSlider(values: _values,
                 min: 10.0,
                 max: 5000.0,
-                activeColor: Colors.teal,
+                activeColor: AppColors.blueColor,
                 inactiveColor: Colors.grey ,
                 divisions: 1000,
                 onChanged: (RangeValues v){
