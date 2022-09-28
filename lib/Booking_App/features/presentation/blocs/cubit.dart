@@ -84,11 +84,12 @@ class AppBloc extends Cubit<AppStates> {
     );
   }
 
-  void updateUserData({required String? name, required String? email}) async {
+  void updateUserData({required String? name, required String? email,  String? image,}) async {
     emit(UserUpdateProfileLoadingStates());
     final response = await repository.updatePofile(
         email: email, token: CacheHelper.getDate(key: 'token'),
-        name: name
+        name: name,
+      image: image
     );
     response.fold(
           (l) {

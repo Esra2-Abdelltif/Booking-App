@@ -9,6 +9,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../../../Core/utilites/app_colors.dart';
 import '../../data/models/getBooking_model.dart';
 import '../../data/models/hotel_list.dart';
+import 'dart:math' as math;
+
 import '../../data/models/hotel_model..dart';
 import '../../data/models/user_model.dart';
 
@@ -60,8 +62,8 @@ class TripsWidget extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Image(
-                                //${HotelListData.hotelList[index].imagePath}
-                                image: AssetImage("${HotelListData.hotelList[index].imagePath}"),
+                                image: NetworkImage(
+                                    'http://api.mahmoudtaha.com/images/${AppBloc.get(context).hotels[index].images[math.Random().nextInt(AppBloc.get(context).hotels[index].images.length)]}' ),
                                 width: MediaQuery.of(context).size.width * 0.3,
                                 height:
                                     MediaQuery.of(context).size.width * 0.35,
@@ -72,46 +74,64 @@ class TripsWidget extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    "${model[index].hotel!.name}",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        fontFamily: 'Poppins',
-                                        color: ThemeAppCubit.get(context).IsDark
-                                            ? AppColors.white
-                                            : AppColors.black,
-                                        fontSize: 17),
+                                  Row(
+                                    children: [
+                                      Container(
+                                        width:230,
+                                        child: Text(
+                                          cubit.hotels[index].name,
+                                          overflow: TextOverflow.ellipsis,
+                                          //   textAlign: TextAlign.justify,
+                                          //   softWrap: false,
+                                          //   maxLines: 1,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontFamily: 'Poppins',
+                                              color: ThemeAppCubit.get(context).IsDark
+                                                  ? AppColors.white
+                                                  : AppColors.black,
+                                              fontSize: 17),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text('${model[index].hotel!.description}',
-                                      style: TextStyle(fontSize: 24).copyWith(
-                                          color: Colors.grey,
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w400)),
+
+
                                   SizedBox(
                                     height: 2,
                                   ),
                                   Row(
                                     children: [
                                       Icon(
-                                        Icons.location_pin,
+                                        Icons
+                                            .location_pin,
                                         size: 16,
-                                        color: AppColors.defultColor,
+                                        color: AppColors
+                                            .defultColor,
                                       ),
-                                      SizedBox(
-                                        width: 8,
+                                      SizedBox(width: 8,),
+                                      Row(
+                                        children: [
+                                          Container(
+                                            width:200,
+                                            child: Text(
+                                              cubit.hotels[index].address,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                  color: AppColors.grey,
+                                                  fontFamily: 'Poppins',
+                                                  fontSize:15 ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                      Text(
-                                        "${model[index].hotel!.address}",
-                                        style: TextStyle(
-                                            color: AppColors.grey,
-                                            fontFamily: 'Poppins',
-                                            fontSize: 15),
-                                      ),
+
+
+
+
                                     ],
                                   ),
+
                                   Row(
                                     children: [
                                       RatingBarIndicator(

@@ -44,6 +44,8 @@ abstract class Repository {
     required String token,
     required String? name,
     required String? email,
+     String? image,
+
   });
   Future<Either<PrimaryServerException, StatusModel>> updateBooking({
     required int bookingId,
@@ -58,7 +60,7 @@ abstract class Repository {
     String? address,
   });
 
-  Future<Either<PrimaryServerException, SearchHotelModel>> getfacilitiesHotels({
+  Future<Either<PrimaryServerException, SearchModel>> getfacilitiesHotels({
     required int page,
     String? name,
     required int id,
@@ -162,14 +164,14 @@ class RepositoryImplementation extends Repository {
     );
   }
   @override
-  Future<Either<PrimaryServerException, SearchHotelModel>> getfacilitiesHotels({
+  Future<Either<PrimaryServerException, SearchModel>> getfacilitiesHotels({
     required int page,
     String? name,
     required int id,
 
 
   }) async {
-    return basicErrorHandling<SearchHotelModel>(
+    return basicErrorHandling<SearchModel>(
       onSuccess: () async {
         final response = await dioHelper.get(
             endPoint: searchEndPoint,
@@ -182,7 +184,7 @@ class RepositoryImplementation extends Repository {
             }
         );
 
-        return SearchHotelModel.fromJson(response);
+        return SearchModel.fromJson(response);
       },
       onPrimaryServerException: (e) async {
         return e;
@@ -240,6 +242,7 @@ class RepositoryImplementation extends Repository {
     required String token,
     required String? name,
     required String? email,
+    String? image,
   }) async {
     return basicErrorHandling<ProfileModel>(
       onSuccess: () async {
@@ -249,6 +252,7 @@ class RepositoryImplementation extends Repository {
           data: {
             'email': email ,
             'name': name ,
+            'image' :image,
           },
         );
 

@@ -40,7 +40,7 @@ class _FilterScreeenState extends State<FilterScreeen> {
               CommonAppbarView(
                 iconData: Icons.close,
                 onBackClick: () {
-                  AppConstance.navigateTo(context: context,router: Explore(adress:"rome",));
+                  AppConstance.navigateTo(context: context,router: Explore(adress:"",));
                 },
                 titleText: ('Filter'),
               ),

@@ -47,7 +47,7 @@ class ProfileScreen extends StatelessWidget {
                                     children: [
                                       SizedBox(height: 5,),
                                       Text(
-                            cubit!.data!.name,
+                                        cubit!.data!.name,
                                         style: TextStyle(
                                           fontWeight: FontWeight.w400,
                                           fontSize: 16,

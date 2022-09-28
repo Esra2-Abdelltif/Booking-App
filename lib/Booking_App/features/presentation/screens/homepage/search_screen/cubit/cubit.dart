@@ -78,7 +78,7 @@ class SearchCubit extends Cubit<SearchStates> {
         emit(SearchErrorState(exception: l));
       },
           (r) {
-            facilities = r.facilities;
+            facilities = r.data!.data[0].facilities;
 
         emit(FetfacilitiesSuccessState());
       },

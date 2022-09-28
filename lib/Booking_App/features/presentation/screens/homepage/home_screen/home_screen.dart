@@ -9,7 +9,7 @@ import 'package:booking_app/Booking_App/features/presentation/screens/homepage/h
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-
+import 'dart:math' as math;
 import '../../../widgets/imageSlider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -48,12 +48,12 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                       Text(
-                       "View all ",
+                        "View all ",
                         style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12,
-                            color: AppColors.blueColor,
-                           ),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                          color: AppColors.blueColor,
+                        ),
                       ),
                       Icon(Icons.arrow_forward,color: AppColors.blueColor,size: 12,)
                     ],
@@ -62,155 +62,180 @@ class HomeScreen extends StatelessWidget {
               ),
               SliverList(
                   delegate: SliverChildBuilderDelegate((context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(
-                      top: 8.0, right: 8.0, left: 8.0, bottom: 8),
-                  child: InkWell(
-                    onTap: () {
-                      AppConstance.navigateTo(
-                        context: context,
-                        router: HotelDetails(
-                          imagePath: HotelListData.hotelList[index].imagePath,
-                          hotelid: cubit.hotels[index].id,
-                          hotelName: cubit.hotels[index].name,
-                          adresse: cubit.hotels[index].address,
-                          description: cubit.hotels[index].description,
-                          price: cubit.hotels[index].price,
-                          rate: cubit.hotels[index].rate,
-                        ),
-                      );
+                    return Padding(
+                      padding: const EdgeInsets.only(
+                          top: 8.0, right: 8.0, left: 8.0, bottom: 8),
+                      child: InkWell(
+                        onTap: () {
+                          AppConstance.navigateTo(
+                            context: context,
+                            router: HotelDetails(
+                              imagePath: 'http://api.mahmoudtaha.com/images/${AppBloc.get(context).hotels[index].images[math.Random().nextInt(AppBloc.get(context).hotels[index].images.length)]}',
+                              hotelid: cubit.hotels[index].id,
+                              hotelName: cubit.hotels[index].name,
+                              adresse: cubit.hotels[index].address,
+                              description: cubit.hotels[index].description,
+                              price: cubit.hotels[index].price,
+                              rate: cubit.hotels[index].rate,
+                            ),
+                          );
 
-                      print(cubit.hotels[index].id);
-                    },
-                    child: Card(
-                      elevation: 2,
-                      shadowColor:ThemeAppCubit.get(context).IsDark
-                          ?   Colors.grey.shade900
-                          : Colors.grey.shade200,
-                      color: ThemeAppCubit.get(context).IsDark? AppColors.darkcontiner : AppColors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius:
-                        BorderRadius.circular(16),
-                      ),
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      child: Container(
-                        height: MediaQuery.of(context).size.height*0.16,
-                        color: ThemeAppCubit.get(context).IsDark ? AppColors.darkcontiner : AppColors.white,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image(
-                                image:
-                                    AssetImage('${HotelListData.hotelList[index].imagePath}'),
-                                width: MediaQuery.of(context).size.width*0.3,
-                                height: MediaQuery.of(context).size.width*0.35,
-                                fit: BoxFit.fill),
-                            Padding(
-                              padding:
+                          print(cubit.hotels[index].id);
+                        },
+                        child: Card(
+                          elevation: 2,
+                          shadowColor:ThemeAppCubit.get(context).IsDark
+                              ?   Colors.grey.shade900
+                              : Colors.grey.shade200,
+                          color: ThemeAppCubit.get(context).IsDark? AppColors.darkcontiner : AppColors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius:
+                            BorderRadius.circular(16),
+                          ),
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          child: Container(
+                            height: MediaQuery.of(context).size.height*0.16,
+                            color: ThemeAppCubit.get(context).IsDark ? AppColors.darkcontiner : AppColors.white,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Image(
+                                    image: NetworkImage(
+                                        'http://api.mahmoudtaha.com/images/${AppBloc.get(context).hotels[index].images[math.Random().nextInt(AppBloc.get(context).hotels[index].images.length)]}' ),
+                                    width: MediaQuery.of(context).size.width*0.33,
+                                    height: MediaQuery.of(context).size.height*0.35,
+                                    fit: BoxFit.fill),
+                                Padding(
+                                  padding:
                                   const EdgeInsets.only(left: 8.0, top: 8.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    cubit.hotels[index].name,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        fontFamily: 'Poppins',
-                                        color: ThemeAppCubit.get(context).IsDark
-                                            ? AppColors.white
-                                            : AppColors.black,
-                                        fontSize: 17),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    '${cubit.hotels[index].description}',
-                                    style: TextStyle(fontSize: 24).copyWith(
-                                        color: Colors.grey,
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.w400)
-                                  ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Row(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Icon(
-                                        Icons
-                                            .location_pin,
-                                        size: 16,
-                                        color: AppColors
-                                            .defultColor,
-                                      ),
-                                      SizedBox(width: 8,),
-                                      Text(
-                                        cubit.hotels[index].address,
-                                        style: TextStyle(
-                                            color: AppColors.grey,
-                                            fontFamily: 'Poppins',
-                                            fontSize: 15),
-                                      ),
-                                      SizedBox(width: 99,),
-                                      Text(
-                                        '\$${cubit.hotels[index].price}',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontFamily: 'Poppins',
-                                            fontSize: 18
-                                        ),
-                                      ),
-
-
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      RatingBarIndicator(
-                                        rating: double.parse(
-                                                '${cubit.hotels[index].rate}') /
-                                            2,
-                                        itemBuilder: (context, index) => Icon(
-                                          Icons.star,
-                                          color: AppColors.yellow,
-                                        ),
-                                        itemCount: 5,
-                                        itemSize: 20.0,
-                                        unratedColor:
-                                            AppColors.grey.withOpacity(.7),
-                                        direction: Axis.horizontal,
-                                      ),
-                                      Text(
-                                        '(${double.parse('${cubit.hotels[index].rate}') / 2})',
-                                        style: TextStyle(
-                                            color:  AppColors.grey,
-                                            fontSize: 10,
-                                            fontFamily: 'Poppins'
-                                        ),
+                                      Row(
+                                        children: [
+                                          Container(
+                                            width:230,
+                                            child: Text(
+                                              cubit.hotels[index].name,
+                                            overflow: TextOverflow.ellipsis,
+                                            //   textAlign: TextAlign.justify,
+                                            //   softWrap: false,
+                                            //   maxLines: 1,
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontFamily: 'Poppins',
+                                                  color: ThemeAppCubit.get(context).IsDark
+                                                      ? AppColors.white
+                                                      : AppColors.black,
+                                                  fontSize: 17),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                       SizedBox(
-                                        width: 30,
+                                        height: 5,
                                       ),
-                                      Text(
-                                        '/per night',
-                                        style: TextStyle(
-                                            color:  AppColors.grey,
-                                            fontSize: 12,
-                                            fontFamily: 'Poppins'
-                                        ),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons
+                                                .location_pin,
+                                            size: 16,
+                                            color: AppColors
+                                                .defultColor,
+                                          ),
+                                          SizedBox(width: 8,),
+                                          Row(
+                                            children: [
+                                              Container(
+                                                width:200,
+                                                child: Text(
+                                                  cubit.hotels[index].address,
+                                                    overflow: TextOverflow.ellipsis,
+                                                  style: TextStyle(
+                                                      color: AppColors.grey,
+                                                      fontFamily: 'Poppins',
+                                                      fontSize:15 ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+
+
+
+
+                                        ],
                                       ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Row(
+                                        children: [
+
+                                         SizedBox(width: 170,),
+                                          Text(
+                                            '\$${cubit.hotels[index].price}',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily: 'Poppins',
+                                                fontSize: 17
+                                            ),
+                                          ),
+
+
+
+
+                                        ],
+                                      ),
+
+                                      Row(
+                                        children: [
+                                          RatingBarIndicator(
+                                            rating: double.parse(
+                                                '${cubit.hotels[index].rate}') /
+                                                2,
+                                            itemBuilder: (context, index) => Icon(
+                                              Icons.star,
+                                              color: AppColors.yellow,
+                                            ),
+                                            itemCount: 5,
+                                            itemSize: 20.0,
+                                            unratedColor:
+                                            AppColors.grey.withOpacity(.7),
+                                            direction: Axis.horizontal,
+                                          ),
+                                          Text(
+                                            '(${double.parse('${cubit.hotels[index].rate}') / 2})',
+                                            style: TextStyle(
+                                                color:  AppColors.grey,
+                                                fontSize: 10,
+                                                fontFamily: 'Poppins'
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 30,
+                                          ),
+
+                                          Text(
+                                            '/per night',
+                                            style: TextStyle(
+                                                color:  AppColors.grey,
+                                                fontSize: 12,
+                                                fontFamily: 'Poppins'
+                                            ),
+                                          ),
+                                        ],
+                                      )
                                     ],
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                );
-              }, childCount: cubit.hotels.length))
+                    );
+                  }, childCount: cubit.hotels.length))
             ],
           ),
         );

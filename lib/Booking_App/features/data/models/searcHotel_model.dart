@@ -5,6 +5,14 @@ class SearchHotelModel {
   final dynamic price;
   final dynamic rate;
   final String address;
+  final String latitude;
+  final String longitude;
+  final List<String> images;
+
+  // final String   facilitiesName;
+  //  final int  facilitiesID;
+
+
   final List<Facilities> facilities;
 
   SearchHotelModel({
@@ -14,6 +22,11 @@ class SearchHotelModel {
     required this.price,
     required this.address,
     required this.rate,
+    required this.latitude,
+    required this.longitude,
+    required this.images,
+    // required this.facilitiesID,
+    // required this.facilitiesName,
     required this.facilities,
   });
 
@@ -26,6 +39,12 @@ class SearchHotelModel {
       price: json['price'],
       address: json['address'],
       rate: json['rate'],
+      latitude: json['latitude'],
+      longitude: json['longitude'],
+      images: List<String>.from(json['hotel_images'].map((x) => x['image'])),
+
+      //facilitiesID: json['facilities'][0]['id'] ,
+      //facilitiesName: json['facilities'][0]['name'] ,
       facilities: List<Facilities>.from(
         json['facilities'].map(
               (x) => Facilities.fromJson(x),

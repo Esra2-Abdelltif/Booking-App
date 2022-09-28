@@ -59,6 +59,10 @@ class _HotelDetailsState extends State<HotelDetails>
   bool isFav = false;
   bool isReadless = false;
   LoginModel? loginModel;
+  String? firstHalf;
+  String? secondHalf;
+
+  bool flag = true;
 
   late AnimationController animationController;
   var imageHeight = 0.0;
@@ -82,6 +86,13 @@ class _HotelDetailsState extends State<HotelDetails>
   @override
   void initState() {
     // TODO: implement initState
+    if (widget.description.length > 50) {
+      firstHalf = widget.description.substring(0, 50);
+      secondHalf = widget.description.substring(50, widget.description.length);
+    } else {
+      firstHalf = widget.description;
+      secondHalf = "";
+    }
     animationController =
         AnimationController(duration: Duration(milliseconds: 200), vsync: this);
     _animationController =
@@ -114,6 +125,9 @@ class _HotelDetailsState extends State<HotelDetails>
     animationController.dispose();
     super.dispose();
   }
+  //String descText = widget.description;
+  bool descTextShowFlag = false;
+
 
   @override
   Widget build(BuildContext context) {
@@ -168,37 +182,36 @@ class _HotelDetailsState extends State<HotelDetails>
                       ),
                     ),
                     Padding(
-                      padding:
-                      EdgeInsets.only(left: 24, right: 24, top: 4, bottom: 8),
-                      child: RichText(
-                        textAlign: TextAlign.justify,
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: !isReadless ? hotelText : hotelText2,
-                              style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 12,
-                                  color: Colors.grey),
-                              recognizer: TapGestureRecognizer()..onTap = () {},
-                            ),
-                            TextSpan(
-                              text: !isReadless ? 'read more' : '' + 'less',
-                              style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 12,
-                                  color: Colors.teal),
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  setState(() {
-                                    isReadless = !isReadless;
-                                  });
-                                },
-                            ),
+                      padding: const EdgeInsets.only(left: 24, right: 24, top: 4, bottom: 8),
+
+                      child: Text(widget.description,
+                          maxLines: descTextShowFlag ? 20 : 2,textAlign: TextAlign.start, style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 12,
+                            color: Colors.grey),),
+                    ),
+                    InkWell(
+                      onTap: (){ setState(() {
+                        descTextShowFlag = !descTextShowFlag;
+                      }); },
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 24, right: 24,),
+
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            descTextShowFlag ? Text("Show Less",style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 12,
+                                color: Colors.blue),) :  Text("Show More",style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 12,
+                                color: Colors.blue),)
                           ],
                         ),
                       ),
                     ),
+
                     getPhotoReviewUi(
                         'Photos', 'View All', Icons.arrow_forward, () {}),
                     HotelRoomList(),
@@ -234,10 +247,11 @@ class _HotelDetailsState extends State<HotelDetails>
                       padding: EdgeInsetsDirectional.only(start: 24,end: 24),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(20),),
-                        color: Colors.teal.withOpacity(0.5),
+        color: AppColors.blueColor,
                       ),
                       child:
                       MaterialButton(
+
                         onPressed: (){
                           AppBloc.get(context).createBooking(hotelId: widget.hotelid,userId: cubit.profileModel!.data!.id);
                           print(cubit.profileModel!.data!.id);
@@ -352,9 +366,11 @@ class _HotelDetailsState extends State<HotelDetails>
                             bottom: 0,
                             child: Container(
                               width: MediaQuery.of(context).size.width,
-                              child: Image.asset(
-                                image,
+                              child:Image(
                                 fit: BoxFit.cover,
+                                image: NetworkImage(
+                                image,
+                                ),
                               ),
                             ),
                           ),
@@ -396,8 +412,7 @@ class _HotelDetailsState extends State<HotelDetails>
                                           width: double.infinity,
                                           margin: EdgeInsets.all(24),
                                           decoration: BoxDecoration(
-                                              color:
-                                              Colors.teal.withOpacity(0.8),
+                                              color: AppColors.blueColor,
                                               borderRadius:
                                               BorderRadius.circular(32)),
                                           child: MaterialButton(
@@ -524,13 +539,7 @@ class _HotelDetailsState extends State<HotelDetails>
                         : AppColors.black: Colors.white,
                     fontSize: 18),
               ),
-              Text(
-                  widget.description,
-                  style: TextStyle(fontSize: 24).copyWith(
-                      color: Colors.grey,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w400)
-              ),
+
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
