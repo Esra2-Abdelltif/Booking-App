@@ -34,11 +34,13 @@ class HotelDetails extends StatefulWidget {
   final String description;
   final String adresse;
   final dynamic price;
+  final String latitude;
+  final String longitude;
   final String rate;
   final String imagePath;
 
 
-  HotelDetails({required this.hotelid,required this.imagePath,required this.hotelName, required this.description, required this.adresse,
+  HotelDetails({required this.hotelid,required this.longitude ,required this.latitude,required this.imagePath,required this.hotelName, required this.description, required this.adresse,
     required this.price,required this.rate});
 
   HotelListData hotelListData = HotelListData();
@@ -213,7 +215,7 @@ class _HotelDetailsState extends State<HotelDetails>
                     ),
 
                     getPhotoReviewUi(
-                        'Photos', 'View All', Icons.arrow_forward, () {}),
+                        'Photos', Icons.arrow_forward, () {}),
                     HotelRoomList(),
                     Stack(
                       alignment: Alignment.topRight,
@@ -224,7 +226,12 @@ class _HotelDetailsState extends State<HotelDetails>
                           padding: EdgeInsetsDirectional.only(start: 14 , end: 14),
                           child: GoogleMap(
                             mapType: MapType.normal,
-                            initialCameraPosition: _kGooglePlex,
+                            initialCameraPosition:CameraPosition(
+                              // bearing: 192.8334901395799,
+                                target:LatLng(double.parse(widget.latitude),double.parse(widget.longitude)
+                                    ),
+                                //tilt: 59.440717697143555,
+                                zoom:  14.4746),
                             onMapCreated: (GoogleMapController controller) {
                               _controller.complete(controller);
                             },
@@ -639,7 +646,7 @@ class _HotelDetailsState extends State<HotelDetails>
   }
 
   getPhotoReviewUi(
-      String title, String view, IconData iconData, VoidCallback onTap) {
+      String title, IconData iconData, VoidCallback onTap) {
     return Padding(
       padding: EdgeInsets.only(left: 24, right: 24),
       child: Row(
@@ -655,38 +662,7 @@ class _HotelDetailsState extends State<HotelDetails>
               ),
             ),
           ),
-          Material(
-            color: Colors.transparent,
-            child: InkWell(
-              borderRadius: BorderRadius.all(
-                Radius.circular(4.0),
-              ),
-              onTap: onTap,
-              child: Padding(
-                padding: EdgeInsets.only(left: 8),
-                child: Row(
-                  children: [
-                    Text(
-                      view,
-                      style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 12,
-                          color: Theme.of(context).primaryColor),
-                    ),
-                    SizedBox(
-                      height: 38,
-                      width: 26,
-                      child: Icon(
-                        iconData,
-                        size: 13,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
+
         ],
       ),
     );
@@ -694,7 +670,12 @@ class _HotelDetailsState extends State<HotelDetails>
 
   Future<void> _goToTheLake() async {
     final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
+    controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
+      // bearing: 192.8334901395799,
+        target:LatLng(double.parse(widget.latitude),double.parse(widget.longitude)
+        ),
+        //tilt: 59.440717697143555,
+        zoom:  14.4746)));
   }
 
 }

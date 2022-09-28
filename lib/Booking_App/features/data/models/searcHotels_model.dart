@@ -21,9 +21,12 @@ class SearchModel {
 
 class SearchHotelsModel {
   final List<SearchHotelModel> data;
+  final int lastPage;
+  final int total;
   SearchHotelsModel({
-
     required this.data,
+    required this.lastPage,
+    required this.total,
   });
 
   factory SearchHotelsModel.fromJson(Map<String, dynamic> json) {
@@ -33,6 +36,9 @@ class SearchHotelsModel {
           (x) => SearchHotelModel.fromJson(x),
         ),
       ),
+      total: json['total'],
+      lastPage: json['last_page'],
+
 
     );
   }

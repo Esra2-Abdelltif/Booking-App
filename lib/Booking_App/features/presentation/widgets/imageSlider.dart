@@ -85,7 +85,7 @@ class ImageSlider implements SliverPersistentHeaderDelegate{
           Text(AppString.outdoor_activities,style: TextStyle(color: Colors.white,fontSize: 18,fontFamily: 'Poppins'),),
           SizedBox(height: 15,),
           CustomButton(borderColor: AppColors.defultColor,height:45 , text: AppString.view_Hotel, onTap: (){
-            AppConstance.navigateTo(router: Explore(adress: ""),context: context);
+            AppConstance.navigateTo(router: Explore(),context: context);
 
           },width: 120,)
         ],),

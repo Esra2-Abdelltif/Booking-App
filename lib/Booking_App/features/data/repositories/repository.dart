@@ -57,7 +57,7 @@ abstract class Repository {
 
   Future<Either<PrimaryServerException, SearchModel>> getFilterHotels({
     required int page,
-    String? address,
+
   });
 
   Future<Either<PrimaryServerException, SearchModel>> getfacilitiesHotels({
@@ -73,7 +73,7 @@ abstract class Repository {
   Future<Either<PrimaryServerException, SearchModel>> searchHotels({
     required int page,
     required String hotelName,
-    String? address,
+
   });
 
   Future<Either<PrimaryServerException, CreateBookingModel>> createBooking({
@@ -142,8 +142,6 @@ class RepositoryImplementation extends Repository {
   @override
   Future<Either<PrimaryServerException, SearchModel>> getFilterHotels({
     required int page,
-    String? address,
-
   }) async {
     return basicErrorHandling<SearchModel>(
       onSuccess: () async {
@@ -152,7 +150,7 @@ class RepositoryImplementation extends Repository {
             query: {
               'page': page,
               'count': 10,
-              'address':address,
+
             }
         );
 
@@ -196,7 +194,7 @@ class RepositoryImplementation extends Repository {
   Future<Either<PrimaryServerException, SearchModel>> searchHotels({
     required int page,
     required String hotelName,
-    String? address,
+
 
   }) async {
     return basicErrorHandling<SearchModel>(
@@ -205,7 +203,7 @@ class RepositoryImplementation extends Repository {
           'page': page,
           'count': 10,
           'name': hotelName,
-          'address':address,
+          
         });
 
         return SearchModel.fromJson(response);

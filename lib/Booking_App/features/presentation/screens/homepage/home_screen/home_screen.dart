@@ -72,6 +72,8 @@ class HomeScreen extends StatelessWidget {
                             router: HotelDetails(
                               imagePath: 'http://api.mahmoudtaha.com/images/${AppBloc.get(context).hotels[index].images[math.Random().nextInt(AppBloc.get(context).hotels[index].images.length)]}',
                               hotelid: cubit.hotels[index].id,
+                              longitude: cubit.hotels[index].longitude,
+                              latitude: cubit.hotels[index].latitude ,
                               hotelName: cubit.hotels[index].name,
                               adresse: cubit.hotels[index].address,
                               description: cubit.hotels[index].description,

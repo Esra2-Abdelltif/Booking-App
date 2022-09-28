@@ -14,6 +14,7 @@ class  SearchSuccessState extends SearchStates {}
 
 class HotelsLoadingState extends SearchStates {}
 class HotelsSuccessState extends SearchStates {}
+class ToggleIsEndState extends SearchStates {}
 
 class FacilitiesLoadingState extends SearchStates {}
 class FetfacilitiesSuccessState extends SearchStates {}

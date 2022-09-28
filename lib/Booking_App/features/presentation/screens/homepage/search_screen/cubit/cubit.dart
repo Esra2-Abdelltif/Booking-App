@@ -17,13 +17,13 @@ class SearchCubit extends Cubit<SearchStates> {
 
   List<SearchHotelModel> hotelsBySearch = [];
 
-  void searchHotels({required String hotelName,String? address} ) async {
+  void searchHotels({required String hotelName} ) async {
     emit(SearchLoadingState());
 
     final response = await repository.searchHotels(
       page: 1,
       hotelName:hotelName ,
-      address: address,
+
     );
 
     response.fold(
@@ -42,20 +42,35 @@ class SearchCubit extends Cubit<SearchStates> {
 
 
   List<SearchHotelModel> hotels = [];
+  int lastPage = 1;
+  int total = 0;
+  int currentPage = 1;
+  void getHotels({ bool isForce = false,}) async {
 
-  void getHotels({String? address}) async {
     emit(HotelsLoadingState());
-    final response = await repository.getFilterHotels(
-      page: 1,
-      address:address,
-    );
+    if(isForce) {
+      hotels = [];
+      currentPage = 1;
+    }
 
+    final response = await repository.getFilterHotels(
+      page: currentPage,
+
+    );
     response.fold(
           (l) {
         emit(SearchErrorState(exception: l));
       },
           (r) {
-            hotels = r.data!.data;
+            hotels.addAll(r.data!.data);
+            currentPage++;
+
+            if(lastPage == 1) {
+              lastPage = r.data!.lastPage;
+              total = r.data!.total;
+            }
+
+            isEnd = false;
 
         emit(HotelsSuccessState());
       },
@@ -63,8 +78,17 @@ class SearchCubit extends Cubit<SearchStates> {
   }
 
 
-  List<Facilities> facilities = [];
 
+  bool isEnd = false;
+
+  void toggleIsEnd() {
+    isEnd = !isEnd;
+
+    emit(ToggleIsEndState());
+  }
+
+
+  List<Facilities> facilities = [];
   void getFacilitiesHotels({String? name,required int id}) async {
     emit(FacilitiesLoadingState());
     final response = await repository.getfacilitiesHotels(
@@ -78,15 +102,17 @@ class SearchCubit extends Cubit<SearchStates> {
         emit(SearchErrorState(exception: l));
       },
           (r) {
-            facilities = r.data!.data[0].facilities;
+        facilities = r.data!.data[0].facilities;
 
         emit(FetfacilitiesSuccessState());
       },
     );
   }
 
-
 }
+
+
+
 
 
 

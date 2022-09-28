@@ -117,7 +117,8 @@ class SearchScreen extends StatelessWidget {
                                                     context)
                                                     .hotelsBySearch[
                                                 index].images.length)]}',
-
+                                                  latitude:SearchCubit.get(context).hotelsBySearch[index].latitude ,
+                                                  longitude: SearchCubit.get(context).hotelsBySearch[index].longitude,
                                                   hotelid: SearchCubit.get(context).hotelsBySearch[index].id,
                                                   hotelName: SearchCubit.get(context).hotelsBySearch[index].name,
                                                 adresse:SearchCubit.get(context).hotelsBySearch[index].address ,
