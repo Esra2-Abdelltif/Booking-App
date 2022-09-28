@@ -169,7 +169,7 @@ class HomeScreen extends StatelessWidget {
                                         ],
                                       ),
                                       SizedBox(
-                                        height: 10,
+                                        height: 2,
                                       ),
                                       Row(
                                         children: [

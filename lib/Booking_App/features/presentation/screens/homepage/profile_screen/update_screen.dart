@@ -8,6 +8,7 @@ import 'package:booking_app/Booking_App/Core/utilites/validator.dart';
 import 'package:booking_app/Booking_App/config/themes/cubit/cubit.dart';
 import 'package:booking_app/Booking_App/features/presentation/blocs/cubit.dart';
 import 'package:booking_app/Booking_App/features/presentation/blocs/states.dart';
+import 'package:booking_app/Booking_App/features/presentation/screens/homepage/app_layout.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/homepage/home_screen/home_screen.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/homepage/profile_screen/profile_screen.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/homepage/profile_screen/update_screen.dart';
@@ -185,6 +186,7 @@ class UpDateScreen extends StatelessWidget {
                                                 if (formkey.currentState!.validate()) {
                                                   AppBloc.get(context).updateUserData(name: nameController.text, email: emailController.text);
                                                   AppBloc.get(context).userProfile();
+                                                  navigateAndFinsh(router: AppLayout(),context: context);
                                                 }
                                               }),
                                         ),

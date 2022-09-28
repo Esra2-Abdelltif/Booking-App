@@ -287,7 +287,8 @@ class _Explore extends State<Explore> with TickerProviderStateMixin {
                                           aspectRatio: 2,
                                           child: Image(
                                             image: NetworkImage(
-                                                'http://api.mahmoudtaha.com/images/${SearchCubit.get(context).hotels[index].images[math.Random().nextInt(SearchCubit.get(context).hotels[index].images.length)]}'),
+                                                'http://api.mahmoudtaha.com/images/${
+                                                    SearchCubit.get(context).hotels[index].images[math.Random().nextInt(SearchCubit.get(context).hotels[index].images.length)]}'),
                                             fit: BoxFit.cover,
                                           ),
                                         ),

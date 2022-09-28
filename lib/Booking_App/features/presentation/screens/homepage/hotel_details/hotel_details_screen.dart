@@ -11,6 +11,7 @@ import 'package:booking_app/Booking_App/features/presentation/blocs/cubit.dart';
 import 'package:booking_app/Booking_App/features/presentation/blocs/states.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/account/login/cubit/cubit.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/homepage/hotel_details/hotel_room_list.dart';
+import 'package:booking_app/Booking_App/features/presentation/screens/map/map_page.dart';
 import 'package:booking_app/Booking_App/features/presentation/widgets/common_card.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -242,7 +243,8 @@ class _HotelDetailsState extends State<HotelDetails>
                           child: FloatingActionButton.extended(
                             backgroundColor: Colors.grey.withOpacity(0.6),
                             onPressed: (){
-                              Navigator.pushNamed(context, MapScreen.routeName);
+                             // Navigator.pushNamed(context, MapScreen.routeName);
+                              AppConstance.navigateTo(context:context ,router:MapPage(latitude: widget.latitude,longitude: widget.longitude,) );
                             },
                             label: Text('see more'),
                           ),
