@@ -11,6 +11,8 @@ class AppString{
   static const String loginNowDiscription ='login now and explore windonful hotels';
   static const String emailAdress ='Email Address';
   static const String email ='Email ';
+  static const String trips ='trips ';
+
   static const String fullName ='User Name';
   static const String enterEmailAdress ='Enter Email Address';
   static const String enterName ='Enter User Name';
@@ -29,6 +31,7 @@ class AppString{
   static const String updateProfile ='Update profile';
   static const String completed ='Completed';
   static const String booking ='Booking';
+  static const String upComing ='Upcoming';
   static const String cancelled ='Cancelled';
   static const String home ='home';
   static const String hotel ='hotel';

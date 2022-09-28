@@ -33,69 +33,69 @@ class _BookingScreenState extends State<BookingScreen> {
       },
       builder: (context, state) {
         return
-        Scaffold(
-          body: state is! ErrorState
-              ?
-            TripsWidget(
-                  model: AppBloc.get(context).upcomming,
-                  buttonWidget: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.teal,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(25),
-                      ),
-                    ),
-                    child: MaterialButton(
-                      onPressed: () {},
-                      child: Text(
-                        'Book Now',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: 'Poppins',
-                            fontSize: 12),
-                      ),
+          Scaffold(
+              body: state is! ErrorState
+                  ?
+              TripsWidget(
+                model: AppBloc.get(context).upcomming,
+                buttonWidget: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.teal,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(25),
                     ),
                   ),
-                  popUp: Container(),
-                )
-              : Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image(image: AssetImage('assests/images/book.png')),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      Text(
-                        'Where to next?',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Poppins',
-                            fontSize: 22),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Text(
-                        'Can\'t find a booking? Enter your booking',
-                        style: TextStyle(
+                  child: MaterialButton(
+                    onPressed: () {},
+                    child: Text(
+                      'Book Now',
+                      style: TextStyle(
+                          color: Colors.white,
                           fontFamily: 'Poppins',
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        'details to add it here.',
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                        ),
-                      ),
-                    ],
+                          fontSize: 12),
+                    ),
                   ),
-                )
-        );
+                ),
+                popUp: Container(),
+              )
+                  : Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image(image: AssetImage('assests/images/book.png')),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Text(
+                      'Where to next?',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Poppins',
+                          fontSize: 22),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Text(
+                      'Can\'t find a booking? Enter your booking',
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      'details to add it here.',
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                      ),
+                    ),
+                  ],
+                ),
+              )
+          );
       },
     );
   }

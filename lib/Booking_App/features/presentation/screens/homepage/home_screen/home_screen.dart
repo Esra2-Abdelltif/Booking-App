@@ -2,6 +2,7 @@ import 'package:booking_app/Booking_App/Core/utilites/app_colors.dart';
 import 'package:booking_app/Booking_App/Core/utilites/app_constance.dart';
 import 'package:booking_app/Booking_App/Core/utilites/app_strings.dart';
 import 'package:booking_app/Booking_App/config/themes/cubit/cubit.dart';
+import 'package:booking_app/Booking_App/features/data/models/hotel_list.dart';
 import 'package:booking_app/Booking_App/features/presentation/blocs/cubit.dart';
 import 'package:booking_app/Booking_App/features/presentation/blocs/states.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/homepage/hotel_details/hotel_details_screen.dart';
@@ -29,17 +30,33 @@ class HomeScreen extends StatelessWidget {
                   floating: true,
                   delegate: ImageSlider(
                     maxExtent: height / 1.6,
-                    minExtent: 240,
+                    minExtent: 280,
                   )),
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 16.0, left: 16.0),
-                  child: Text(
-                    AppString.best_Deals,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        fontFamily: 'Poppins'),
+                  padding: const EdgeInsets.only(top: 36.0, left: 16.0,bottom: 16,right: 16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          AppString.best_Deals,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                              fontFamily: 'Poppins'),
+                        ),
+                      ),
+                      Text(
+                       "View all ",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
+                            color: AppColors.blueColor,
+                           ),
+                      ),
+                      Icon(Icons.arrow_forward,color: AppColors.blueColor,size: 12,)
+                    ],
                   ),
                 ),
               ),
@@ -53,9 +70,10 @@ class HomeScreen extends StatelessWidget {
                       AppConstance.navigateTo(
                         context: context,
                         router: HotelDetails(
+                          imagePath: HotelListData.hotelList[index].imagePath,
                           hotelid: cubit.hotels[index].id,
                           hotelName: cubit.hotels[index].name,
-                          adresse: cubit.hotels[index].adresse,
+                          adresse: cubit.hotels[index].address,
                           description: cubit.hotels[index].description,
                           price: cubit.hotels[index].price,
                           rate: cubit.hotels[index].rate,
@@ -65,24 +83,25 @@ class HomeScreen extends StatelessWidget {
                       print(cubit.hotels[index].id);
                     },
                     child: Card(
-                      elevation: 4,
-                      //shadowColor: ThemeAppCubit.get(context).IsDark ? AppColors.darkcontiner: AppColors.white,
+                      elevation: 2,
+                      shadowColor:ThemeAppCubit.get(context).IsDark
+                          ?   Colors.grey.shade900
+                          : Colors.grey.shade200,
+                      color: ThemeAppCubit.get(context).IsDark? AppColors.darkcontiner : AppColors.white,
                       shape: RoundedRectangleBorder(
-                        side: BorderSide(color: AppColors.grey),
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius:
+                        BorderRadius.circular(16),
                       ),
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       child: Container(
                         height: MediaQuery.of(context).size.height*0.16,
-                        color: ThemeAppCubit.get(context).IsDark
-                            ? AppColors.darkcontiner
-                            : AppColors.white,
+                        color: ThemeAppCubit.get(context).IsDark ? AppColors.darkcontiner : AppColors.white,
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Image(
                                 image:
-                                    AssetImage('assests/images/hotel_5.png'),
+                                    AssetImage('${HotelListData.hotelList[index].imagePath}'),
                                 width: MediaQuery.of(context).size.width*0.3,
                                 height: MediaQuery.of(context).size.width*0.35,
                                 fit: BoxFit.fill),
@@ -95,27 +114,55 @@ class HomeScreen extends StatelessWidget {
                                   Text(
                                     cubit.hotels[index].name,
                                     style: TextStyle(
-                                        fontWeight: FontWeight.bold,
+                                        fontWeight: FontWeight.w600,
                                         fontFamily: 'Poppins',
                                         color: ThemeAppCubit.get(context).IsDark
                                             ? AppColors.white
                                             : AppColors.black,
-                                        fontSize: 16),
+                                        fontSize: 17),
                                   ),
                                   SizedBox(
                                     height: 5,
                                   ),
                                   Text(
-                                    cubit.hotels[index].adresse,
-                                    style: TextStyle(
-                                        color: ThemeAppCubit.get(context).IsDark
-                                            ? AppColors.white
-                                            : AppColors.grey,
-                                        fontFamily: 'Poppins',
-                                        fontSize: 14),
+                                    '${cubit.hotels[index].description}',
+                                    style: TextStyle(fontSize: 24).copyWith(
+                                        color: Colors.grey,
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w400)
                                   ),
                                   SizedBox(
                                     height: 20,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons
+                                            .location_pin,
+                                        size: 16,
+                                        color: AppColors
+                                            .defultColor,
+                                      ),
+                                      SizedBox(width: 8,),
+                                      Text(
+                                        cubit.hotels[index].address,
+                                        style: TextStyle(
+                                            color: AppColors.grey,
+                                            fontFamily: 'Poppins',
+                                            fontSize: 15),
+                                      ),
+                                      SizedBox(width: 99,),
+                                      Text(
+                                        '\$${cubit.hotels[index].price}',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontFamily: 'Poppins',
+                                            fontSize: 18
+                                        ),
+                                      ),
+
+
+                                    ],
                                   ),
                                   Row(
                                     children: [
@@ -125,7 +172,7 @@ class HomeScreen extends StatelessWidget {
                                             2,
                                         itemBuilder: (context, index) => Icon(
                                           Icons.star,
-                                          color: AppColors.blueColor,
+                                          color: AppColors.yellow,
                                         ),
                                         itemCount: 5,
                                         itemSize: 20.0,
@@ -136,9 +183,7 @@ class HomeScreen extends StatelessWidget {
                                       Text(
                                         '(${double.parse('${cubit.hotels[index].rate}') / 2})',
                                         style: TextStyle(
-                                            color: ThemeAppCubit.get(context).IsDark
-                                                ? AppColors.white
-                                                : AppColors.grey,
+                                            color:  AppColors.grey,
                                             fontSize: 10,
                                             fontFamily: 'Poppins'
                                         ),
@@ -147,11 +192,11 @@ class HomeScreen extends StatelessWidget {
                                         width: 30,
                                       ),
                                       Text(
-                                        '${cubit.hotels[index].price}\$',
+                                        '/per night',
                                         style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                          fontFamily: 'Poppins',
-                                          fontSize: 14
+                                            color:  AppColors.grey,
+                                            fontSize: 12,
+                                            fontFamily: 'Poppins'
                                         ),
                                       ),
                                     ],

@@ -2,7 +2,7 @@ class HotelModel {
   final int id;
   final String name;
   final String description;
-  final String adresse;
+  final String address;
   final dynamic price;
   final dynamic rate;
 
@@ -10,7 +10,7 @@ class HotelModel {
     required this.id,
     required this.name,
     required this.description,
-    required this.adresse,
+    required this.address,
     required this.rate,
     required this.price,
   });
@@ -22,7 +22,7 @@ class HotelModel {
       description: json['description'],
       price: json['price'],
       rate: json['rate'],
-      adresse: json['address'],
+      address: json['address'],
     );
   }
 }

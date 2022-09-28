@@ -209,43 +209,7 @@ class SettingsScreen extends StatelessWidget {
                       color: AppColors.grey.withOpacity(.4),
                       thickness: 1),
 
-                  SizedBox(height: 420,),
-                  InkWell(onTap:(){
-                  } ,child: Text("Details")),
-                  SizedBox(height: 200,),
-                  InkWell(onTap:(){
-                    AppConstance.navigateTo(context: context,router: SearchScreen());
-                  } ,child: Text("search")),
-                  MaterialButton(
-                    onPressed: () {
-                      // AppBloc.get(context).userLogin();
-                    },
-                    child: const Text('Login'),
-                  ),
-                  MaterialButton(
-                    onPressed: () {
-                      AppBloc.get(context).userProfile();
-                    },
-                    child: const Text('Get Profile'),
-                  ),
-                  MaterialButton(
-                    onPressed: () {
-                      AppBloc.get(context).getHotels();
-                    },
-                    child: const Text('Get Hotels'),
-                  ),
-                  MaterialButton(
-                    onPressed: () {
-                      //AppBloc.get(context).getHotels();
-                    },
-                    child: const Text('Get Hotels'),
-                  ),
-                  MaterialButton(
-                    onPressed: () {
-                      //AppBloc.get(context).getHotels();
-                    },
-                    child: const Text('test'),
-                  ),
+
 
                 ],
 

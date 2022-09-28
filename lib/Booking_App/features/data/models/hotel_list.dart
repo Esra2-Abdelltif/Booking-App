@@ -105,6 +105,32 @@ class HotelListData {
       date: DateText(1, 4),
       location: LatLng(51.508383, -0.109502),
     ),
+    HotelListData(
+      imagePath: Localfiles.hotel_4,
+      titleTxt: 'Queen Hotel',
+      subTxt: 'Wembley, London',
+      dist: 7.0,
+      reviews: 90,
+      rating: 4.4,
+      perNight: 170,
+      isSelected: false,
+      roomData: RoomData(2, 2),
+      date: DateText(1, 5),
+      location: LatLng(51.519541, -0.114503),
+    ),
+    HotelListData(
+      imagePath: Localfiles.hotel_5,
+      titleTxt: 'Grand Royal Hotel',
+      subTxt: 'Wembley, London',
+      dist: 2.0,
+      reviews: 240,
+      rating: 4.5,
+      isSelected: false,
+      perNight: 200,
+      roomData: RoomData(1, 7),
+      date: DateText(1, 4),
+      location: LatLng(51.508383, -0.109502),
+    ),
   ];
 
   static List<HotelListData> popularList = [

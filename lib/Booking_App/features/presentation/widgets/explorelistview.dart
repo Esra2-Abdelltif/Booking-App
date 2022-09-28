@@ -43,10 +43,7 @@ class ExploreListView extends StatelessWidget {
                   children: [
                     AspectRatio(
                       aspectRatio: 2,
-                      child: Image.asset(
-                        hotelData.imagePath,
-                        fit: BoxFit.cover,
-                      ),
+                      child: Image.asset(hotelData.imagePath, fit: BoxFit.cover,),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -86,18 +83,7 @@ class ExploreListView extends StatelessWidget {
                                   Padding(
                                     padding: EdgeInsets.only(top: 4),
                                     child: Helper.ratingStar(),
-                                    /*  Row(  mainAxisAlignment : MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Icon(Icons.star,size: 8,color: Colors.yellow,),
-                          Icon(Icons.star,size: 8,color: Colors.yellow,),
-                          Icon(Icons.star,size: 8,color: Colors.yellow,),
-                          Icon(Icons.star,size: 8,color: Colors.yellow,),
-                          Icon(Icons.star,size: 8,color: Colors.yellow,),
-                          SizedBox(width: 1,),
-                          Text('80 Reviews'),
 
-                      ],),*/
                                   ),
                                 ]),
                           ),

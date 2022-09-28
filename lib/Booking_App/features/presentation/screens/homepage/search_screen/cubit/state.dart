@@ -8,10 +8,15 @@ abstract class SearchStates {
 }
 
 class InitialSearchStates extends SearchStates {}
-class  SearchLoadingState extends SearchStates {}
-class  SearchSuccessState extends SearchStates {
 
-}
+class  SearchLoadingState extends SearchStates {}
+class  SearchSuccessState extends SearchStates {}
+
+class HotelsLoadingState extends SearchStates {}
+class HotelsSuccessState extends SearchStates {}
+
+class FacilitiesLoadingState extends SearchStates {}
+class FetfacilitiesSuccessState extends SearchStates {}
 
 class SearchErrorState extends SearchStates {
   final PrimaryServerException exception;

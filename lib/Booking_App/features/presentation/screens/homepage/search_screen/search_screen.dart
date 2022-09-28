@@ -5,6 +5,7 @@ import 'package:booking_app/Booking_App/Core/utilites/app_strings.dart';
 import 'package:booking_app/Booking_App/Core/utilites/assets_manager.dart';
 import 'package:booking_app/Booking_App/Core/utilites/hex_color.dart';
 import 'package:booking_app/Booking_App/config/themes/cubit/cubit.dart';
+import 'package:booking_app/Booking_App/features/data/models/hotel_list.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/homepage/hotel_details/hotel_details_screen.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/homepage/search_screen/cubit/cubit.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/homepage/search_screen/cubit/state.dart';
@@ -26,7 +27,7 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => sl<SearchCubit>()..hotels,
+      create: (BuildContext context) => sl<SearchCubit>()..hotelsBySearch,
       child: BlocConsumer<SearchCubit, SearchStates>(
         listener: (BuildContext context, SearchStates state) {},
         builder: (BuildContext context, SearchStates state) {
@@ -101,19 +102,20 @@ class SearchScreen extends StatelessWidget {
                         Expanded(
                           child: ConditionalBuilder(
                               condition:
-                                  SearchCubit.get(context).hotels != null,
+                                  SearchCubit.get(context).hotelsBySearch != null,
                               builder: (context) => ListView.separated(
                                   itemBuilder: (context, index) => InkWell(
                                         onTap: () {
                                           AppConstance.navigateTo(
                                               context: context,
                                               router: HotelDetails(
-                                                  hotelid: SearchCubit.get(context).hotels[index].id,
-                                                  hotelName: SearchCubit.get(context).hotels[index].name,
-                                                adresse:SearchCubit.get(context).hotels[index].adresse ,
-                                                description: SearchCubit.get(context).hotels[index].description,
-                                                price: SearchCubit.get(context).hotels[index].price ,
-                                                rate: SearchCubit.get(context).hotels[index].rate ,
+                                                imagePath: HotelListData.hotelList[index].imagePath,
+                                                  hotelid: SearchCubit.get(context).hotelsBySearch[index].id,
+                                                  hotelName: SearchCubit.get(context).hotelsBySearch[index].name,
+                                                adresse:SearchCubit.get(context).hotelsBySearch[index].address ,
+                                                description: SearchCubit.get(context).hotelsBySearch[index].description,
+                                                price: SearchCubit.get(context).hotelsBySearch[index].price ,
+                                                rate: SearchCubit.get(context).hotelsBySearch[index].rate ,
                                               ),
                                           );
                                         },
@@ -126,8 +128,7 @@ class SearchScreen extends StatelessWidget {
                                           child: Card(
                                             //   shadowColor: Theme.of(context).dividerColor,
                                             color: ThemeAppCubit.get(context)
-                                                    .IsDark
-                                                ? AppColors.darkcontiner
+                                                    .IsDark? AppColors.darkcontiner
                                                 : AppColors.white,
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
@@ -141,7 +142,7 @@ class SearchScreen extends StatelessWidget {
                                                   AspectRatio(
                                                     aspectRatio: 2,
                                                     child: Image.asset(
-                                                      "assests/images/slider_1.png",
+                                                      "${HotelListData.hotelList[index].imagePath}",
                                                       fit: BoxFit.cover,
                                                     ),
                                                   ),
@@ -170,22 +171,19 @@ class SearchScreen extends StatelessWidget {
                                                                       .start,
                                                               children: [
                                                                 Row(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
+                                                                  mainAxisAlignment: MainAxisAlignment
                                                                           .spaceBetween,
-                                                                  children: [
-                                                                    Text(
+                                                                  children: [Text(
                                                                       SearchCubit.get(
                                                                               context)
-                                                                          .hotels[
+                                                                          .hotelsBySearch[
                                                                               index]
                                                                           .name,
                                                                       style: TextStyle(
                                                                           fontWeight:
                                                                               FontWeight.bold),
-                                                                    ),
-                                                                    Text(
-                                                                      "\$${SearchCubit.get(context).hotels[index].price}",
+                                                                    ), Text(
+                                                                      "\$${SearchCubit.get(context).hotelsBySearch[index].price}",
                                                                       style: TextStyle(
                                                                           fontWeight:
                                                                               FontWeight.bold),
@@ -217,9 +215,9 @@ class SearchScreen extends StatelessWidget {
                                                                     Text(
                                                                       SearchCubit.get(
                                                                           context)
-                                                                          .hotels[
+                                                                          .hotelsBySearch[
                                                                       index]
-                                                                          .adresse,
+                                                                          .address,
                                                                       style: TextStyle(
                                                                         color:
                                                                         AppColors.darkTextColor,),
@@ -242,7 +240,7 @@ class SearchScreen extends StatelessWidget {
                                                                   children: [
                                                                     RatingBarIndicator(
                                                                       rating:
-                                                                          double.parse('${SearchCubit.get(context).hotels[index].rate}') /
+                                                                          double.parse('${SearchCubit.get(context).hotelsBySearch[index].rate}') /
                                                                               2,
                                                                       itemBuilder:
                                                                           (context, index) =>
@@ -264,7 +262,7 @@ class SearchScreen extends StatelessWidget {
                                                                           Axis.horizontal,
                                                                     ),
                                                                     Text(
-                                                                      '(${double.parse('${SearchCubit.get(context).hotels[index].rate}') / 2})',
+                                                                      '(${double.parse('${SearchCubit.get(context).hotelsBySearch[index].rate}') / 2})',
                                                                       style: TextStyle(
                                                                           color:    AppColors.darkTextColor,
                                                                           fontSize:
@@ -291,7 +289,7 @@ class SearchScreen extends StatelessWidget {
                                         height: 5,
                                       ),
                                   itemCount:
-                                      SearchCubit.get(context).hotels.length),
+                                      SearchCubit.get(context).hotelsBySearch.length),
                               fallback: (context) => Center(
                                     child: CircularProgressIndicator(
                                       color: Colors.grey,

@@ -46,7 +46,7 @@ class _RanegsliderViewState extends State<RanegsliderView> {
         SliderTheme(data: SliderThemeData(),
             child: RangeSlider(values: _values,
                 min: 10.0,
-                max: 1000.0,
+                max: 5000.0,
                 activeColor: Colors.teal,
                 inactiveColor: Colors.grey ,
                 divisions: 1000,

@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:booking_app/Booking_App/Core/utilites/app_colors.dart';
 import 'package:booking_app/Booking_App/Core/utilites/helper.dart';
 import 'package:booking_app/Booking_App/Core/utilites/localfiles.dart';
+import 'package:booking_app/Booking_App/config/themes/cubit/cubit.dart';
 import 'package:booking_app/Booking_App/features/data/datasources/local/cacheHelper.dart';
 import 'package:booking_app/Booking_App/features/data/models/hotel_list.dart';
 import 'package:booking_app/Booking_App/features/presentation/blocs/cubit.dart';
@@ -14,6 +15,7 @@ import 'package:booking_app/Booking_App/features/presentation/widgets/common_car
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -33,9 +35,10 @@ class HotelDetails extends StatefulWidget {
   final String adresse;
   final dynamic price;
   final String rate;
+  final String imagePath;
 
 
-  HotelDetails({required this.hotelid,required this.hotelName, required this.description, required this.adresse,
+  HotelDetails({required this.hotelid,required this.imagePath,required this.hotelName, required this.description, required this.adresse,
     required this.price,required this.rate});
 
   HotelListData hotelListData = HotelListData();
@@ -64,15 +67,18 @@ class _HotelDetailsState extends State<HotelDetails>
 
   Completer<GoogleMapController> _controller = Completer();
   static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
+    // bearing: 192.8334901395799,
+      target:LatLng(30.0504042,
+          31.3590117),
+      //tilt: 59.440717697143555,
+      zoom:  14.4746);
 
   static final CameraPosition _kLake = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(37.43296265331129, -122.08832357078792),
-      tilt: 59.440717697143555,
-      zoom: 19.151926040649414);
+    // bearing: 192.8334901395799,
+      target:LatLng(30.0504042,
+          31.3590117),
+      //tilt: 59.440717697143555,
+      zoom:  14.4746);
   @override
   void initState() {
     // TODO: implement initState
@@ -120,8 +126,8 @@ class _HotelDetailsState extends State<HotelDetails>
               state: ToastState.SUCCESS,
               gravity: ToastGravity.BOTTOM,
               toastLength: Toast.LENGTH_LONG);
-            AppConstance.navigateTo(
-                router: AppLayout(), context: context);
+          AppConstance.navigateTo(
+              router: AppLayout(), context: context);
         }
       },
       builder: (context,index){
@@ -254,7 +260,7 @@ class _HotelDetailsState extends State<HotelDetails>
               ),
               //background images , hotel names , their details and more animation view
               //backgroundImageUi(widget.hotelListData ?? HotelListData()),
-              backgroundImageUi('assests/images/hotel_1.jpg'),
+              backgroundImageUi(widget.imagePath),
               Padding(
                 padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
                 child: Container(
@@ -274,14 +280,8 @@ class _HotelDetailsState extends State<HotelDetails>
                       Expanded(
                         child: SizedBox(),
                       ),
-                      _getAppBarUi(
-                          Colors.white,
-                          isFav ? Icons.favorite : Icons.favorite_border,
-                          Theme.of(context).primaryColor, () {
-                        setState(() {
-                          isFav = !isFav;
-                        });
-                      })
+
+
                     ],
                   ),
                 ),
@@ -519,8 +519,17 @@ class _HotelDetailsState extends State<HotelDetails>
                 textAlign: TextAlign.left,
                 style: TextStyle(
                     fontFamily: 'Poppins',
-                    color: isInList ? Colors.black : Colors.white,
+                    color: isInList ? ThemeAppCubit.get(context)
+                        .IsDark? Colors.white
+                        : AppColors.black: Colors.white,
                     fontSize: 18),
+              ),
+              Text(
+                  widget.description,
+                  style: TextStyle(fontSize: 24).copyWith(
+                      color: Colors.grey,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w400)
               ),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -528,42 +537,25 @@ class _HotelDetailsState extends State<HotelDetails>
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(
-                      widget.adresse,
-                      style: TextStyle(
-                          fontFamily: 'Poppins',
-                          color: isInList
-                              ? Theme.of(context).disabledColor.withOpacity(0.5)
-                              : Colors.white,
-                          fontSize: 11),
-                    ),
+
                     Icon(
                       Icons.location_on_sharp,
                       color: AppColors.blueColor,
                       size: 13,
                     ),
                     Text(
-                      //"${widget.hotelListData.dist.toStringAsFixed(1)}",
-                      '2.0',
-                      overflow: TextOverflow.ellipsis,
+                      widget.adresse,
                       style: TextStyle(
                           fontFamily: 'Poppins',
                           color: isInList
-                              ? Theme.of(context).disabledColor.withOpacity(0.5)
+                              ? ThemeAppCubit.get(context)
+                              .IsDark? Colors.white
+                              : AppColors.black
                               : Colors.white,
                           fontSize: 11),
                     ),
-                    Text(
-                      'KM To City',
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontSize: 11,
-                        color: isInList
-                            ? Theme.of(context).disabledColor.withOpacity(0.5)
-                            : Colors.white,
-                      ),
-                    ),
+
+
                   ],
                 ),
               ),
@@ -574,7 +566,20 @@ class _HotelDetailsState extends State<HotelDetails>
                 child: Row(
                   children: [
                     ///
-                    Helper.ratingStar(),
+                    RatingBarIndicator(
+                      rating: double.parse(
+                          '${widget.rate}') /
+                          2,
+                      itemBuilder: (context, index) => Icon(
+                        Icons.star,
+                        color: AppColors.yellow,
+                      ),
+                      itemCount: 5,
+                      itemSize: 20.0,
+                      unratedColor:
+                      AppColors.grey.withOpacity(.7),
+                      direction: Axis.horizontal,
+                    ),
                     Text(
                       '(${ double.parse('${widget.rate}')/2})',
                       style: TextStyle(
@@ -634,7 +639,7 @@ class _HotelDetailsState extends State<HotelDetails>
             child: Text(
               title,
               style: TextStyle(
-                color: Colors.black,
+
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Poppins',
                 fontSize: 12,

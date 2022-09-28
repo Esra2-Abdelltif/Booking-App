@@ -23,16 +23,19 @@ class _MapScreenState extends State<MapScreen> {
 
   LocationData? locationData = null;
   Completer<GoogleMapController> _controller = Completer();
-  static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
+  static final CameraPosition _kGooglePlex =CameraPosition(
+    // bearing: 192.8334901395799,
+      target:LatLng(30.0504042,
+          31.3590117),
+      //tilt: 59.440717697143555,
+      zoom:  14.4746);
 
   static final CameraPosition _kLake = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(37.43296265331129, -122.08832357078792),
-      tilt: 59.440717697143555,
-      zoom: 19.151926040649414);
+    // bearing: 192.8334901395799,
+      target: LatLng(30.0504042,
+          31.3590117),
+      //tilt: 59.440717697143555,
+      zoom:  14.4746);
 
   Set<Marker> markers = {};
 

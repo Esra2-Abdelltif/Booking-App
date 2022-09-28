@@ -5,6 +5,8 @@ import 'package:booking_app/Booking_App/features/data/datasources/remote/end_poi
 import 'package:booking_app/Booking_App/features/data/models/hotels_model..dart';
 import 'package:booking_app/Booking_App/features/data/models/login_model.dart';
 import 'package:booking_app/Booking_App/features/data/models/profile_model.dart';
+import 'package:booking_app/Booking_App/features/data/models/searcHotel_model.dart';
+import 'package:booking_app/Booking_App/features/data/models/searcHotels_model.dart';
 import 'package:booking_app/Booking_App/features/data/models/status_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
@@ -50,16 +52,33 @@ abstract class Repository {
   Future<Either<PrimaryServerException, HotelsModel>> getHotels({
     required int page,
   });
-  Future<Either<PrimaryServerException, HotelsModel>> searchHotels({
+
+  Future<Either<PrimaryServerException, SearchModel>> getFilterHotels({
     required int page,
-    required String hotelName,
+    String? address,
   });
 
-Future<Either<PrimaryServerException, CreateBookingModel>> createBooking({
-  required int hotelId,
-  required int userId,
-  required String token,
-});
+  Future<Either<PrimaryServerException, SearchHotelModel>> getfacilitiesHotels({
+    required int page,
+    String? name,
+    required int id,
+  });
+
+
+
+
+
+  Future<Either<PrimaryServerException, SearchModel>> searchHotels({
+    required int page,
+    required String hotelName,
+    String? address,
+  });
+
+  Future<Either<PrimaryServerException, CreateBookingModel>> createBooking({
+    required int hotelId,
+    required int userId,
+    required String token,
+  });
 }
 
 
@@ -119,20 +138,75 @@ class RepositoryImplementation extends Repository {
   }
 
   @override
-  Future<Either<PrimaryServerException, HotelsModel>> searchHotels({
+  Future<Either<PrimaryServerException, SearchModel>> getFilterHotels({
     required int page,
-    required String hotelName,
+    String? address,
 
   }) async {
-    return basicErrorHandling<HotelsModel>(
+    return basicErrorHandling<SearchModel>(
+      onSuccess: () async {
+        final response = await dioHelper.get(
+            endPoint: searchEndPoint,
+            query: {
+              'page': page,
+              'count': 10,
+              'address':address,
+            }
+        );
+
+        return SearchModel.fromJson(response);
+      },
+      onPrimaryServerException: (e) async {
+        return e;
+      },
+    );
+  }
+  @override
+  Future<Either<PrimaryServerException, SearchHotelModel>> getfacilitiesHotels({
+    required int page,
+    String? name,
+    required int id,
+
+
+  }) async {
+    return basicErrorHandling<SearchHotelModel>(
+      onSuccess: () async {
+        final response = await dioHelper.get(
+            endPoint: searchEndPoint,
+            query: {
+              'page': page,
+              'count': 10,
+              'name':name,
+              'id':id
+
+            }
+        );
+
+        return SearchHotelModel.fromJson(response);
+      },
+      onPrimaryServerException: (e) async {
+        return e;
+      },
+    );
+  }
+
+  @override
+  Future<Either<PrimaryServerException, SearchModel>> searchHotels({
+    required int page,
+    required String hotelName,
+    String? address,
+
+  }) async {
+    return basicErrorHandling<SearchModel>(
       onSuccess: () async {
         final response = await dioHelper.get(endPoint: searchEndPoint, query: {
           'page': page,
           'count': 10,
           'name': hotelName,
+          'address':address,
         });
 
-        return HotelsModel.fromJson(response);
+        return SearchModel.fromJson(response);
       },
       onPrimaryServerException: (e) async {
         return e;
@@ -268,13 +342,13 @@ class RepositoryImplementation extends Repository {
       onSuccess: () async {
         final response = await dioHelper.post(
             endPoint: updateBookingEndPoint,
-          data: {
-            'booking_id':bookingId,
-            'type': type,
-          }
+            data: {
+              'booking_id':bookingId,
+              'type': type,
+            }
         );
         return
-        StatusModel.fromJson(response);
+          StatusModel.fromJson(response);
       },
       onPrimaryServerException: (e) async {
         return e;

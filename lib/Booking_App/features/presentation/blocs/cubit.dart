@@ -12,6 +12,7 @@ import 'package:booking_app/Booking_App/features/presentation/screens/homepage/p
 import 'package:booking_app/Booking_App/features/presentation/screens/homepage/settings_screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:path/path.dart' as p;
 
 import '../../../Core/utilites/app_constance.dart';
@@ -36,7 +37,7 @@ class AppBloc extends Cubit<AppStates> {
     BottomNavigationBarItem(
         icon: Icon(Icons.home, size: 24), label: AppString.home),
     BottomNavigationBarItem(
-        icon: const Icon(Icons.hotel, size: 24), label: AppString.hotel),
+        icon: const Icon(FontAwesomeIcons.bootstrap, size: 24), label: AppString.booking),
     BottomNavigationBarItem(
         icon: const Icon(Icons.person, size: 24), label: AppString.profile),
     BottomNavigationBarItem(
@@ -72,10 +73,10 @@ class AppBloc extends Cubit<AppStates> {
       token: CacheHelper.getDate(key: 'token'),
     );
     response.fold(
-      (l) {
+          (l) {
         emit(ErrorState(exception: l));
       },
-      (r) {
+          (r) {
         profileModel = r;
 
         emit(UserProfileSuccessState(profileModel: r));
@@ -90,10 +91,10 @@ class AppBloc extends Cubit<AppStates> {
         name: name
     );
     response.fold(
-      (l) {
+          (l) {
         emit(ErrorState(exception: l));
       },
-      (r) {
+          (r) {
         profileModel = r;
         emit(UserUpdateProfileSuccessState(profileModel: r));
       },
@@ -110,10 +111,10 @@ class AppBloc extends Cubit<AppStates> {
     );
 
     response.fold(
-      (l) {
+          (l) {
         emit(ErrorState(exception: l));
       },
-      (r) {
+          (r) {
         hotels = r.data!.data;
 
         emit(HotelsSuccessState());
@@ -130,9 +131,9 @@ class AppBloc extends Cubit<AppStates> {
     emit(getBookingLoadingState());
 
     final response = await repository.getBooking(
-        token: CacheHelper.getDate(key: 'token'),
-        type: 'completed',
-        count:10,
+      token: CacheHelper.getDate(key: 'token'),
+      type: 'completed',
+      count:10,
     );
 
     response.fold(
@@ -178,7 +179,7 @@ class AppBloc extends Cubit<AppStates> {
 
     response.fold(
           (l) {
-            print('==================================${l.message}');
+        print('==================================${l.message}');
         emit(ErrorState(exception: l));
       },
           (r) {
@@ -192,26 +193,26 @@ class AppBloc extends Cubit<AppStates> {
   CreateBookingModel? bookingModel;
 
   void createBooking({
-  required int hotelId,
-  required int userId,
-})async{
+    required int hotelId,
+    required int userId,
+  })async{
     emit(CreateBookingLoadingState());
     final response=await  repository.createBooking(
-        hotelId: hotelId,
-        userId:userId ,
+      hotelId: hotelId,
+      userId:userId ,
       token: CacheHelper.getDate(key: 'token'),
     );
     response.fold(
             (l) {
-              emit(ErrorState(exception: l));
-            },
+          emit(ErrorState(exception: l));
+        },
             (r) {
-              bookingModel=r;
-              print(r.status!.title?.en);
-              print(r.status!.bookingId);
-              print(token);
-              emit(CreateBookingSuccessState());
-            });
+          bookingModel=r;
+          print(r.status!.title?.en);
+          print(r.status!.bookingId);
+          print(token);
+          emit(CreateBookingSuccessState());
+        });
   }
 
 
@@ -227,8 +228,8 @@ class AppBloc extends Cubit<AppStates> {
         emit(ErrorState(exception: l));
       },
           (r) {
-            update = r;
-            getBookingsUpComming();
+        update = r;
+        getBookingsUpComming();
         print(r.messageEn);
         //print(bookingModel!.status!.bookingId);
         emit(updateCancelledSuccessState());

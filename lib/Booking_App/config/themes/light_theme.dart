@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 ThemeData lightthemes = ThemeData(
-  scaffoldBackgroundColor: Colors.white,
+  scaffoldBackgroundColor: Colors.grey.shade100,
   iconTheme: IconThemeData(color: AppColors.white),
   appBarTheme: AppBarTheme(
     titleSpacing: 15,
     iconTheme: IconThemeData(color: Colors.black),
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.grey.shade100,
     elevation: 0,
     titleTextStyle: TextStyle(
       color:Colors.black,
@@ -33,7 +33,8 @@ ThemeData lightthemes = ThemeData(
     type: BottomNavigationBarType.fixed,
     selectedItemColor: AppColors.defultColor,
     unselectedItemColor: Color(0xFF8D8E98),
-    backgroundColor:AppColors.white,
+    backgroundColor: Colors.grey.shade100,
+
     elevation: 20,
   ),
 

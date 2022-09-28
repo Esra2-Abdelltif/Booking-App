@@ -1,8 +1,8 @@
 class UserModel {
   final int id;
   final String token;
-   String? name;
-   String? email;
+  final String name;
+  final String email;
 
   UserModel({
     required this.id,

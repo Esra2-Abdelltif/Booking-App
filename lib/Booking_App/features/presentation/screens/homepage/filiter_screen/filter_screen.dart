@@ -1,4 +1,6 @@
 
+import 'package:booking_app/Booking_App/Core/utilites/app_constance.dart';
+import 'package:booking_app/Booking_App/features/presentation/screens/homepage/explore/explore.dart';
 import 'package:booking_app/Booking_App/features/presentation/widgets/custom_appBar_view.dart';
 import 'package:booking_app/Booking_App/features/presentation/widgets/ranegsliderview.dart';
 import 'package:booking_app/Booking_App/features/presentation/widgets/slider_view.dart';
@@ -7,9 +9,11 @@ import 'package:flutter/material.dart';
 import 'package:booking_app/Booking_App/features/data/models/popularfilterlistdata.dart';
 
 
+
 class FilterScreeen extends StatefulWidget {
 
-  RangeValues _values = RangeValues(100, 600);
+
+  RangeValues _values = RangeValues(200, 2000);
   List<PopularFilterListData>popularFilterData = PopularFilterListData.popularFList;
   List<PopularFilterListData>accomodationListData = PopularFilterListData.accomodationList;
 
@@ -35,7 +39,7 @@ class _FilterScreeenState extends State<FilterScreeen> {
               CommonAppbarView(
                 iconData: Icons.close,
                 onBackClick: () {
-                  Navigator.pop(context);
+                  AppConstance.navigateTo(context: context,router: Explore(adress:"rome",));
                 },
                 titleText: ('Filter'),
               ),
@@ -110,7 +114,6 @@ class _FilterScreeenState extends State<FilterScreeen> {
 
       ],);
   }
-
   List<Widget> getlist() {
     List<Widget>nolist = [];
     var count = 0;
@@ -121,7 +124,7 @@ class _FilterScreeenState extends State<FilterScreeen> {
       List<Widget> listui = [];
       for (var j = 0; j < colmncount; j++) {
         try {
-          final data = FilterScreeen().popularFilterData[count];
+          var data = FilterScreeen().popularFilterData[count];
           listui.add(
               Expanded(child: Row(
                 children: [
@@ -134,6 +137,7 @@ class _FilterScreeenState extends State<FilterScreeen> {
                         data.isSelected = !data.isSelected;
                           });
                       },
+
                       child: Padding(
                           padding: EdgeInsets.only(top: 8, left: 8, bottom: 8),
                           child: Row(
@@ -237,24 +241,7 @@ class _FilterScreeenState extends State<FilterScreeen> {
                   )
               ),
 
-/*
-              child: Padding(
-                  padding: EdgeInsets.only(top: 8, left: 8, bottom: 8),
-                  child: Row(
-                    children: [
-                      Icon(data.isSelected ? Icons.check_box : Icons
-                          .check_box_outline_blank,
-                        color: data.isSelected ? Colors.teal : Colors
-                            .grey,),
-                      SizedBox(width: 4,),
-                      FittedBox(
-                        fit: BoxFit.cover,
-                        child: Text(data.titleTxt),
-                      ),
-                    ],
-                  )
-              ),
-           */
+
             ),
           )
       );
