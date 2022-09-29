@@ -43,9 +43,7 @@ It's an application with beautiful UI that built with Flutter using:
 
 |Home Screen 1             |  Home Screen 2        |  Home Screen 3
 ------------------------:|:-------------------------:|:-------------------------:
-![Screenshot_20220929_170342_com example booking_app](https://user-images.githubusercontent.com/29564984/193052544-d2cb76e5-568d-4072-89d2-3a2def222107.jpg)
-|![Screenshot_20220929_170349_com example booking_app](https://user-images.githubusercontent.com/29564984/193052587-ca4159d0-91bb-4249-b0f4-964ee6b609a8.jpg)
-|![Screenshot_20220929_170618_com example booking_app](https://user-images.githubusercontent.com/29564984/193052699-0b538219-ca4e-4807-b23d-03ae14f632b4.jpg)
+![Screenshot_20220929_170342_com example booking_app](https://user-images.githubusercontent.com/29564984/193052544-d2cb76e5-568d-4072-89d2-3a2def222107.jpg)|![Screenshot_20220929_170349_com example booking_app](https://user-images.githubusercontent.com/29564984/193052587-ca4159d0-91bb-4249-b0f4-964ee6b609a8.jpg)|![Screenshot_20220929_170618_com example booking_app](https://user-images.githubusercontent.com/29564984/193052699-0b538219-ca4e-4807-b23d-03ae14f632b4.jpg)
 
 
 
