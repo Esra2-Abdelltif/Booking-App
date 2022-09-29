@@ -85,14 +85,15 @@ class AppBloc extends Cubit<AppStates> {
       },
     );
   }
-
-  Future<void> updateUserData({required String name, required String email,  required String image,}) async {
+  final emailController = TextEditingController();
+  final nameController = TextEditingController();
+  void updateUserData() async {
     emit(UserUpdateProfileLoadingStates());
     final response = await repository.updatePofile(
         token: CacheHelper.getDate(key: 'token'),
-        email: email,
-        name: name,
-        image: image
+        email: emailController.text,
+        name: nameController.text,
+      image:  File(image!.path),
     );
     response.fold(
           (l) {
@@ -106,21 +107,18 @@ class AppBloc extends Cubit<AppStates> {
   }
 
 
-  File? profileimage;
-  var picker = ImagePicker();
-  Future<void> getprofileimage()async {
-    final pickedfile = await picker.pickImage(source: ImageSource.gallery);
+  final ImagePicker _picker = ImagePicker();
+  XFile? image;
 
-    if (pickedfile != null) {
-      profileimage = File(pickedfile.path);
-      print(pickedfile.path);
+  void pickImage() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
 
-      emit(SocialProfileImagePickedSuccessState()
-      );
+    if (pickedFile != null) {
+      image =  pickedFile;
+
+      emit(PickImageSuccessState());
     }
-    else {
-      emit(SocialProfileImagePickedErrorState());
-    }
+
   }
 
 

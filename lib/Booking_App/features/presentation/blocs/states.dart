@@ -28,6 +28,7 @@ class SocialProfileImagePickedErrorState extends AppStates{}
 class HotelsLoadingState extends AppStates {}
 
 class HotelsSuccessState extends AppStates {}
+class PickImageSuccessState extends AppStates {}
 
 class CreateBookingSuccessState extends AppStates {}
 class CreateBookingLoadingState extends AppStates {}

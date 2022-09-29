@@ -1,4 +1,6 @@
 
+import 'dart:io';
+
 import 'package:booking_app/Booking_App/Core/error/exceptions.dart';
 import 'package:booking_app/Booking_App/features/data/datasources/remote/dio_helper.dart';
 import 'package:booking_app/Booking_App/features/data/datasources/remote/end_points.dart';
@@ -10,6 +12,7 @@ import 'package:booking_app/Booking_App/features/data/models/searcHotel_model.da
 import 'package:booking_app/Booking_App/features/data/models/searcHotels_model.dart';
 import 'package:booking_app/Booking_App/features/data/models/status_model.dart';
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import '../models/createBooking_model.dart';
@@ -31,6 +34,7 @@ abstract class Repository {
     required String email,
     required String password,
     required String confirmPassword,
+    required String image,
   });
 
   Future<Either<PrimaryServerException, ProfileModel>> getProfile({
@@ -45,7 +49,7 @@ abstract class Repository {
     required String token,
     required String name,
     required String email,
-    required String image,
+    required File image,
 
   });
   Future<Either<PrimaryServerException, StatusModel>> updateBooking({
@@ -94,6 +98,7 @@ class RepositoryImplementation extends Repository {
     required String email,
     required String password,
     required String confirmPassword,
+    required String image,
   }) async {
     return await basicErrorHandling<RegisterModel>(
         onSuccess: () async {
@@ -104,6 +109,7 @@ class RepositoryImplementation extends Repository {
               'email': email,
               'password': password,
               'password_confirmation': confirmPassword,
+              'image':image,
             },
           );
           return RegisterModel.fromJson(response);
@@ -251,18 +257,22 @@ class RepositoryImplementation extends Repository {
     required String token,
     required String name,
     required String email,
-    required String image,
+    required File image,
   }) async {
     return basicErrorHandling<ProfileModel>(
       onSuccess: () async {
         final response = await dioHelper.post(
           endPoint: profileUpdateEndPoint,
           token: token,
-          data: {
-            'email': email ,
-            'name': name ,
-            'image' :image,
-          },
+          isMultipart: true,
+          data: FormData.fromMap({
+            'name':name,
+            'email':email,
+            'image': await MultipartFile.fromFile(
+              image.path,
+              filename: Uri.file(image.path).pathSegments.last,
+            ),
+          }),
         );
 
         return ProfileModel.fromJson(response);

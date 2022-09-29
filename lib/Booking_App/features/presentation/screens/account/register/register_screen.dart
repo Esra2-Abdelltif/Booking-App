@@ -153,7 +153,7 @@ class RegisterScreen extends StatelessWidget {
                                 if (formkey.currentState!.validate()){
                                   print('---------------------------------------${passController.text}');
                                   RegisterCubit.get(context).register(name: nameController.text, email: emailController.text
-                                      , password: passController.text, confirmPassword: confirmPassController.text);
+                                      , password: passController.text, confirmPassword: confirmPassController.text,image: '17571664488290.jpg');
 
                                 }
                               }
@@ -185,6 +185,7 @@ class RegisterScreen extends StatelessWidget {
                                         email: emailController.text,
                                         password: passController.text,
                                         confirmPassword: confirmPassController.text,
+                                        image: '17571664488290.jpg',
                                     );
                                     // AppConstance.navigateTo(router:HomeScreen(),context: context);
                                   }
