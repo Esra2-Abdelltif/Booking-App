@@ -50,6 +50,6 @@ It's an application with beautiful UI that built with Flutter using:
 ![Screenshot_20220929_170456_com example booking_app](https://user-images.githubusercontent.com/29564984/193054100-e9f22a03-c33c-4660-b67a-85b4b35fd246.jpg)|![Screenshot_20220929_170419_com example booking_app](https://user-images.githubusercontent.com/29564984/193054184-d2c27ef2-e8df-471c-afa7-07874eb5bdc9.jpg)|![Screenshot_20220929_170426_com example booking_app](https://user-images.githubusercontent.com/29564984/193054234-f83200d4-46a5-4a35-8d56-961d0ff6c01a.jpg)|
 
 |Profile Screen   |  Update Profile Screen   |Settings Screen    
-------------------------:|:-------------------------:
+------------------------:|:-------------------------:|:-------------------------:
 ![Screenshot_20220929_170503_com example booking_app](https://user-images.githubusercontent.com/29564984/193059199-a724f2f4-f4d9-4875-aa92-93a5e76f0f85.jpg)|![Screenshot_20220929_170509_com example booking_app](https://user-images.githubusercontent.com/29564984/193059243-ddfdca89-9854-4e58-8c8f-000437b1fb44.jpg)|![Screenshot_20220929_170520_com example booking_app](https://user-images.githubusercontent.com/29564984/193059832-a5b87837-5abc-4be8-bf98-1cf6bc7befe5.jpg)
 
