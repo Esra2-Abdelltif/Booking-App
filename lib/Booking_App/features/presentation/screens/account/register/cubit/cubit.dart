@@ -24,13 +24,14 @@ class RegisterCubit extends Cubit<RegisterStates>{
   }
 
   RegisterModel? registerModel;
-  void register({required String name, required String email,required String password, required String confirmPassword}) async {
+  void register({required String name, required String email,required String password, required String confirmPassword,required String image}) async {
     emit(UserRegisterLoadingState());
     final response = await repository.register(
       name: name,
       email: email,
       password: password,
       confirmPassword: confirmPassword,
+      image: image
     );
 
     response.fold(
