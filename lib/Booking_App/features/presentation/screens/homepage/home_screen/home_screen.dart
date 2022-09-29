@@ -18,6 +18,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     return BlocConsumer<AppBloc, AppStates>(
       listener: (context, index) {},
       builder: (context, index) {
@@ -30,7 +31,7 @@ class HomeScreen extends StatelessWidget {
                   floating: true,
                   delegate: ImageSlider(
                     maxExtent: height / 1.6,
-                    minExtent: 280,
+                    minExtent: 240,
                   )),
               SliverToBoxAdapter(
                 child: Padding(
@@ -96,7 +97,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                           clipBehavior: Clip.antiAliasWithSaveLayer,
                           child: Container(
-                            height: MediaQuery.of(context).size.height*0.16,
+                            //height: MediaQuery.of(context).size.height*0.16,
                             color: ThemeAppCubit.get(context).IsDark ? AppColors.darkcontiner : AppColors.white,
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,130 +106,118 @@ class HomeScreen extends StatelessWidget {
                                     image: NetworkImage(
                                         'http://api.mahmoudtaha.com/images/${AppBloc.get(context).hotels[index].images[math.Random().nextInt(AppBloc.get(context).hotels[index].images.length)]}' ),
                                     width: MediaQuery.of(context).size.width*0.33,
-                                    height: MediaQuery.of(context).size.height*0.35,
-                                    fit: BoxFit.fill),
-                                Padding(
-                                  padding:
-                                  const EdgeInsets.only(left: 8.0, top: 8.0),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Container(
-                                            width:230,
-                                            child: Text(
-                                              cubit.hotels[index].name,
-                                            overflow: TextOverflow.ellipsis,
-                                            //   textAlign: TextAlign.justify,
-                                            //   softWrap: false,
-                                            //   maxLines: 1,
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w600,
-                                                  fontFamily: 'Poppins',
-                                                  color: ThemeAppCubit.get(context).IsDark
-                                                      ? AppColors.white
-                                                      : AppColors.black,
-                                                  fontSize: 17),
+                                    height: MediaQuery.of(context).size.height*0.17,
+                                    fit: BoxFit.cover),
+                                Expanded(
+                                  child: Padding(
+                                    padding:
+                                    const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          cubit.hotels[index].name,
+                                        overflow: TextOverflow.ellipsis,
+                                        //   textAlign: TextAlign.justify,
+                                        //   softWrap: false,
+                                        //   maxLines: 1,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontFamily: 'Poppins',
+                                              color: ThemeAppCubit.get(context).IsDark
+                                                  ? AppColors.white
+                                                  : AppColors.black,
+                                              fontSize: 17),
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Row(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: [
+                                            Icon(
+                                              Icons
+                                                  .location_pin,
+                                              size: 22,
+                                              color: AppColors
+                                                  .defultColor,
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons
-                                                .location_pin,
-                                            size: 16,
-                                            color: AppColors
-                                                .defultColor,
-                                          ),
-                                          SizedBox(width: 8,),
-                                          Row(
-                                            children: [
-                                              Container(
-                                                width:200,
-                                                child: Text(
-                                                  cubit.hotels[index].address,
-                                                    overflow: TextOverflow.ellipsis,
-                                                  style: TextStyle(
-                                                      color: AppColors.grey,
-                                                      fontFamily: 'Poppins',
-                                                      fontSize:15 ),
-                                                ),
+                                            Expanded(
+                                              child: Text(
+                                                cubit.hotels[index].address,
+                                                  overflow: TextOverflow.ellipsis,
+                                                style: TextStyle(
+                                                    color: AppColors.grey,
+                                                    fontFamily: 'Poppins',
+                                                    fontSize:15 ),
                                               ),
-                                            ],
-                                          ),
-
-
-
-
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 2,
-                                      ),
-                                      Row(
-                                        children: [
-
-                                         SizedBox(width: 170,),
-                                          Text(
-                                            '\$${cubit.hotels[index].price}',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontFamily: 'Poppins',
-                                                fontSize: 17
                                             ),
-                                          ),
 
 
 
 
-                                        ],
-                                      ),
-
-                                      Row(
-                                        children: [
-                                          RatingBarIndicator(
-                                            rating: double.parse(
-                                                '${cubit.hotels[index].rate}') /
-                                                2,
-                                            itemBuilder: (context, index) => Icon(
-                                              Icons.star,
-                                              color: AppColors.yellow,
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 2,
+                                        ),
+                                        Row(
+                                          children: [
+                                           Spacer(),
+                                            Text(
+                                              '\$${cubit.hotels[index].price}',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontFamily: 'Poppins',
+                                                  fontSize: 17
+                                              ),
                                             ),
-                                            itemCount: 5,
-                                            itemSize: 20.0,
-                                            unratedColor:
-                                            AppColors.grey.withOpacity(.7),
-                                            direction: Axis.horizontal,
-                                          ),
-                                          Text(
-                                            '(${double.parse('${cubit.hotels[index].rate}') / 2})',
-                                            style: TextStyle(
-                                                color:  AppColors.grey,
-                                                fontSize: 10,
-                                                fontFamily: 'Poppins'
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: 30,
-                                          ),
 
-                                          Text(
-                                            '/per night',
-                                            style: TextStyle(
-                                                color:  AppColors.grey,
-                                                fontSize: 12,
-                                                fontFamily: 'Poppins'
+
+
+
+                                          ],
+                                        ),
+
+                                        Row(
+                                          children: [
+                                            RatingBarIndicator(
+                                              rating: double.parse(
+                                                  '${cubit.hotels[index].rate}') /
+                                                  2,
+                                              itemBuilder: (context, index) => Icon(
+                                                Icons.star,
+                                                color: AppColors.yellow,
+                                              ),
+                                              itemCount: 5,
+                                              itemSize: 20.0,
+                                              unratedColor:
+                                              AppColors.grey.withOpacity(.7),
+                                              direction: Axis.horizontal,
                                             ),
-                                          ),
-                                        ],
-                                      )
-                                    ],
+                                            Text(
+                                              '(${double.parse('${cubit.hotels[index].rate}') / 2})',
+                                              style: TextStyle(
+                                                  color:  AppColors.grey,
+                                                  fontSize: 10,
+                                                  fontFamily: 'Poppins'
+                                              ),
+                                            ),
+                                           Spacer(),
+
+                                            Text(
+                                              '/per night',
+                                              style: TextStyle(
+                                                  color:  AppColors.grey,
+                                                  fontSize: 12,
+                                                  fontFamily: 'Poppins'
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 )
                               ],

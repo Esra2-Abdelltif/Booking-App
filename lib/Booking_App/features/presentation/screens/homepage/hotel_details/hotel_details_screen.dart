@@ -149,6 +149,7 @@ class _HotelDetailsState extends State<HotelDetails>
       },
       builder: (context,index){
         var cubit=AppBloc.get(context);
+        int index=cubit.upcomming.length;
         return Scaffold(
           body: Stack(
             children: [
@@ -258,8 +259,7 @@ class _HotelDetailsState extends State<HotelDetails>
                         borderRadius: BorderRadius.all(Radius.circular(20),),
         color: AppColors.blueColor,
                       ),
-                      child:
-                      MaterialButton(
+                      child:MaterialButton(
 
                         onPressed: (){
                           AppBloc.get(context).createBooking(hotelId: widget.hotelid,userId: cubit.profileModel!.data!.id);
@@ -271,7 +271,38 @@ class _HotelDetailsState extends State<HotelDetails>
                           fontFamily: 'Poppins',
                         ),
                         ),
-                      ),
+                      )
+                      // ListView.builder(
+                      //   itemBuilder: (context,index)=> cubit.upcomming[index].type=='upcomming '?
+                      //       MaterialButton(
+                      //
+                      //     onPressed: (){
+                      //       showToastMsg(massage: 'Already booking' ,
+                      //           state: ToastState.SUCCESS,
+                      //           gravity: ToastGravity.BOTTOM,
+                      //           toastLength: Toast.LENGTH_LONG);
+                      //       //print(cubit.profileModel!.data!.id);
+                      //
+                      //     },
+                      //     child: Text('Book Now',style: TextStyle(
+                      //       color: Colors.white,
+                      //       fontFamily: 'Poppins',
+                      //     ),
+                      //     ),
+                      //   ):MaterialButton(
+                      //
+                      //     onPressed: (){
+                      //       AppBloc.get(context).createBooking(hotelId: widget.hotelid,userId: cubit.profileModel!.data!.id);
+                      //       print(cubit.profileModel!.data!.id);
+                      //
+                      //     },
+                      //     child: Text('Book Now',style: TextStyle(
+                      //       color: Colors.white,
+                      //       fontFamily: 'Poppins',
+                      //     ),
+                      //     ),
+                      //   ),
+                      // )
                     ),
 
                     /*getPhotoReviewUi(
@@ -426,6 +457,7 @@ class _HotelDetailsState extends State<HotelDetails>
                                               BorderRadius.circular(32)),
                                           child: MaterialButton(
                                             onPressed: () {
+
                                               AppBloc.get(context).createBooking(hotelId: widget.hotelid,userId: AppBloc.get(context).profileModel!.data!.id);
                                             },
                                             child: Text(
