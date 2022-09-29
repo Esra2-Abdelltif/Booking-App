@@ -7,7 +7,7 @@ class CommonSearchBar extends StatelessWidget {
   final bool enabled, ishsow;
   final double height;
   final IconData? iconData;
-  final bool IsSearch;
+  final bool? IsSearch;
   final Widget TextFormFieldWidget;
 
   const CommonSearchBar(

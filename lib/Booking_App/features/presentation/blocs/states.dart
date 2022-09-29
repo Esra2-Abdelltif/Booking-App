@@ -21,6 +21,8 @@ class  UserUpdateProfileSuccessState extends AppStates{
   UserUpdateProfileSuccessState({required this.profileModel});
 }
 
+class SocialProfileImagePickedSuccessState extends AppStates{}
+class SocialProfileImagePickedErrorState extends AppStates{}
 
 
 class HotelsLoadingState extends AppStates {}

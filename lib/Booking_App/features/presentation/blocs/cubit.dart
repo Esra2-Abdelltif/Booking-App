@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:booking_app/Booking_App/Core/utilites/app_strings.dart';
 import 'package:booking_app/Booking_App/features/data/datasources/local/cacheHelper.dart';
 import 'package:booking_app/Booking_App/features/data/models/createBooking_model.dart';
@@ -13,7 +14,8 @@ import 'package:booking_app/Booking_App/features/presentation/screens/homepage/s
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:path/path.dart' as p;
+import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart' as path;
 
 import '../../../Core/utilites/app_constance.dart';
 import '../../data/models/getBooking_model.dart';
@@ -84,12 +86,13 @@ class AppBloc extends Cubit<AppStates> {
     );
   }
 
-  void updateUserData({required String? name, required String? email,  String? image,}) async {
+  Future<void> updateUserData({required String name, required String email,  required String image,}) async {
     emit(UserUpdateProfileLoadingStates());
     final response = await repository.updatePofile(
-        email: email, token: CacheHelper.getDate(key: 'token'),
+        token: CacheHelper.getDate(key: 'token'),
+        email: email,
         name: name,
-      image: image
+        image: image
     );
     response.fold(
           (l) {
@@ -101,6 +104,25 @@ class AppBloc extends Cubit<AppStates> {
       },
     );
   }
+
+
+  File? profileimage;
+  var picker = ImagePicker();
+  Future<void> getprofileimage()async {
+    final pickedfile = await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedfile != null) {
+      profileimage = File(pickedfile.path);
+      print(pickedfile.path);
+
+      emit(SocialProfileImagePickedSuccessState()
+      );
+    }
+    else {
+      emit(SocialProfileImagePickedErrorState());
+    }
+  }
+
 
   List<HotelModel> hotels = [];
 

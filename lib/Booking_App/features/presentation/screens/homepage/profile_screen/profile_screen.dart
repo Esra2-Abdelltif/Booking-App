@@ -74,9 +74,9 @@ class ProfileScreen extends StatelessWidget {
                                     CircleAvatar(
                                       radius: 35,
                                       backgroundColor: AppColors.white,
-                                      backgroundImage:
-                                      AssetImage(ImageAssets.userProfile),
+                                      backgroundImage: NetworkImage("${cubit.data!.image}"),
                                     ),
+
                                 ],),
                                 SizedBox(
                                   height: 20,

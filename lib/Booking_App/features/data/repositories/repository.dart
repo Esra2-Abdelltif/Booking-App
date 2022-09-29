@@ -2,6 +2,7 @@
 import 'package:booking_app/Booking_App/Core/error/exceptions.dart';
 import 'package:booking_app/Booking_App/features/data/datasources/remote/dio_helper.dart';
 import 'package:booking_app/Booking_App/features/data/datasources/remote/end_points.dart';
+import 'package:booking_app/Booking_App/features/data/models/facitities_model.dart';
 import 'package:booking_app/Booking_App/features/data/models/hotels_model..dart';
 import 'package:booking_app/Booking_App/features/data/models/login_model.dart';
 import 'package:booking_app/Booking_App/features/data/models/profile_model.dart';
@@ -42,9 +43,9 @@ abstract class Repository {
   });
   Future<Either<PrimaryServerException, ProfileModel>> updatePofile({
     required String token,
-    required String? name,
-    required String? email,
-     String? image,
+    required String name,
+    required String email,
+    required String image,
 
   });
   Future<Either<PrimaryServerException, StatusModel>> updateBooking({
@@ -55,20 +56,16 @@ abstract class Repository {
     required int page,
   });
 
-  Future<Either<PrimaryServerException, SearchModel>> getFilterHotels({
+  Future<Either<PrimaryServerException, SearchModel>> getExploerHotels({
     required int page,
 
   });
 
-  Future<Either<PrimaryServerException, SearchModel>> getfacilitiesHotels({
-    required int page,
-    String? name,
-    required int id,
+  Future<Either<PrimaryServerException, FacilitiesModel>> getFacilities();
+  Future<Either<PrimaryServerException, SearchModel>> searchByFacilitiesHotels({
+    required Map<String, int> facilities,
+    required String name,
   });
-
-
-
-
 
   Future<Either<PrimaryServerException, SearchModel>> searchHotels({
     required int page,
@@ -140,7 +137,7 @@ class RepositoryImplementation extends Repository {
   }
 
   @override
-  Future<Either<PrimaryServerException, SearchModel>> getFilterHotels({
+  Future<Either<PrimaryServerException, SearchModel>> getExploerHotels({
     required int page,
   }) async {
     return basicErrorHandling<SearchModel>(
@@ -161,28 +158,42 @@ class RepositoryImplementation extends Repository {
       },
     );
   }
+
   @override
-  Future<Either<PrimaryServerException, SearchModel>> getfacilitiesHotels({
-    required int page,
-    String? name,
-    required int id,
-
-
+  Future<Either<PrimaryServerException, SearchModel>> searchByFacilitiesHotels({
+    required Map<String, int> facilities,
+    required String name,
   }) async {
     return basicErrorHandling<SearchModel>(
       onSuccess: () async {
         final response = await dioHelper.get(
-            endPoint: searchEndPoint,
-            query: {
-              'page': page,
-              'count': 10,
-              'name':name,
-              'id':id
-
-            }
+          endPoint: searchEndPoint,
+          query: {
+            'name': name,
+            ...facilities,
+            'count': 10,
+            'page': 1,
+          },
         );
 
         return SearchModel.fromJson(response);
+      },
+      onPrimaryServerException: (e) async {
+        return e;
+      },
+    );
+  }
+
+  @override
+  Future<Either<PrimaryServerException, FacilitiesModel>>
+  getFacilities() async {
+    return basicErrorHandling<FacilitiesModel>(
+      onSuccess: () async {
+        final response = await dioHelper.get(
+          endPoint: facilitiesEndPoint,
+        );
+
+        return FacilitiesModel.fromJson(response);
       },
       onPrimaryServerException: (e) async {
         return e;
@@ -203,7 +214,7 @@ class RepositoryImplementation extends Repository {
           'page': page,
           'count': 10,
           'name': hotelName,
-          
+
         });
 
         return SearchModel.fromJson(response);
@@ -238,9 +249,9 @@ class RepositoryImplementation extends Repository {
   @override
   Future<Either<PrimaryServerException, ProfileModel>> updatePofile({
     required String token,
-    required String? name,
-    required String? email,
-    String? image,
+    required String name,
+    required String email,
+    required String image,
   }) async {
     return basicErrorHandling<ProfileModel>(
       onSuccess: () async {

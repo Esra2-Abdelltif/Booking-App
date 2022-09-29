@@ -8,12 +8,13 @@ class SearchHotelModel {
   final String latitude;
   final String longitude;
   final List<String> images;
+   final List<String>  facilitiesName;
+    final List<int>  facilitiesID;
+  final List<String> facilitiesimages;
 
-  // final String   facilitiesName;
-  //  final int  facilitiesID;
 
 
-  final List<Facilities> facilities;
+  //final List<Facilities> facilities;
 
   SearchHotelModel({
     required this.id,
@@ -25,9 +26,10 @@ class SearchHotelModel {
     required this.latitude,
     required this.longitude,
     required this.images,
-    // required this.facilitiesID,
-    // required this.facilitiesName,
-    required this.facilities,
+     required this.facilitiesID,
+     required this.facilitiesName,
+    required this.facilitiesimages
+    //required this.facilities,
   });
 
 
@@ -42,14 +44,20 @@ class SearchHotelModel {
       latitude: json['latitude'],
       longitude: json['longitude'],
       images: List<String>.from(json['hotel_images'].map((x) => x['image'])),
+      facilitiesName: List<String>.from(json['facilities'].map((x) => x['name'])),
+      facilitiesID:  List<int>.from(json['facilities'].map((x) => x['id'])),
+      facilitiesimages:  List<String>.from(json['facilities'].map((x) => x['image'])),
+
 
       //facilitiesID: json['facilities'][0]['id'] ,
       //facilitiesName: json['facilities'][0]['name'] ,
-      facilities: List<Facilities>.from(
-        json['facilities'].map(
-              (x) => Facilities.fromJson(x),
-        ),
-      ),
+
+
+      // facilities: List<Facilities>.from(
+      //   json['facilities'].map(
+      //         (x) => Facilities.fromJson(x),
+      //   ),
+      // ),
 
     );
   }

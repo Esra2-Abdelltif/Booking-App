@@ -3,6 +3,7 @@ import 'package:booking_app/Booking_App/Core/utilites/app_constance.dart';
 import 'package:booking_app/Booking_App/Core/utilites/app_strings.dart';
 import 'package:booking_app/Booking_App/config/themes/cubit/cubit.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/homepage/explore/explore.dart';
+import 'package:booking_app/Booking_App/features/presentation/screens/homepage/search_screen/cubit/cubit.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/homepage/search_screen/search_screen.dart';
 import 'package:booking_app/Booking_App/features/presentation/widgets/customButton.dart';
 import 'package:carousel_slider/carousel_options.dart';
@@ -86,6 +87,8 @@ class ImageSlider implements SliverPersistentHeaderDelegate{
           SizedBox(height: 15,),
           CustomButton(borderColor: AppColors.defultColor,height:45 , text: AppString.view_Hotel, onTap: (){
             AppConstance.navigateTo(router: Explore(),context: context);
+           SearchCubit.get(context).searchByFacilitiesHotels();
+
 
           },width: 120,)
         ],),

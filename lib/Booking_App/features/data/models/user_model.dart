@@ -3,14 +3,14 @@ class UserModel {
   final String token;
   final String name;
   final String email;
-  String? image;
+  final String image;
 
   UserModel({
     required this.id,
     required this.token,
     required this.name,
     required this.email,
-    this.image
+    required this.image
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {

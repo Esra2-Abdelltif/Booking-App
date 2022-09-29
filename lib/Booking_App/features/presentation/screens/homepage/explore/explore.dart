@@ -9,6 +9,7 @@ import 'package:booking_app/Booking_App/features/presentation/screens/homepage/h
 import 'package:booking_app/Booking_App/features/presentation/screens/homepage/hotel_details/hotel_details_screen.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/homepage/search_screen/cubit/cubit.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/homepage/search_screen/cubit/state.dart';
+import 'package:booking_app/Booking_App/features/presentation/screens/homepage/search_screen/facilities_screen.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/homepage/search_screen/search_screen.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/map/map_screen.dart';
 import 'package:booking_app/Booking_App/features/presentation/widgets/custom_search.dart';
@@ -109,8 +110,8 @@ class _Explore extends State<Explore> with TickerProviderStateMixin {
                 ],
               ),
               body: CustomScrollView(
-
-                  controller: scrollController, slivers: [
+                  controller: scrollController,
+                  slivers: [
                 SliverList(
                   delegate: SliverChildListDelegate(
                     [
@@ -138,7 +139,7 @@ class _Explore extends State<Explore> with TickerProviderStateMixin {
                               spreadRadius: 2,
                               blurRadius: 1,
                               offset:
-                                  Offset(0, 3), // changes position of shadow
+                              Offset(0, 3), // changes position of shadow
                             ),
                           ],
                           borderRadius: BorderRadius.circular(25),
@@ -189,7 +190,7 @@ class _Explore extends State<Explore> with TickerProviderStateMixin {
                       color: Theme.of(context).scaffoldBackgroundColor,
                       child: Padding(
                         padding:
-                            EdgeInsets.only(left: 16, right: 16, bottom: 4),
+                        EdgeInsets.only(left: 16, right: 16, bottom: 4),
                         child: Row(children: [
                           Padding(
                               padding: EdgeInsets.all(9),
@@ -203,10 +204,10 @@ class _Explore extends State<Explore> with TickerProviderStateMixin {
                               color: Colors.transparent,
                               child: InkWell(
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(4.0)),
+                                BorderRadius.all(Radius.circular(4.0)),
                                 onTap: () {
                                   AppConstance.navigateTo(
-                                      router: FilterScreeen(),
+                                      router: facilitiesScreen(),
                                       context: context);
                                 },
                                 child: Padding(
@@ -219,7 +220,7 @@ class _Explore extends State<Explore> with TickerProviderStateMixin {
                                           child: Icon(
                                             Icons.sort,
                                             color: ThemeAppCubit.get(context)
-                                                    .IsDark
+                                                .IsDark
                                                 ? AppColors.white
                                                 : AppColors.black,
                                           )),
@@ -239,190 +240,190 @@ class _Explore extends State<Explore> with TickerProviderStateMixin {
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) => InkWell(
-                                onTap: () {
-                                  AppConstance.navigateTo(
-                                    context: context,
-                                    router: HotelDetails(
-                                      imagePath:
-                                          'http://api.mahmoudtaha.com/images/${SearchCubit.get(context).hotels[index].images[math.Random().nextInt(SearchCubit.get(context).hotels[index].images.length)]}',
-                                      hotelid: SearchCubit.get(context)
-                                          .hotels[index]
-                                          .id,
-                                      hotelName: SearchCubit.get(context)
-                                          .hotels[index]
-                                          .name,
-                                      longitude: SearchCubit.get(context).hotels[index].longitude,
-                                      latitude: SearchCubit.get(context)
-                                          .hotels[index].latitude,
-                                      adresse: SearchCubit.get(context)
-                                          .hotels[index]
-                                          .address,
-                                      description: SearchCubit.get(context)
-                                          .hotels[index]
-                                          .description,
-                                      price: SearchCubit.get(context)
-                                          .hotels[index]
-                                          .price,
-                                      rate: SearchCubit.get(context)
-                                          .hotels[index]
-                                          .rate,
+                            onTap: () {
+                              AppConstance.navigateTo(
+                                context: context,
+                                router: HotelDetails(
+                                  imagePath:
+                                  'http://api.mahmoudtaha.com/images/${SearchCubit.get(context).hotels[index].images[math.Random().nextInt(SearchCubit.get(context).hotels[index].images.length)]}',
+                                  hotelid: SearchCubit.get(context)
+                                      .hotels[index]
+                                      .id,
+                                  hotelName: SearchCubit.get(context)
+                                      .hotels[index]
+                                      .name,
+                                  longitude: SearchCubit.get(context).hotels[index].longitude,
+                                  latitude: SearchCubit.get(context)
+                                      .hotels[index].latitude,
+                                  adresse: SearchCubit.get(context)
+                                      .hotels[index]
+                                      .address,
+                                  description: SearchCubit.get(context)
+                                      .hotels[index]
+                                      .description,
+                                  price: SearchCubit.get(context)
+                                      .hotels[index]
+                                      .price,
+                                  rate: SearchCubit.get(context)
+                                      .hotels[index]
+                                      .rate,
+                                ),
+                              );
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                  left: 24, right: 24, top: 8, bottom: 15),
+                              child: Container(
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: ThemeAppCubit.get(context).IsDark
+                                      ? AppColors.darkcontiner
+                                      : AppColors.white,
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                child: Column(
+                                  children: [
+                                    AspectRatio(
+                                      aspectRatio: 2,
+                                      child: Image(
+                                        image: NetworkImage(
+                                            'http://api.mahmoudtaha.com/images/${
+                                                SearchCubit.get(context).hotels[index].images[math.Random().nextInt(SearchCubit.get(context).hotels[index].images.length)]}'),
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
-                                  );
-                                },
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 24, right: 24, top: 8, bottom: 15),
-                                  child: Container(
-                                    width: double.infinity,
-                                    decoration: BoxDecoration(
-                                      color: ThemeAppCubit.get(context).IsDark
-                                          ? AppColors.darkcontiner
-                                          : AppColors.white,
-                                      borderRadius: BorderRadius.circular(15),
-                                    ),
-                                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                                    child: Column(
+                                    Row(
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.start,
                                       children: [
-                                        AspectRatio(
-                                          aspectRatio: 2,
-                                          child: Image(
-                                            image: NetworkImage(
-                                                'http://api.mahmoudtaha.com/images/${
-                                                    SearchCubit.get(context).hotels[index].images[math.Random().nextInt(SearchCubit.get(context).hotels[index].images.length)]}'),
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                        Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Expanded(
-                                                child: Padding(
-                                                  padding: EdgeInsets.all(8.0),
-                                                  child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
+                                        Expanded(
+                                            child: Padding(
+                                              padding: EdgeInsets.all(8.0),
+                                              child: Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment
+                                                      .start,
+                                                  children: [
+                                                    Text(
+                                                      SearchCubit.get(
+                                                          context)
+                                                          .hotels[
+                                                      index]
+                                                          .name,
+                                                      overflow:
+                                                      TextOverflow
+                                                          .ellipsis,
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                          FontWeight
+                                                              .bold),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 10,
+                                                    ),
+                                                    Row(
                                                       children: [
-                                                        Text(
-                                                          SearchCubit.get(
-                                                                  context)
-                                                              .hotels[
-                                                                  index]
-                                                              .name,
-                                                          overflow:
-                                                              TextOverflow
-                                                                  .ellipsis,
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
+                                                        Icon(
+                                                          Icons.location_pin,
+                                                          size: 16,
+                                                          color: AppColors
+                                                              .defultColor,
                                                         ),
-                                                        SizedBox(
-                                                          height: 10,
+                                                        Expanded(
+                                                          child: Text(
+                                                            SearchCubit.get(
+                                                                context)
+                                                                .hotels[
+                                                            index]
+                                                                .address,
+                                                            overflow:
+                                                            TextOverflow
+                                                                .ellipsis,
+                                                            style: TextStyle(
+                                                                color: AppColors
+                                                                    .grey,
+                                                                fontFamily:
+                                                                'Poppins',
+                                                                fontSize:
+                                                                15),
+                                                          ),
                                                         ),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 10,
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                      children: [
                                                         Row(
                                                           children: [
-                                                            Icon(
-                                                              Icons.location_pin,
-                                                              size: 16,
-                                                              color: AppColors
-                                                                  .defultColor,
-                                                            ),
-                                                            Expanded(
-                                                              child: Text(
-                                                                SearchCubit.get(
-                                                                        context)
-                                                                    .hotels[
-                                                                        index]
-                                                                    .address,
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
-                                                                style: TextStyle(
-                                                                    color: AppColors
-                                                                        .grey,
-                                                                    fontFamily:
-                                                                        'Poppins',
-                                                                    fontSize:
-                                                                        15),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        SizedBox(
-                                                          height: 10,
-                                                        ),
-                                                        Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                          children: [
-                                                            Row(
-                                                              children: [
-                                                                RatingBarIndicator(
-                                                                  rating: double
-                                                                          .parse(
-                                                                              '${SearchCubit.get(context).hotels[index].rate}') /
-                                                                      2,
-                                                                  itemBuilder:
-                                                                      (context,
-                                                                              index) =>
-                                                                          Icon(
+                                                            RatingBarIndicator(
+                                                              rating: double
+                                                                  .parse(
+                                                                  '${SearchCubit.get(context).hotels[index].rate}') /
+                                                                  2,
+                                                              itemBuilder:
+                                                                  (context,
+                                                                  index) =>
+                                                                  Icon(
                                                                     Icons.star,
                                                                     color: Colors
                                                                         .amber,
                                                                   ),
-                                                                  itemCount: 5,
-                                                                  unratedColor:
-                                                                      AppColors
-                                                                          .grey
-                                                                          .withOpacity(
-                                                                              .7),
-                                                                  itemSize: 20.0,
-                                                                  direction: Axis
-                                                                      .horizontal,
-                                                                ),
-                                                                Text(
-                                                                  '(${double.parse('${SearchCubit.get(context).hotels[index].rate}') / 2})',
-                                                                  style: TextStyle(
-                                                                      color: AppColors
-                                                                          .darkTextColor,
-                                                                      fontSize:
-                                                                          12),
-                                                                ),
-                                                              ],
+                                                              itemCount: 5,
+                                                              unratedColor:
+                                                              AppColors
+                                                                  .grey
+                                                                  .withOpacity(
+                                                                  .7),
+                                                              itemSize: 20.0,
+                                                              direction: Axis
+                                                                  .horizontal,
                                                             ),
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                          .only(
-                                                                      right: 5),
-                                                              child: Text(
-                                                                "\$${SearchCubit.get(context).hotels[index].price}",
-                                                                style: TextStyle(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold),
-                                                              ),
+                                                            Text(
+                                                              '(${double.parse('${SearchCubit.get(context).hotels[index].rate}') / 2})',
+                                                              style: TextStyle(
+                                                                  color: AppColors
+                                                                      .darkTextColor,
+                                                                  fontSize:
+                                                                  12),
                                                             ),
                                                           ],
                                                         ),
-                                                        SizedBox(
-                                                          height: 20,
+                                                        Padding(
+                                                          padding:
+                                                          const EdgeInsets
+                                                              .only(
+                                                              right: 5),
+                                                          child: Text(
+                                                            "\$${SearchCubit.get(context).hotels[index].price}",
+                                                            style: TextStyle(
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                          ),
                                                         ),
-                                                      ]),
-                                                )),
-                                          ],
-                                        )
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 20,
+                                                    ),
+                                                  ]),
+                                            )),
                                       ],
-                                    ),
-                                  ),
+                                    )
+                                  ],
                                 ),
                               ),
+                            ),
+                          ),
                           separatorBuilder: (context, index) => SizedBox(
-                                height: 5,
-                              ),
+                            height: 5,
+                          ),
                           itemCount: SearchCubit.get(context).hotels.length),
                     if (SearchCubit.get(context).hotels.isEmpty)
                       const CupertinoActivityIndicator(),
@@ -466,8 +467,8 @@ Widget _getAppbar(BuildContext context) {
         ),
         Expanded(
             child: Center(
-          child: Text('Explore', style: TextStyle(fontWeight: FontWeight.bold)),
-        )),
+              child: Text('Explore', style: TextStyle(fontWeight: FontWeight.bold)),
+            )),
         Container(
           width: AppBar().preferredSize.height + 40,
           height: AppBar().preferredSize.height,

@@ -31,7 +31,7 @@ class HomeScreen extends StatelessWidget {
                   floating: true,
                   delegate: ImageSlider(
                     maxExtent: height / 1.6,
-                    minExtent: 240,
+                    minExtent: 280,
                   )),
               SliverToBoxAdapter(
                 child: Padding(

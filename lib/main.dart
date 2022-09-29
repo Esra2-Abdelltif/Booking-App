@@ -6,6 +6,7 @@ import 'package:booking_app/Booking_App/config/themes/dark_themes.dart';
 import 'package:booking_app/Booking_App/config/themes/light_theme.dart';
 import 'package:booking_app/Booking_App/features/data/datasources/local/cacheHelper.dart';
 import 'package:booking_app/Booking_App/features/presentation/blocs/cubit.dart';
+import 'package:booking_app/Booking_App/features/presentation/screens/homepage/search_screen/cubit/cubit.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/map/map_screen.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/splash/splash.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -49,6 +50,8 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<AppBloc>(
     create: (context) => sl<AppBloc>()..userProfile(),  ),
+        BlocProvider<SearchCubit>(
+          create: (context) => sl<SearchCubit>(),  ),
         BlocProvider(create: (BuildContext context )=>ThemeAppCubit()..ChangeAppMode(fromShared: IsDark)),
 
       ],
