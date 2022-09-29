@@ -33,6 +33,6 @@ It's an application with beautiful UI that built with Flutter using:
 ![Screenshot_20220929-022450_One UI Home](https://user-images.githubusercontent.com/72301777/192912004-82746c0f-f2ed-4f47-bbe4-4e60ee017c72.jpg)|![Screenshot_20220929-022710](https://user-images.githubusercontent.com/72301777/192912028-629a5f28-5eb9-433b-83e9-052cfa46181a.jpg)|![Screenshot_20220929-022649](https://user-images.githubusercontent.com/72301777/192912056-11e74404-fb1a-464a-a868-ea534ec698cd.jpg)
 
 
-|OnBoarding Screen 1      |  OnBoarding Screen 2        |  OnBoarding Screen 3              
+|OnBoarding Screen 1             |  OnBoarding Screen 2        |  OnBoarding Screen 3              
 ------------------------:|:-------------------------:|:-------------------------:
 ![Screenshot_20220929-023446](https://user-images.githubusercontent.com/72301777/192912768-13c04c12-a874-4c5b-bc64-9940cb668df5.jpg)|![Screenshot_20220929-023451](https://user-images.githubusercontent.com/72301777/192912828-4756e5aa-4fc3-4079-b1e8-e937ca721301.jpg)|![Screenshot_20220929-023458](https://user-images.githubusercontent.com/72301777/192912875-24a98e71-e5a1-42cd-8b46-1ce6bf721ac8.jpg)
