@@ -45,6 +45,12 @@ It's an application with beautiful UI that built with Flutter using:
 ------------------------:|:-------------------------:|:-------------------------:
 ![Screenshot_20220929_170342_com example booking_app](https://user-images.githubusercontent.com/29564984/193052544-d2cb76e5-568d-4072-89d2-3a2def222107.jpg)|![Screenshot_20220929_170349_com example booking_app](https://user-images.githubusercontent.com/29564984/193052587-ca4159d0-91bb-4249-b0f4-964ee6b609a8.jpg)|![Screenshot_20220929_170618_com example booking_app](https://user-images.githubusercontent.com/29564984/193052699-0b538219-ca4e-4807-b23d-03ae14f632b4.jpg)
 
+|Trips Booking Screen   |  Trips Cancelled Screen      |  Trips Completed Screen
+------------------------:|:-------------------------:|:-------------------------:
+![Screenshot_20220929_170456_com example booking_app](https://user-images.githubusercontent.com/29564984/193054100-e9f22a03-c33c-4660-b67a-85b4b35fd246.jpg)|![Screenshot_20220929_170419_com example booking_app](https://user-images.githubusercontent.com/29564984/193054184-d2c27ef2-e8df-471c-afa7-07874eb5bdc9.jpg)|![Screenshot_20220929_170426_com example booking_app](https://user-images.githubusercontent.com/29564984/193054234-f83200d4-46a5-4a35-8d56-961d0ff6c01a.jpg)|
+
+
+
 
 
 
