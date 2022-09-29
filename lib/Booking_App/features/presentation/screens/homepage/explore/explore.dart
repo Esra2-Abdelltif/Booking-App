@@ -293,153 +293,126 @@ class _Explore extends State<Explore> with TickerProviderStateMixin {
                                           ),
                                         ),
                                         Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
                                             Expanded(
-                                                child: Container(
-                                              child: Padding(
-                                                padding: EdgeInsets.only(
-                                                    top: 8, left: 16, right: 8),
-                                                child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Row(
-                                                        children: [
-                                                          Row(
-                                                            children: [
-                                                              Container(
-                                                                width: 330,
-                                                                child: Text(
-                                                                  SearchCubit.get(
-                                                                          context)
-                                                                      .hotels[
-                                                                          index]
-                                                                      .name,
-                                                                  overflow:
-                                                                      TextOverflow
-                                                                          .ellipsis,
-                                                                  style: TextStyle(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      SizedBox(
-                                                        height: 10,
-                                                      ),
-                                                      Row(
-                                                        children: [
-                                                          Icon(
-                                                            Icons.location_pin,
-                                                            size: 16,
-                                                            color: AppColors
-                                                                .defultColor,
-                                                          ),
-                                                          SizedBox(
-                                                            width: 8,
-                                                          ),
-                                                          Row(
-                                                            children: [
-                                                              Container(
-                                                                width: 300,
-                                                                child: Text(
-                                                                  SearchCubit.get(
-                                                                          context)
-                                                                      .hotels[
-                                                                          index]
-                                                                      .address,
-                                                                  overflow:
-                                                                      TextOverflow
-                                                                          .ellipsis,
-                                                                  style: TextStyle(
-                                                                      color: AppColors
-                                                                          .grey,
-                                                                      fontFamily:
-                                                                          'Poppins',
-                                                                      fontSize:
-                                                                          15),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      SizedBox(
-                                                        height: 10,
-                                                      ),
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          Row(
-                                                            children: [
-                                                              RatingBarIndicator(
-                                                                rating: double
-                                                                        .parse(
-                                                                            '${SearchCubit.get(context).hotels[index].rate}') /
-                                                                    2,
-                                                                itemBuilder:
-                                                                    (context,
-                                                                            index) =>
-                                                                        Icon(
-                                                                  Icons.star,
-                                                                  color: Colors
-                                                                      .amber,
-                                                                ),
-                                                                itemCount: 5,
-                                                                unratedColor:
-                                                                    AppColors
-                                                                        .grey
-                                                                        .withOpacity(
-                                                                            .7),
-                                                                itemSize: 20.0,
-                                                                direction: Axis
-                                                                    .horizontal,
-                                                              ),
-                                                              Text(
-                                                                '(${double.parse('${SearchCubit.get(context).hotels[index].rate}') / 2})',
+                                                child: Padding(
+                                                  padding: EdgeInsets.all(8.0),
+                                                  child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          SearchCubit.get(
+                                                                  context)
+                                                              .hotels[
+                                                                  index]
+                                                              .name,
+                                                          overflow:
+                                                              TextOverflow
+                                                                  .ellipsis,
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                        SizedBox(
+                                                          height: 10,
+                                                        ),
+                                                        Row(
+                                                          children: [
+                                                            Icon(
+                                                              Icons.location_pin,
+                                                              size: 16,
+                                                              color: AppColors
+                                                                  .defultColor,
+                                                            ),
+                                                            Expanded(
+                                                              child: Text(
+                                                                SearchCubit.get(
+                                                                        context)
+                                                                    .hotels[
+                                                                        index]
+                                                                    .address,
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
                                                                 style: TextStyle(
                                                                     color: AppColors
-                                                                        .darkTextColor,
+                                                                        .grey,
+                                                                    fontFamily:
+                                                                        'Poppins',
                                                                     fontSize:
-                                                                        12),
+                                                                        15),
                                                               ),
-                                                            ],
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .only(
-                                                                    right: 5),
-                                                            child: Text(
-                                                              "\$${SearchCubit.get(context).hotels[index].price}",
-                                                              style: TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
                                                             ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      SizedBox(
-                                                        height: 20,
-                                                      ),
-                                                    ]),
-                                              ),
-                                            )),
+                                                          ],
+                                                        ),
+                                                        SizedBox(
+                                                          height: 10,
+                                                        ),
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Row(
+                                                              children: [
+                                                                RatingBarIndicator(
+                                                                  rating: double
+                                                                          .parse(
+                                                                              '${SearchCubit.get(context).hotels[index].rate}') /
+                                                                      2,
+                                                                  itemBuilder:
+                                                                      (context,
+                                                                              index) =>
+                                                                          Icon(
+                                                                    Icons.star,
+                                                                    color: Colors
+                                                                        .amber,
+                                                                  ),
+                                                                  itemCount: 5,
+                                                                  unratedColor:
+                                                                      AppColors
+                                                                          .grey
+                                                                          .withOpacity(
+                                                                              .7),
+                                                                  itemSize: 20.0,
+                                                                  direction: Axis
+                                                                      .horizontal,
+                                                                ),
+                                                                Text(
+                                                                  '(${double.parse('${SearchCubit.get(context).hotels[index].rate}') / 2})',
+                                                                  style: TextStyle(
+                                                                      color: AppColors
+                                                                          .darkTextColor,
+                                                                      fontSize:
+                                                                          12),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      right: 5),
+                                                              child: Text(
+                                                                "\$${SearchCubit.get(context).hotels[index].price}",
+                                                                style: TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        SizedBox(
+                                                          height: 20,
+                                                        ),
+                                                      ]),
+                                                )),
                                           ],
                                         )
                                       ],
