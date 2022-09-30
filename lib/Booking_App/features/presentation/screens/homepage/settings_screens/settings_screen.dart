@@ -63,31 +63,7 @@ class SettingsScreen extends StatelessWidget {
                       height: 1,
                       color: AppColors.grey.withOpacity(.4),
                       thickness: 1),
-                  //Language
-                  InkWell(
-                    onTap: () {
 
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 20,top: 20),
-                      child: Row(
-                        mainAxisAlignment:
-                        MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text("Language",
-                              style: TextStyle(
-                                //fontWeight: FontWeight.bold,
-                                fontSize: 16,)),
-                          Icon( Icons.translate_outlined,color: AppColors.grey.withOpacity(.7),)
-
-                        ],
-                      ),
-                    ),
-                  ),
-                  Divider(
-                      height: 1,
-                      color: AppColors.grey.withOpacity(.4),
-                      thickness: 1),
                   InkWell(
                     onTap: () {
 

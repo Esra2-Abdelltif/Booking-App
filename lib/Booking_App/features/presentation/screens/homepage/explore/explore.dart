@@ -26,11 +26,7 @@ import 'package:path/path.dart';
 import 'dart:math' as math;
 
 class Explore extends StatefulWidget {
-  String? adress;
-  String? facilitiesName;
-  int? facilitiesID;
 
-  Explore({this.adress, this.facilitiesName, this.facilitiesID});
 
   @override
   State<Explore> createState() => _Explore();
@@ -245,7 +241,7 @@ class _Explore extends State<Explore> with TickerProviderStateMixin {
                                 context: context,
                                 router: HotelDetails(
                                   imagePath:
-                                  'http://api.mahmoudtaha.com/images/${SearchCubit.get(context).hotels[index].images[math.Random().nextInt(SearchCubit.get(context).hotels[index].images.length)]}',
+                                  'http://api.mahmoudtaha.com/images/${SearchCubit.get(context).hotels[index].images[0]}',
                                   hotelid: SearchCubit.get(context)
                                       .hotels[index]
                                       .id,
@@ -289,7 +285,7 @@ class _Explore extends State<Explore> with TickerProviderStateMixin {
                                       child: Image(
                                         image: NetworkImage(
                                             'http://api.mahmoudtaha.com/images/${
-                                                SearchCubit.get(context).hotels[index].images[math.Random().nextInt(SearchCubit.get(context).hotels[index].images.length)]}'),
+                                                SearchCubit.get(context).hotels[index].images[0]}'),
                                         fit: BoxFit.cover,
                                       ),
                                     ),

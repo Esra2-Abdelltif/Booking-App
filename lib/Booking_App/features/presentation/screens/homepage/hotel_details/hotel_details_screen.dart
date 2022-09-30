@@ -262,8 +262,8 @@ class _HotelDetailsState extends State<HotelDetails>
                       child:MaterialButton(
 
                         onPressed: (){
-                          AppBloc.get(context).createBooking(hotelId: widget.hotelid,userId: cubit.profileModel!.data.id);
-                          print(cubit.profileModel!.data.id);
+                          AppBloc.get(context).createBooking(hotelId: widget.hotelid,userId: cubit.profileModel!.data!.id);
+                          print(cubit.profileModel!.data!.id);
 
                         },
                         child: Text('Book Now',style: TextStyle(
@@ -458,7 +458,7 @@ class _HotelDetailsState extends State<HotelDetails>
                                           child: MaterialButton(
                                             onPressed: () {
 
-                                              AppBloc.get(context).createBooking(hotelId: widget.hotelid,userId: AppBloc.get(context).profileModel!.data.id);
+                                              AppBloc.get(context).createBooking(hotelId: widget.hotelid,userId: AppBloc.get(context).profileModel!.data!.id);
                                             },
                                             child: Text(
                                               'Book Now',

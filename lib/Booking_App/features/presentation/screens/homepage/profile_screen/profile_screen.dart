@@ -47,7 +47,7 @@ class ProfileScreen extends StatelessWidget {
                                     children: [
                                       SizedBox(height: 5,),
                                       Text(
-                                        cubit!.data.name,
+                                        cubit!.data!.name,
                                         style: TextStyle(
                                           fontWeight: FontWeight.w400,
                                           fontSize: 16,
@@ -59,7 +59,7 @@ class ProfileScreen extends StatelessWidget {
                                       ),
                                       SizedBox(height: 7,),
                                       Text(
-                                        cubit.data.email,
+                                        cubit.data!.email,
                                         style: TextStyle(
                                           fontWeight: FontWeight.w400,
                                           fontSize: 12,
@@ -74,7 +74,7 @@ class ProfileScreen extends StatelessWidget {
                                     CircleAvatar(
                                       radius: 35,
                                       backgroundColor: AppColors.white,
-                                      backgroundImage: NetworkImage("${cubit.data.image}"),
+                                      backgroundImage: NetworkImage("${cubit.data!.image}"),
                                     ),
 
                                 ],),

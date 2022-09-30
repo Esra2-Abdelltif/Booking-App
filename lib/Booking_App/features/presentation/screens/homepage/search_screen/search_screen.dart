@@ -113,10 +113,7 @@ class SearchScreen extends StatelessWidget {
                                               router: HotelDetails(
                                                 imagePath: 'http://api.mahmoudtaha.com/images/${ SearchCubit.get(
                                                     context)
-                                                    .hotelsBySearch[index].images[math.Random().nextInt( SearchCubit.get(
-                                                    context)
-                                                    .hotelsBySearch[
-                                                index].images.length)]}',
+                                                    .hotelsBySearch[index].images[0]}',
                                                   latitude:SearchCubit.get(context).hotelsBySearch[index].latitude ,
                                                   longitude: SearchCubit.get(context).hotelsBySearch[index].longitude,
                                                   hotelid: SearchCubit.get(context).hotelsBySearch[index].id,
@@ -151,7 +148,7 @@ class SearchScreen extends StatelessWidget {
                                               aspectRatio: 2,
                                               child:  Image(
                                                 image: NetworkImage(
-                                                    'http://api.mahmoudtaha.com/images/${ SearchCubit.get(context).hotelsBySearch[index].images[math.Random().nextInt(SearchCubit.get(context).hotelsBySearch[index].images.length)]}' ),
+                                                    'http://api.mahmoudtaha.com/images/${ SearchCubit.get(context).hotelsBySearch[index].images[0]}' ),
                                                 fit: BoxFit.cover,
                                               ),
                                             ),
