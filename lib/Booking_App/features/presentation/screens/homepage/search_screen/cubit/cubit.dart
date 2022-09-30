@@ -5,6 +5,7 @@ import 'package:booking_app/Booking_App/features/data/models/searcHotel_model.da
 import 'package:booking_app/Booking_App/features/data/models/searcHotels_model.dart';
 import 'package:booking_app/Booking_App/features/data/repositories/repository.dart';
 import 'package:booking_app/Booking_App/features/presentation/screens/homepage/search_screen/cubit/state.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -114,6 +115,8 @@ class SearchCubit extends Cubit<SearchStates> {
 
     emit(SelectFacilityState());
   }
+
+
 
   TextEditingController searchController = TextEditingController();
 

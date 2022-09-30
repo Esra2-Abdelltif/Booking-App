@@ -71,7 +71,7 @@ class HomeScreen extends StatelessWidget {
                           AppConstance.navigateTo(
                             context: context,
                             router: HotelDetails(
-                              imagePath: 'http://api.mahmoudtaha.com/images/${AppBloc.get(context).hotels[index].images[math.Random().nextInt(AppBloc.get(context).hotels[index].images.length)]}',
+                              imagePath: 'http://api.mahmoudtaha.com/images/${AppBloc.get(context).hotels[index].images[0]}',
                               hotelid: cubit.hotels[index].id,
                               longitude: cubit.hotels[index].longitude,
                               latitude: cubit.hotels[index].latitude ,
@@ -104,7 +104,7 @@ class HomeScreen extends StatelessWidget {
                               children: [
                                 Image(
                                     image: NetworkImage(
-                                        'http://api.mahmoudtaha.com/images/${AppBloc.get(context).hotels[index].images[math.Random().nextInt(AppBloc.get(context).hotels[index].images.length)]}' ),
+                                        'http://api.mahmoudtaha.com/images/${AppBloc.get(context).hotels[index].images[0]}' ),
                                     width: MediaQuery.of(context).size.width*0.33,
                                     height: MediaQuery.of(context).size.height*0.17,
                                     fit: BoxFit.cover),

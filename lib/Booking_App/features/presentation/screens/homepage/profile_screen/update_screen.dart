@@ -69,8 +69,8 @@ class _UpDateScreenState extends State<UpDateScreen> {
       },
       builder: (context, state) {
         AppBloc cubit = AppBloc.get(context);
-        cubit.nameController.text = '${cubit.profileModel?.data.name}'  ;
-        cubit.emailController.text = '${cubit.profileModel?.data.email}';
+        cubit.nameController.text = '${cubit.profileModel?.data!.name}'  ;
+        cubit.emailController.text = '${cubit.profileModel?.data!.email}';
 
         return Scaffold(
             body: ConditionalBuilder(
@@ -122,10 +122,10 @@ class _UpDateScreenState extends State<UpDateScreen> {
                                           child: CircleAvatar(
                                               radius: 77,
                                               backgroundColor: AppColors.white,
-                                              backgroundImage:NetworkImage('${AppBloc.get(context).profileModel!.data.image}')
+                                              backgroundImage:NetworkImage('${AppBloc.get(context).profileModel!.data!.image}')
                                           ),
                                         ),
-                                      if (AppBloc.get(context).profileModel!.data.image == null)
+                                      if (AppBloc.get(context).profileModel!.data!.image == null)
                                         Container(
                                           width: 200.0,
                                           height: 200.0,
@@ -150,7 +150,7 @@ class _UpDateScreenState extends State<UpDateScreen> {
                                           child: IconButton(
                                               onPressed: () {
                                                 cubit.pickImage();
-                                                print(AppBloc.get(context).profileModel!.data.image);
+                                                print(AppBloc.get(context).profileModel!.data!.image);
                                               },
                                               icon: Icon(
                                                 Icons.camera_alt,

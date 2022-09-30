@@ -65,7 +65,7 @@ class TripsWidget extends StatelessWidget {
                                 children: [
                                   Image(
                                       image: NetworkImage(
-                                          'http://api.mahmoudtaha.com/images/${AppBloc.get(context).hotels[index].images[math.Random().nextInt(AppBloc.get(context).hotels[index].images.length)]}'),
+                                          'http://api.mahmoudtaha.com/images/${AppBloc.get(context).hotels[index].images[0]}'),
                                       width: MediaQuery.of(context).size.width *
                                           0.35,
                                       height:
