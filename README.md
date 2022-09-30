@@ -27,6 +27,16 @@ It's an application with beautiful UI that built with Flutter using:
 
 
 
+##Vedio
+
+
+
+https://user-images.githubusercontent.com/72301777/193353080-4e2e7619-63ca-4e82-8a87-da229d93883b.mp4
+
+
+
+
+
 # ScreenShoot:
 
 |App Logo          |   Splah Location        |  Splash Screen              
