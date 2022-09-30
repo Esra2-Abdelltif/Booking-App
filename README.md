@@ -8,7 +8,7 @@ It's an application with beautiful UI that built with Flutter using:
 - Build Ui With animation.
 - Using Shared_preferences to Cache Data.
 - Get Hotel Data and deatils of hotel.
-- Usiing Package flutter_rating_bar to open Map to locates of hotel.
+- Usiing Package google_maps_flutter to open Map to locates of hotel.
 - Get User Data and update it.
 - User can Booking hotels and canceled it .
 - User Can Search and filter Data.
