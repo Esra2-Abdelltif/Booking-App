@@ -124,7 +124,7 @@ class User {
   String? email;
   Null? emailVerifiedAt;
   String? apiToken;
-  Null? image;
+  String? image;
   String? createdAt;
   String? updatedAt;
   Null? googleId;

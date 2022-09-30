@@ -65,7 +65,7 @@ class TripsWidget extends StatelessWidget {
                                 children: [
                                   Image(
                                       image: NetworkImage(
-                                          'http://api.mahmoudtaha.com/images/${AppBloc.get(context).hotels[index].images[math.Random().nextInt(AppBloc.get(context).hotels[index].images.length)]}'),
+                                          'http://api.mahmoudtaha.com/images/${model[index].hotel!.hotelImages![math.Random().nextInt(model[index].hotel!.hotelImages!.length)].image}'),
                                       width: MediaQuery.of(context).size.width *
                                           0.35,
                                       height:
@@ -79,7 +79,7 @@ class TripsWidget extends StatelessWidget {
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            cubit.hotels[index].name,
+                                            model[index].hotel!.name!,
                                             overflow: TextOverflow.ellipsis,
                                             //maxLines: 2,
                                             style: TextStyle(
@@ -103,7 +103,7 @@ class TripsWidget extends StatelessWidget {
                                               ),
                                               Expanded(
                                                 child: Text(
-                                                  cubit.hotels[index].address,
+                                                  model[index].hotel!.address!,
                                                   //maxLines: 2,
                                                   overflow:
                                                   TextOverflow.ellipsis,
