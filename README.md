@@ -1,5 +1,10 @@
 # booking_app
-Algoriza task Working With Team.
+Simply, our app is a booking application to book a hotel for your vacation.
+Users can find all details about the hotel like price, photos, description,
+and so on so that user can find a suitable hotel.
+Also, users can find the target hotel location using Google Map.
+There are other features like Auth and profile which is specified at the video given with the link below.
+This app is a result of woking with git for teamwork coding management.
 ##
 
 It's an application with beautiful UI that built with Flutter using:
@@ -78,6 +83,7 @@ https://user-images.githubusercontent.com/72301777/193353080-4e2e7619-63ca-4e82-
 |Booking Screen 1   | Booking Screen 2   |Booking Screen 3   
 ------------------------:|:-------------------------:|:-------------------------:
 ![Screenshot_20220929_183536_com example booking_app](https://user-images.githubusercontent.com/29564984/193061971-afed614e-3c67-4222-99e5-de8d74647ae1.jpg)|![Screenshot_20220929_183545_com example booking_app](https://user-images.githubusercontent.com/29564984/193062027-48500c4c-8d6c-486e-9825-1cb70cfb3329.jpg)|![Screenshot_20220929_183610_com example booking_app](https://user-images.githubusercontent.com/29564984/193062045-d9ce97d9-9a49-4249-a56d-0b60b1050132.jpg)
+
 
 
 
