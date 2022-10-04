@@ -36,7 +36,9 @@ It's an application with beautiful UI that built with Flutter using:
 
 
 
-https://user-images.githubusercontent.com/72301777/193353080-4e2e7619-63ca-4e82-8a87-da229d93883b.mp4
+
+https://user-images.githubusercontent.com/72301777/193801325-9252e7e0-09a7-459b-b97a-cb6a8b0cf1bb.mp4
+
 
 
 
